@@ -1,4 +1,4 @@
-package com.mep.database.mapper.category;
+package com.mep.domain.admin.category.dao;
 
 import static com.mep.util.TestMapperUtil.newCategory;
 import static org.hamcrest.CoreMatchers.is;
@@ -11,7 +11,7 @@ import com.mep.database.entity.Category;
 import com.mep.database.mapper.CategoryMapper;
 import com.mep.util.TestAbstract;
 
-public class CategoryUpdateConfirmMapperTest extends TestAbstract {
+public class CategoryUpdateConfirmDaoTest extends TestAbstract {
 
 	@Autowired
 	private CategoryMapper categoryMapper;

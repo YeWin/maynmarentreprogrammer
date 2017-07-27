@@ -1,4 +1,4 @@
-package com.mep.database.mapper.category;
+package com.mep.domain.admin.category.dao;
 
 import static com.mep.util.TestMapperUtil.newCategory;
 import static org.hamcrest.CoreMatchers.is;
@@ -8,18 +8,17 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.mep.database.entity.Category;
-import com.mep.database.mapper.CategoryMapper;
 import com.mep.util.TestAbstract;
 
-public class CategoryInsertMapperTest extends TestAbstract {
+public class CategoryInsertDaoTest extends TestAbstract {
 
 	@Autowired
-	private CategoryMapper categoryMapper;
+	private CategoryInsertDao categoryInsertDao;
 
 	@Test
 	public void shouldInsert() {
 		Category category = newCategory();
-		int count = this.categoryMapper.insertSelective(category);
+		int count = this.categoryInsertDao.insertCategory(category);
 		assertThat(count, is(1));		
 	}
 
@@ -27,6 +26,6 @@ public class CategoryInsertMapperTest extends TestAbstract {
 	public void databaseError() {
 		Category category = new Category();
 		category.setCategoryId(3);
-		this.categoryMapper.insertSelective(category);
+		this.categoryInsertDao.insertCategory(category);
 	}
 }

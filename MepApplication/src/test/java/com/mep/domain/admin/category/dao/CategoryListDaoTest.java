@@ -1,4 +1,4 @@
-package com.mep.database.mapper.category;
+package com.mep.domain.admin.category.dao;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -13,20 +13,16 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.mep.database.entity.Category;
-import com.mep.database.entity.CategoryExample;
-import com.mep.database.mapper.CategoryMapper;
 import com.mep.util.TestAbstract;
 
-public class CategoryListMapperTest extends TestAbstract {
+public class CategoryListDaoTest extends TestAbstract {
 
 	@Autowired
-	private CategoryMapper categoryMapper;
+	private CategoryListDao categoryListDao;
 
 	@Test
 	public void shouldReturnCategoryList() {
-		CategoryExample categoryExample = new CategoryExample();
-		categoryExample.or().andCategoryIdIsNotNull();
-		List<Category> category = this.categoryMapper.selectByExample(categoryExample);
+		List<Category> category = this.categoryListDao.getCategoryList();
 		assertThat(category, notNullValue());
 		assertThat(category.size(), anyOf(greaterThan(-1), is(not(0))));
 	}
