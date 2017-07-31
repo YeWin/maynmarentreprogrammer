@@ -21,7 +21,7 @@ public class CategoryUpdateServiceImpl implements CategoryUpdateService {
 		return setEntityModelToDtoModel(category);
 	}
 	
-	public CategoryDto setEntityModelToDtoModel(Category category) {
+	private CategoryDto setEntityModelToDtoModel(Category category) {
 		CategoryDto categoryDto = new CategoryDto();
 		
 		categoryDto.setCategoryId(category.getCategoryId());

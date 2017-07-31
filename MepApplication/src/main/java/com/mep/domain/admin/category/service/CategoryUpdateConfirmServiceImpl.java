@@ -22,7 +22,7 @@ public class CategoryUpdateConfirmServiceImpl implements CategoryUpdateConfirmSe
 		return true;
 	}
 	
-	public Category setDtoModelToEntityModel(CategoryDto categoryDto) {
+	private Category setDtoModelToEntityModel(CategoryDto categoryDto) {
 		Category category = new Category();
 		
 		category.setCategoryId(categoryDto.getCategoryId());

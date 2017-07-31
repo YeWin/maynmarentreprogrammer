@@ -22,7 +22,7 @@ public class CategoryInsertServiceImpl implements CategoryInsertService {
 		return true;
 	}
 	
-	public Category setDtoModelToEntityModel(CategoryDto categoryDto) {
+	private Category setDtoModelToEntityModel(CategoryDto categoryDto) {
 		Category category = new Category();		
 		
 		category.setCategoryName(categoryDto.getCategoryName());
