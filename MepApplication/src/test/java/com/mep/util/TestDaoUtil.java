@@ -2,7 +2,6 @@ package com.mep.util;
 
 import com.mep.database.entity.Administrator;
 import com.mep.database.entity.Category;
-import com.mep.domain.admin.administrator.dto.AdministratorDto;
 
 public class TestDaoUtil {
 
@@ -23,15 +22,5 @@ public class TestDaoUtil {
 		admin.setAdminEmail("yewin29081990@gmail.com");		
 		
 		return admin;
-	}
-	
-	public static AdministratorDto newAdministratorDto() {
-		
-		AdministratorDto adminDto = new AdministratorDto();
-		
-		adminDto.setAdminName("Ye Win");
-		adminDto.setAdminEmail("yewin29081990@gmail.com");		
-		
-		return adminDto;
 	}
 }
