@@ -1,6 +1,6 @@
 package com.mep.domain.admin.category.dao;
 
-import static com.mep.util.TestMapperUtil.newCategory;
+import static com.mep.util.TestDaoUtil.newCategory;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
