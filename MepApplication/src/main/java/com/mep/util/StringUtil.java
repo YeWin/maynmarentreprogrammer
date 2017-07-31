@@ -7,8 +7,8 @@ public class StringUtil {
 	
 	private static final String PASSWORD_CHECK = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
 	
-	public static boolean validatePassword(String strEmail) {
-		if (!validateRegex(strEmail, PASSWORD_CHECK)) {
+	public static boolean validatePassword(String strPassword) {
+		if (!validateRegex(strPassword, PASSWORD_CHECK)) {
 			return false;
 		} else {
 			return true;
