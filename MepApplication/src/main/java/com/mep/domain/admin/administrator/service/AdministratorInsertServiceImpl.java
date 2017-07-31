@@ -31,29 +31,52 @@ public class AdministratorInsertServiceImpl implements AdministratorInsertServic
 	public ResultMessages validate(AdministratorDto adminDto) {
 
 		ResultMessages resultMessages = new ResultMessages();
-		Locale locale = LocaleContextHolder.getLocale();
+		Locale locale = LocaleContextHolder.getLocale();		
 		
+		if(checkPasswordIsEmpty(resultMessages, adminDto.getAdminPassword(), locale)) {						
+			return resultMessages;
+		}
 		
-		if(StringUtils.isEmpty(adminDto.getAdminPassword())) {
+		if(checkPasswordComplexity(resultMessages, adminDto.getAdminPassword(), locale)) {
+			return resultMessages;
+		}
+		
+		if(checkPasswordAndConfirmPasswordIsEqual(resultMessages, adminDto.getAdminPassword(), adminDto.getAdminConfirmPassword(), locale)) {
+			return resultMessages;
+		}				
+		
+		return resultMessages;
+	}
+	
+	private boolean checkPasswordIsEmpty(ResultMessages resultMessages, String password, Locale locale) {
+		
+		if(StringUtils.isEmpty(password)) {
 			resultMessages.addError(
 					new DisplayMessage(messageSource.getMessage("NotBlank", new Object[] { "Password" }, locale)));
 			
-			return resultMessages;
+			return true;
 		}
+		return false;
+	}
+	
+	private boolean checkPasswordComplexity(ResultMessages resultMessages, String password, Locale locale) {
 		
-		if(!StringUtil.validatePassword(adminDto.getAdminPassword())) {
+		if(!StringUtil.validatePassword(password)) {
 			resultMessages.addError(
 					new DisplayMessage(messageSource.getMessage("MEP00002", new Object[] { "Password" }, locale)));
 			
-			return resultMessages;
+			return true;
 		}
+		return false;		
+	}
+	
+	private boolean checkPasswordAndConfirmPasswordIsEqual(ResultMessages resultMessages, String password, String confirmPassword, Locale locale) {
 		
-		if(!Objects.equals(adminDto.getAdminPassword(), adminDto.getAdminConfirmPassword())) {
+		if(!Objects.equals(password, confirmPassword)) {
 			resultMessages.addError(
 					new DisplayMessage(messageSource.getMessage("MEP00001", new Object[] { "Password", "Confirm Password" }, locale)));
-		}		
-		
-		return resultMessages;
+		}
+		return false;	
 	}
 
 	@Override
