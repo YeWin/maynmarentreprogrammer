@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.mep.database.entity.Category;
 import com.mep.domain.admin.category.dao.CategoryUpdateConfirmDao;
 import com.mep.domain.admin.category.dto.CategoryDto;
+import com.mep.util.DateUtil;
 
 @Service
 public class CategoryUpdateConfirmServiceImpl implements CategoryUpdateConfirmService {
@@ -26,6 +27,7 @@ public class CategoryUpdateConfirmServiceImpl implements CategoryUpdateConfirmSe
 		
 		category.setCategoryId(categoryDto.getCategoryId());
 		category.setCategoryName(categoryDto.getCategoryName());
+		category.setUpdatedDate(DateUtil.getCurrentTime());
 		
 		return category;
 	}

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.mep.database.entity.Category;
 import com.mep.domain.admin.category.dao.CategoryInsertDao;
 import com.mep.domain.admin.category.dto.CategoryDto;
+import com.mep.util.DateUtil;
 
 @Service
 public class CategoryInsertServiceImpl implements CategoryInsertService {
@@ -25,6 +26,7 @@ public class CategoryInsertServiceImpl implements CategoryInsertService {
 		Category category = new Category();		
 		
 		category.setCategoryName(categoryDto.getCategoryName());
+		category.setCreatedDate(DateUtil.getCurrentTime());
 		
 		return category;
 	}
