@@ -11,7 +11,7 @@ public class CategoryInsertDaoImpl implements CategoryInsertDao {
 
 	@Autowired
 	private CategoryMapper categoryMapper;
-	
+
 	@Override
 	public int insertCategory(Category category) {
 		return categoryMapper.insertSelective(category);

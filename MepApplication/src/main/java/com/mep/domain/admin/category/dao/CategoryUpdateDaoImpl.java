@@ -11,11 +11,10 @@ public class CategoryUpdateDaoImpl implements CategoryUpdateDao {
 
 	@Autowired
 	private CategoryMapper categoryMapper;
-	
+
 	@Override
 	public Category getCategoryById(Integer categoryId) {
 
 		return categoryMapper.selectByPrimaryKey(categoryId);
 	}
-
 }

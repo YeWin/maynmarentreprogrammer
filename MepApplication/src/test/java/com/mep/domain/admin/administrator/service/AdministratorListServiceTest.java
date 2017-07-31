@@ -19,11 +19,13 @@ public class AdministratorListServiceTest extends TestAbstract {
 
 	@Autowired
 	private AdministratorListService administratorListService;
-	
+
 	@Test
 	public void shouldReturnAdministratorList() throws Exception {
-		List<AdministratorListDto> administratorListDto = administratorListService.getAdministratorList();
+		List<AdministratorListDto> administratorListDto = administratorListService
+				.getAdministratorList();
 		assertThat(administratorListDto, notNullValue());
-		assertThat(administratorListDto.size(), anyOf(greaterThan(-1), is(not(0))));
+		assertThat(administratorListDto.size(),
+				anyOf(greaterThan(-1), is(not(0))));
 	}
 }

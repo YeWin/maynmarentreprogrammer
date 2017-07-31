@@ -23,11 +23,10 @@ public class MepApplicationTests extends TestAbstract {
 
 	@Autowired
 	private DataSource dataSource;
-	
+
 	@Test
 	public void contextLoads() {
 		assertThat(applicationContext, notNullValue());
 		assertThat(dataSource, notNullValue());
 	}
-
 }

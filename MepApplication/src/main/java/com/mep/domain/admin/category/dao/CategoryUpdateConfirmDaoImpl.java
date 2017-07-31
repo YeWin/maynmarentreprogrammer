@@ -11,11 +11,10 @@ public class CategoryUpdateConfirmDaoImpl implements CategoryUpdateConfirmDao {
 
 	@Autowired
 	private CategoryMapper categoryMapper;
-	
+
 	@Override
 	public int updateCategory(Category category) {
-		
+
 		return categoryMapper.updateByPrimaryKeySelective(category);
 	}
-
 }

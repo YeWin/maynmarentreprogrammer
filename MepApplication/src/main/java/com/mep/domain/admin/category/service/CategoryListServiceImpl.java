@@ -11,7 +11,7 @@ import com.mep.domain.admin.category.dto.CategoryListDto;
 
 @Service
 public class CategoryListServiceImpl implements CategoryListService {
-	
+
 	@Autowired
 	private CategoryListDao categoryListDao;
 
@@ -19,10 +19,10 @@ public class CategoryListServiceImpl implements CategoryListService {
 	@SuppressWarnings("unchecked")
 	public List<CategoryListDto> getCategoryList() throws Exception {
 
-		List<Category> category = categoryListDao.getCategoryList();		
-		
-		List<CategoryListDto> categoryListDto = (List<CategoryListDto>)(List<?>) category;
-		
+		List<Category> category = categoryListDao.getCategoryList();
+
+		List<CategoryListDto> categoryListDto = (List<CategoryListDto>) (List<?>) category;
+
 		return categoryListDto;
 	}
 

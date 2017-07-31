@@ -8,7 +8,7 @@ import com.mep.database.mapper.AdministratorMapper;
 
 @Repository
 public class AdministratorInsertDaoImpl implements AdministratorInsertDao {
-	
+
 	@Autowired
 	private AdministratorMapper administratorMapper;
 

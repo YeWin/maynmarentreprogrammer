@@ -19,10 +19,11 @@ public class CategoryListServiceTest extends TestAbstract {
 
 	@Autowired
 	private CategoryListService categoryListService;
-	
+
 	@Test
 	public void shouldReturnCategoryList() throws Exception {
-		List<CategoryListDto> categoryListDto = categoryListService.getCategoryList();
+		List<CategoryListDto> categoryListDto = categoryListService
+				.getCategoryList();
 		assertThat(categoryListDto, notNullValue());
 		assertThat(categoryListDto.size(), anyOf(greaterThan(-1), is(not(0))));
 	}

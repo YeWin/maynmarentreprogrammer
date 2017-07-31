@@ -9,7 +9,7 @@ import com.mep.domain.admin.category.dto.CategoryDto;
 
 @Service
 public class CategoryUpdateServiceImpl implements CategoryUpdateService {
-	
+
 	@Autowired
 	CategoryUpdateDao categoryUpdateDao;
 
@@ -17,16 +17,16 @@ public class CategoryUpdateServiceImpl implements CategoryUpdateService {
 	public CategoryDto getCategoryById(Integer categoryId) throws Exception {
 
 		Category category = categoryUpdateDao.getCategoryById(categoryId);
-		
+
 		return setEntityModelToDtoModel(category);
 	}
-	
+
 	private CategoryDto setEntityModelToDtoModel(Category category) {
 		CategoryDto categoryDto = new CategoryDto();
-		
+
 		categoryDto.setCategoryId(category.getCategoryId());
 		categoryDto.setCategoryName(category.getCategoryName());
-		
+
 		return categoryDto;
 	}
 

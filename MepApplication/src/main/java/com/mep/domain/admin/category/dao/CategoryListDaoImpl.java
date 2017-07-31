@@ -14,14 +14,14 @@ public class CategoryListDaoImpl implements CategoryListDao {
 
 	@Autowired
 	private CategoryMapper categoryMapper;
-	
+
 	@Override
 	public List<Category> getCategoryList() {
-		
+
 		CategoryExample categoryExample = new CategoryExample();
-		
+
 		categoryExample.or().andCategoryIdIsNotNull();
-		
+
 		return categoryMapper.selectByExample(categoryExample);
 	}
 

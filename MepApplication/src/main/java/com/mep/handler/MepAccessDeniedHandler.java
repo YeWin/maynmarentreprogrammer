@@ -17,24 +17,25 @@ import java.io.IOException;
 @Component
 public class MepAccessDeniedHandler implements AccessDeniedHandler {
 
-    private static Logger logger = LoggerFactory.getLogger(MepAccessDeniedHandler.class);
+	private static Logger logger = LoggerFactory
+			.getLogger(MepAccessDeniedHandler.class);
 
-    @Override
-    public void handle(HttpServletRequest httpServletRequest,
-                       HttpServletResponse httpServletResponse,
-                       AccessDeniedException e) throws IOException, ServletException {
+	@Override
+	public void handle(HttpServletRequest httpServletRequest,
+			HttpServletResponse httpServletResponse, AccessDeniedException e)
+			throws IOException, ServletException {
 
-        Authentication auth
-                = SecurityContextHolder.getContext().getAuthentication();
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
 
-        if (auth != null) {
-            logger.info("User '" + auth.getName()
-                    + "' attempted to access the protected URL: "
-                    + httpServletRequest.getRequestURI());
-        }
+		if (auth != null) {
+			logger.info("User '" + auth.getName()
+					+ "' attempted to access the protected URL: "
+					+ httpServletRequest.getRequestURI());
+		}
 
-        httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/403");
+		httpServletResponse.sendRedirect(httpServletRequest.getContextPath()
+				+ "/403");
 
-    }
+	}
 }
-

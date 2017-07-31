@@ -19,14 +19,14 @@ import com.mep.message.ResultMessages;
 @Controller
 @RequestMapping("/admin/*")
 public class AdministratorEditController {
-	
+
 	private static final String INPUT_PATH = "/admin/administrator/administratorInput";
-	
+
 	private static final String INPUT_COMPLETE_PATH = "/admin/administrator/administratorInputComplete";
-	
+
 	@Autowired
 	AdministratorInsertService administratorInsertService;
-	
+
 	@Autowired
 	private MessageHelper messageHelper;
 
@@ -37,7 +37,7 @@ public class AdministratorEditController {
 		mav.addObject("adminDto", new AdministratorDto());
 		return mav;
 	}
-	
+
 	@PostMapping(value = "/administrator/insertConfirm")
 	public @ResponseBody ModelAndView administratorInsert(
 			@Validated @ModelAttribute("adminDto") AdministratorDto adminDto,
@@ -51,14 +51,15 @@ public class AdministratorEditController {
 			return mav;
 		}
 
-		ResultMessages resultMessages =  administratorInsertService.validate(adminDto);
-		
+		ResultMessages resultMessages = administratorInsertService
+				.validate(adminDto);
+
 		if (!resultMessages.getErrorList().isEmpty()) {
 			mav.addObject("resultMessages", resultMessages);
 			mav.setViewName(INPUT_PATH);
 			return mav;
 		}
-		
+
 		administratorInsertService.insertAdministrator(adminDto);
 
 		messageHelper.setCompleteMessage(mav, "MSP0001");

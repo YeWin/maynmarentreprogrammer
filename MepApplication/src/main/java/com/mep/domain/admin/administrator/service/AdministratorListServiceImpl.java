@@ -11,7 +11,7 @@ import com.mep.domain.admin.administrator.dto.AdministratorListDto;
 
 @Service
 public class AdministratorListServiceImpl implements AdministratorListService {
-	
+
 	@Autowired
 	private AdministratorListDao administratorListDao;
 
@@ -19,10 +19,11 @@ public class AdministratorListServiceImpl implements AdministratorListService {
 	@Override
 	public List<AdministratorListDto> getAdministratorList() throws Exception {
 
-		List<Administrator> administrator = administratorListDao.getAdministratorList();
-		
-		List<AdministratorListDto> administratorListDto = (List<AdministratorListDto>)(List<?>) administrator;
-		
+		List<Administrator> administrator = administratorListDao
+				.getAdministratorList();
+
+		List<AdministratorListDto> administratorListDto = (List<AdministratorListDto>) (List<?>) administrator;
+
 		return administratorListDto;
 	}
 }

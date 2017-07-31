@@ -17,21 +17,21 @@ import com.mep.domain.admin.category.service.CategoryListService;
 @RequestScope
 @RequestMapping("/admin/*")
 public class CategoryListController {
-	
+
 	private static final String INIT_PATH = "/admin/category/categoryList";
 
 	@Autowired
 	private CategoryListService categoryListService;
-
 
 	@GetMapping(value = "/category")
 	public @ResponseBody ModelAndView categoryList() throws Exception {
 
 		ModelAndView mav = new ModelAndView(INIT_PATH);
 
-		List<CategoryListDto> categoryList = categoryListService.getCategoryList();
-		
-		mav.addObject("categoryList", categoryList);		
+		List<CategoryListDto> categoryList = categoryListService
+				.getCategoryList();
+
+		mav.addObject("categoryList", categoryList);
 
 		return mav;
 	}

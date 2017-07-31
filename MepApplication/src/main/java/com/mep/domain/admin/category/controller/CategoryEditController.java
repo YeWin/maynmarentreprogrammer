@@ -22,27 +22,27 @@ import com.mep.message.MessageHelper;
 @Controller
 @RequestMapping("/admin/*")
 public class CategoryEditController {
-	
+
 	private static final String INPUT_PATH = "/admin/category/categoryInput";
-	
+
 	private static final String INPUT_COMPLETE_PATH = "/admin/category/categoryInputComplete";
-	
+
 	private static final String UPDATE_PATH = "/admin/category/categoryUpdate";
-	
+
 	private static final String UPDATE_COMPLETE_PATH = "/admin/category/categoryUpdateComplete";
-	
+
 	@Autowired
 	CategoryInsertService categoryInsertService;
-	
+
 	@Autowired
 	CategoryDeleteService categoryDeleteService;
-	
+
 	@Autowired
 	CategoryUpdateService categoryUpdateService;
-	
+
 	@Autowired
 	CategoryUpdateConfirmService categoryUpdateConfirmService;
-	
+
 	@Autowired
 	private MessageHelper messageHelper;
 
@@ -53,7 +53,7 @@ public class CategoryEditController {
 		mav.addObject("categoryDto", new CategoryDto());
 		return mav;
 	}
-	
+
 	@PostMapping(value = "/category/insertConfirm")
 	public @ResponseBody ModelAndView categoryInsert(
 			@Validated @ModelAttribute("categoryDto") CategoryDto categoryDto,
@@ -73,20 +73,21 @@ public class CategoryEditController {
 
 		return mav;
 	}
-	
+
 	@GetMapping(value = "/category/update")
-	public ModelAndView categoryUpdate(@ModelAttribute("categoryId") Integer categoryId)
-			throws Exception {
+	public ModelAndView categoryUpdate(
+			@ModelAttribute("categoryId") Integer categoryId) throws Exception {
 
 		ModelAndView mav = new ModelAndView(UPDATE_PATH);
 
-		CategoryDto categoryDto = categoryUpdateService.getCategoryById(categoryId);
+		CategoryDto categoryDto = categoryUpdateService
+				.getCategoryById(categoryId);
 
 		mav.addObject(categoryDto);
 
 		return mav;
 	}
-	
+
 	@PostMapping(value = "/category/updateConfirm")
 	public ModelAndView categoryUpdateConfirm(
 			@Validated @ModelAttribute("categoryDto") CategoryDto categoryDto,
@@ -106,7 +107,7 @@ public class CategoryEditController {
 
 		return mav;
 	}
-	
+
 	@GetMapping(value = "/category/delete/{categoryId}")
 	public String categoryDelete(@PathVariable("categoryId") Integer categoryId)
 			throws Exception {

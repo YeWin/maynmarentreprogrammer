@@ -21,7 +21,8 @@
 			</div>
 
 			<div class="panel-body">
-				<form th:object="${categoryDto}" th:action="@{/admin/category/insertConfirm}" action="#"
+				<form th:object="${categoryDto}"
+					th:action="@{/admin/category/insertConfirm}" action="#"
 					method="post">
 
 					<div th:replace="fragments/validatorMessage :: message"></div>
@@ -38,7 +39,7 @@
 		</div>
 
 	</div>
-	
+
 	<div th:replace="fragments/footer :: footer"></div>
 
 </body>

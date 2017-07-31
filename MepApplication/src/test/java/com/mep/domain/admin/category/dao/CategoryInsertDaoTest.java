@@ -19,7 +19,7 @@ public class CategoryInsertDaoTest extends TestAbstract {
 	public void shouldInsert() {
 		Category category = newCategory();
 		int count = this.categoryInsertDao.insertCategory(category);
-		assertThat(count, is(1));		
+		assertThat(count, is(1));
 	}
 
 	@Test(expected = Exception.class)

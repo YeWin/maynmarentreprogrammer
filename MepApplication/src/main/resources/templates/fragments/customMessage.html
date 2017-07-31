@@ -11,7 +11,7 @@
 	<div th:fragment="message">
 		<!-- Custom Validation Messages -->
 		<div th:if="${resultMessages}">
-			
+
 			<div th:if="${not #lists.isEmpty(resultMessages.errorList)}"
 				id="alertMessage" class="alert alert-danger">
 				<div th:each="err, iterStat : ${resultMessages.errorList}">
@@ -20,7 +20,7 @@
 				</div>
 			</div>
 
-			
+
 			<div th:if="${not #lists.isEmpty(resultMessages.infoList)}"
 				id="infoMessage" class="alert alert-info">
 				<div th:each="info, iterStat : ${resultMessages.infoList}">
@@ -29,7 +29,7 @@
 				</div>
 			</div>
 
-			
+
 			<div th:if="${not #lists.isEmpty(resultMessages.completeList)}"
 				id="completeMessage" class="alert alert-success">
 				<div th:each="complete, iterStat : ${resultMessages.completeList}">

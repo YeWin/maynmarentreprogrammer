@@ -11,17 +11,17 @@ import com.mep.database.mapper.AdministratorMapper;
 
 @Repository
 public class AdministratorListDaoImpl implements AdministratorListDao {
-	
+
 	@Autowired
 	private AdministratorMapper administratorMapper;
 
 	@Override
 	public List<Administrator> getAdministratorList() {
-		
+
 		AdministratorExample administratorExample = new AdministratorExample();
 
 		administratorExample.or().andAdminIdIsNotNull();
-		
+
 		return administratorMapper.selectByExample(administratorExample);
 	}
 

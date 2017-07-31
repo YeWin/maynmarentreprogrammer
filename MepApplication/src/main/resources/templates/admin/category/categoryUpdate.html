@@ -21,26 +21,28 @@
 			</div>
 
 			<div class="panel-body">
-				<form th:object="${categoryDto}" th:action="@{/admin/category/updateConfirm}" action="#"
+				<form th:object="${categoryDto}"
+					th:action="@{/admin/category/updateConfirm}" action="#"
 					method="post">
 
 					<div th:replace="fragments/validatorMessage :: message"></div>
-					
-					<input type="hidden" th:field="*{categoryId}"/>
-					
+
+					<input type="hidden" th:field="*{categoryId}" />
+
 					<div class="form-group">
 						<input type="text" th:field="*{categoryName}" class="form-control"
 							placeholder="Category Name" />
 					</div>
 
-					<input type="submit" class="btn btn-danger pull-right" value="Update" />
+					<input type="submit" class="btn btn-danger pull-right"
+						value="Update" />
 				</form>
 			</div>
 
 		</div>
 
 	</div>
-	
+
 	<div th:replace="fragments/footer :: footer"></div>
 
 </body>

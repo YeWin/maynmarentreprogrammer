@@ -19,8 +19,9 @@ public class AdministratorInsertDaoTest extends TestAbstract {
 	@Test
 	public void shouldInsert() {
 		Administrator administrator = newAdministrator();
-		int count = this.administratorInsertDao.insertAdministrator(administrator);
-		assertThat(count, is(1));		
+		int count = this.administratorInsertDao
+				.insertAdministrator(administrator);
+		assertThat(count, is(1));
 	}
 
 	@Test(expected = Exception.class)

@@ -10,7 +10,7 @@ import com.mep.util.DateUtil;
 
 @Service
 public class CategoryInsertServiceImpl implements CategoryInsertService {
-	
+
 	@Autowired
 	CategoryInsertDao categoryInsertDao;
 
@@ -18,16 +18,16 @@ public class CategoryInsertServiceImpl implements CategoryInsertService {
 	public boolean insertCategory(CategoryDto categoryDto) throws Exception {
 
 		categoryInsertDao.insertCategory(setDtoModelToEntityModel(categoryDto));
-		
+
 		return true;
 	}
-	
+
 	private Category setDtoModelToEntityModel(CategoryDto categoryDto) {
-		Category category = new Category();		
-		
+		Category category = new Category();
+
 		category.setCategoryName(categoryDto.getCategoryName());
 		category.setCreatedDate(DateUtil.getCurrentTime());
-		
+
 		return category;
 	}
 

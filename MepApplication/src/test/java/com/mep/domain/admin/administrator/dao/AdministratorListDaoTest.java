@@ -22,7 +22,8 @@ public class AdministratorListDaoTest extends TestAbstract {
 
 	@Test
 	public void shouldReturnAdministratorList() {
-		List<Administrator> administrator = this.administratorListDao.getAdministratorList();
+		List<Administrator> administrator = this.administratorListDao
+				.getAdministratorList();
 		assertThat(administrator, notNullValue());
 		assertThat(administrator.size(), anyOf(greaterThan(-1), is(not(0))));
 	}

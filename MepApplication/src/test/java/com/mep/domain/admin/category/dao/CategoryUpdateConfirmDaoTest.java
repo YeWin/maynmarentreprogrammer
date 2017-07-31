@@ -22,6 +22,6 @@ public class CategoryUpdateConfirmDaoTest extends TestAbstract {
 		category.setCategoryId(3);
 		category.setCategoryName("Java Best Practice");
 		int count = this.categoryMapper.updateByPrimaryKeySelective(category);
-		assertThat(count, is(1));		
+		assertThat(count, is(1));
 	}
 }

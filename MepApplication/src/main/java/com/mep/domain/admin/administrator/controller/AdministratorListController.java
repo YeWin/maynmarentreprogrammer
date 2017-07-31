@@ -28,9 +28,10 @@ public class AdministratorListController {
 
 		ModelAndView mav = new ModelAndView(INIT_PATH);
 
-		List<AdministratorListDto> adminList = administratorListService.getAdministratorList();
-		
-		mav.addObject("adminList", adminList);		
+		List<AdministratorListDto> adminList = administratorListService
+				.getAdministratorList();
+
+		mav.addObject("adminList", adminList);
 
 		return mav;
 	}

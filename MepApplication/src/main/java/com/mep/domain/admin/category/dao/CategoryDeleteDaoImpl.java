@@ -7,7 +7,7 @@ import com.mep.database.mapper.CategoryMapper;
 
 @Repository
 public class CategoryDeleteDaoImpl implements CategoryDeleteDao {
-	
+
 	@Autowired
 	private CategoryMapper categoryMapper;
 
