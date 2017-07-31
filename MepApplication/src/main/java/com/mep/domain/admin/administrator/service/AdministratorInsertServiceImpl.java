@@ -41,7 +41,7 @@ public class AdministratorInsertServiceImpl implements AdministratorInsertServic
 			return resultMessages;
 		}
 		
-		if(checkPasswordAndConfirmPasswordIsEqual(resultMessages, adminDto.getAdminPassword(), adminDto.getAdminConfirmPassword(), locale)) {
+		if(checkPasswordAndConfirmPasswordIsNotEqual(resultMessages, adminDto.getAdminPassword(), adminDto.getAdminConfirmPassword(), locale)) {
 			return resultMessages;
 		}				
 		
@@ -70,7 +70,7 @@ public class AdministratorInsertServiceImpl implements AdministratorInsertServic
 		return false;		
 	}
 	
-	private boolean checkPasswordAndConfirmPasswordIsEqual(ResultMessages resultMessages, String password, String confirmPassword, Locale locale) {
+	private boolean checkPasswordAndConfirmPasswordIsNotEqual(ResultMessages resultMessages, String password, String confirmPassword, Locale locale) {
 		
 		if(!Objects.equals(password, confirmPassword)) {
 			resultMessages.addError(
