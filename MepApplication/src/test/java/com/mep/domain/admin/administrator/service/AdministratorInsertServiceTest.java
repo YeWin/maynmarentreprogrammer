@@ -35,6 +35,7 @@ public class AdministratorInsertServiceTest extends TestAbstract {
 	@Test
 	public void shouldInsert() throws Exception {
 		AdministratorDto adminDto = newAdministratorDto();
+		adminDto.setAdminPassword("123456");
 		boolean flag = this.administratorInsertService.insertAdministrator(adminDto);
 		assertThat(flag, is(true));
 	}

@@ -14,9 +14,8 @@ public class AdministratorDto {
 	
 	@Email
 	@NotBlank
-	private String adminEmail;
+	private String adminEmail;	
 	
-	@NotBlank
 	private String adminPassword;
 	
 	private String adminConfirmPassword;
