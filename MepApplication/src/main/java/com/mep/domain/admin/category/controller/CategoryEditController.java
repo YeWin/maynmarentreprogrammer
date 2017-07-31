@@ -23,6 +23,14 @@ import com.mep.message.MessageHelper;
 @RequestMapping("/admin/*")
 public class CategoryEditController {
 	
+	private static final String INPUT_PATH = "/admin/category/categoryInput";
+	
+	private static final String INPUT_COMPLETE_PATH = "/admin/category/categoryInputComplete";
+	
+	private static final String UPDATE_PATH = "/admin/category/categoryUpdate";
+	
+	private static final String UPDATE_COMPLETE_PATH = "/admin/category/categoryUpdateComplete";
+	
 	@Autowired
 	CategoryInsertService categoryInsertService;
 	
@@ -39,9 +47,9 @@ public class CategoryEditController {
 	private MessageHelper messageHelper;
 
 	@GetMapping(value = "/category/insert")
-	public ModelAndView admin() {
+	public ModelAndView init() {
 
-		ModelAndView mav = new ModelAndView("/admin/category/categoryInput");
+		ModelAndView mav = new ModelAndView(INPUT_PATH);
 		mav.addObject("categoryDto", new CategoryDto());
 		return mav;
 	}
@@ -51,11 +59,11 @@ public class CategoryEditController {
 			@Validated @ModelAttribute("categoryDto") CategoryDto categoryDto,
 			BindingResult bindingResult) throws Exception {
 
-		ModelAndView mav = new ModelAndView("/admin/category/categoryInsertComplete");
+		ModelAndView mav = new ModelAndView(INPUT_COMPLETE_PATH);
 		mav.addObject(categoryDto);
 
 		if (bindingResult.hasErrors()) {
-			mav.setViewName("/admin/category/categoryInput");
+			mav.setViewName(INPUT_PATH);
 			return mav;
 		}
 
@@ -70,7 +78,7 @@ public class CategoryEditController {
 	public ModelAndView categoryUpdate(@ModelAttribute("categoryId") Integer categoryId)
 			throws Exception {
 
-		ModelAndView mav = new ModelAndView("/admin/category/categoryUpdate");
+		ModelAndView mav = new ModelAndView(UPDATE_PATH);
 
 		CategoryDto categoryDto = categoryUpdateService.getCategoryById(categoryId);
 
@@ -84,11 +92,11 @@ public class CategoryEditController {
 			@Validated @ModelAttribute("categoryDto") CategoryDto categoryDto,
 			BindingResult bindingResult) throws Exception {
 
-		ModelAndView mav = new ModelAndView("/admin/category/categoryUpdateComplete");
+		ModelAndView mav = new ModelAndView(UPDATE_COMPLETE_PATH);
 		mav.addObject(categoryDto);
 
 		if (bindingResult.hasErrors()) {
-			mav.setViewName("/admin/category/categoryUpdate");
+			mav.setViewName(UPDATE_PATH);
 			return mav;
 		}
 
