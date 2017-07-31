@@ -19,11 +19,12 @@ import com.mep.util.DateUtil;
 import com.mep.util.StringUtil;
 
 @Service
-public class AdministratorInsertServiceImpl implements AdministratorInsertService {
-	
+public class AdministratorInsertServiceImpl implements
+		AdministratorInsertService {
+
 	@Autowired
 	private MessageSource messageSource;
-	
+
 	@Autowired
 	AdministratorInsertDao administratorInsertDao;
 
@@ -31,81 +32,94 @@ public class AdministratorInsertServiceImpl implements AdministratorInsertServic
 	public ResultMessages validate(AdministratorDto adminDto) {
 
 		ResultMessages resultMessages = new ResultMessages();
-		Locale locale = LocaleContextHolder.getLocale();		
-		
-		if(checkPasswordIsEmpty(resultMessages, adminDto.getAdminPassword(), locale)) {						
+		Locale locale = LocaleContextHolder.getLocale();
+
+		if (checkPasswordIsEmpty(resultMessages, adminDto.getAdminPassword(),
+				locale)) {
 			return resultMessages;
 		}
-		
-		if(checkPasswordComplexity(resultMessages, adminDto.getAdminPassword(), locale)) {
+
+		if (checkPasswordComplexity(resultMessages,
+				adminDto.getAdminPassword(), locale)) {
 			return resultMessages;
 		}
-		
-		if(checkPasswordAndConfirmPasswordIsNotEqual(resultMessages, adminDto.getAdminPassword(), adminDto.getAdminConfirmPassword(), locale)) {
+
+		if (checkPasswordAndConfirmPasswordIsNotEqual(resultMessages,
+				adminDto.getAdminPassword(),
+				adminDto.getAdminConfirmPassword(), locale)) {
 			return resultMessages;
-		}				
-		
+		}
+
 		return resultMessages;
 	}
-	
-	private boolean checkPasswordIsEmpty(ResultMessages resultMessages, String password, Locale locale) {
-		
-		if(StringUtils.isEmpty(password)) {
-			resultMessages.addError(
-					new DisplayMessage(messageSource.getMessage("NotBlank", new Object[] { "Password" }, locale)));
-			
+
+	private boolean checkPasswordIsEmpty(ResultMessages resultMessages,
+			String password, Locale locale) {
+
+		if (StringUtils.isEmpty(password)) {
+			resultMessages.addError(new DisplayMessage(
+					messageSource.getMessage("NotBlank",
+							new Object[] { "Password" }, locale)));
+
 			return true;
 		}
 		return false;
 	}
-	
-	private boolean checkPasswordComplexity(ResultMessages resultMessages, String password, Locale locale) {
-		
-		if(!StringUtil.validatePassword(password)) {
-			resultMessages.addError(
-					new DisplayMessage(messageSource.getMessage("MEP00002", new Object[] { "Password" }, locale)));
-			
+
+	private boolean checkPasswordComplexity(ResultMessages resultMessages,
+			String password, Locale locale) {
+
+		if (!StringUtil.validatePassword(password)) {
+			resultMessages.addError(new DisplayMessage(
+					messageSource.getMessage("MEP00002",
+							new Object[] { "Password" }, locale)));
+
 			return true;
 		}
-		return false;		
+		return false;
 	}
-	
-	private boolean checkPasswordAndConfirmPasswordIsNotEqual(ResultMessages resultMessages, String password, String confirmPassword, Locale locale) {
-		
-		if(!Objects.equals(password, confirmPassword)) {
-			resultMessages.addError(
-					new DisplayMessage(messageSource.getMessage("MEP00001", new Object[] { "Password", "Confirm Password" }, locale)));
+
+	private boolean checkPasswordAndConfirmPasswordIsNotEqual(
+			ResultMessages resultMessages, String password,
+			String confirmPassword, Locale locale) {
+
+		if (!Objects.equals(password, confirmPassword)) {
+			resultMessages.addError(new DisplayMessage(messageSource
+					.getMessage("MEP00001", new Object[] { "Password",
+							"Confirm Password" }, locale)));
 		}
-		return false;	
+		return false;
 	}
 
 	@Override
 	public boolean insertAdministrator(AdministratorDto adminDto)
 			throws Exception {
 
-		administratorInsertDao.insertAdministrator(setDtoModelToEntityModel(adminDto));
-		
+		administratorInsertDao
+				.insertAdministrator(setDtoModelToEntityModel(adminDto));
+
 		return true;
 	}
-	
-	private Administrator setDtoModelToEntityModel(AdministratorDto adminDto) throws Exception {
+
+	private Administrator setDtoModelToEntityModel(AdministratorDto adminDto)
+			throws Exception {
 		Administrator admin = new Administrator();
-		
+
 		String encryptPassword = encryptPassword(adminDto.getAdminPassword());
-		
+
 		admin.setAdminName(adminDto.getAdminName());
 		admin.setAdminEmail(adminDto.getAdminEmail());
 		admin.setAdminPassword(encryptPassword);
 		admin.setCreatedDate(DateUtil.getCurrentTime());
-		
+
 		return admin;
 	}
-	
+
 	private String encryptPassword(String password) throws Exception {
-		
+
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		
-		return passwordEncoder.encode(password); 
+
+		return passwordEncoder.encode(password);
 	}
 
 }

@@ -19,17 +19,19 @@ public class AdministratorInsertServiceTest extends TestAbstract {
 	@Test
 	public void validateTest() {
 		AdministratorDto adminDto = newAdministratorDto();
-		adminDto.setAdminPassword("123456");
-		adminDto.setAdminConfirmPassword("12345678");
 		
 		ResultMessages result1 = this.administratorInsertService.validate(adminDto);
 		assertThat(result1.getErrorList().isEmpty(), is(false));
 		
-		adminDto.setAdminPassword("12345");
-		adminDto.setAdminConfirmPassword("12345");
-		
+		adminDto.setAdminPassword("12TD");
 		ResultMessages result2 = this.administratorInsertService.validate(adminDto);
-		assertThat(result2.getErrorList().isEmpty(), is(true));
+		assertThat(result2.getErrorList().isEmpty(), is(false));
+		
+		adminDto.setAdminPassword("TECHadmin12#$");
+		adminDto.setAdminConfirmPassword("TECHadmin12#$12");
+		
+		ResultMessages result3 = this.administratorInsertService.validate(adminDto);
+		assertThat(result3.getErrorList().isEmpty(), is(false));
 	}
 
 	@Test
