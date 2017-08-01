@@ -23,11 +23,4 @@ public class AdministratorInsertDaoTest extends TestAbstract {
 				.insertAdministrator(administrator);
 		assertThat(count, is(1));
 	}
-
-	@Test(expected = Exception.class)
-	public void databaseError() {
-		Administrator administrator = newAdministrator();
-		administrator.setAdminId(1);
-		this.administratorInsertDao.insertAdministrator(administrator);
-	}
 }

@@ -21,11 +21,4 @@ public class CategoryInsertDaoTest extends TestAbstract {
 		int count = this.categoryInsertDao.insertCategory(category);
 		assertThat(count, is(1));
 	}
-
-	@Test(expected = Exception.class)
-	public void databaseError() {
-		Category category = new Category();
-		category.setCategoryId(3);
-		this.categoryInsertDao.insertCategory(category);
-	}
 }
