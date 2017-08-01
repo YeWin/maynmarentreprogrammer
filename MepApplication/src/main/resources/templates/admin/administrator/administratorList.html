@@ -39,11 +39,11 @@
 								<tr th:each="admin : ${adminList}">
 									<td th:text="${admin.adminName}"></td>
 									<td th:text="${admin.adminEmail}"></td>
-									<!-- <td align="center"><a
-										th:href="@{/admin/category/update(categoryId=${category.categoryId})}"><span
-											class="glyphicon glyphicon-edit"></span></a>&nbsp; &nbsp; <a
-										th:href="@{/admin/category/delete/{categoryId}(categoryId=${category.categoryId})}"><span
-											class="glyphicon glyphicon-trash"></span></a></td> -->
+									<td align="center"><!-- <a
+										th:href="@{/admin/administrator/update(adminId=${admin.adminId})}"><span
+											class="glyphicon glyphicon-edit"></span></a> -->&nbsp; &nbsp; <a
+										th:href="@{/admin/administrator/delete/{adminId}(adminId=${admin.adminId})}"><span
+											class="glyphicon glyphicon-trash"></span></a></td>
 								</tr>
 
 							</tbody>

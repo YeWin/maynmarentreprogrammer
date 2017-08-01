@@ -6,12 +6,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mep.domain.admin.administrator.dto.AdministratorDto;
+import com.mep.domain.admin.administrator.service.AdministratorDeleteService;
 import com.mep.domain.admin.administrator.service.AdministratorInsertService;
 import com.mep.message.MessageHelper;
 import com.mep.message.ResultMessages;
@@ -26,6 +28,9 @@ public class AdministratorEditController {
 
 	@Autowired
 	AdministratorInsertService administratorInsertService;
+
+	@Autowired
+	AdministratorDeleteService administratorDeleteService;
 
 	@Autowired
 	private MessageHelper messageHelper;
@@ -65,5 +70,14 @@ public class AdministratorEditController {
 		messageHelper.setCompleteMessage(mav, "MSP0001");
 
 		return mav;
+	}
+
+	@GetMapping(value = "/administrator/delete/{adminId}")
+	public String administratorDelete(@PathVariable("adminId") Integer adminId)
+			throws Exception {
+
+		administratorDeleteService.admnistratorDelete(adminId);
+
+		return "redirect:/admin/";
 	}
 }
