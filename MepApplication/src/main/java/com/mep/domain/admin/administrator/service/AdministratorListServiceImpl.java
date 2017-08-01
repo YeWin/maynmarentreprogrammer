@@ -2,8 +2,11 @@ package com.mep.domain.admin.administrator.service;
 
 import java.util.List;
 
+import org.omg.CORBA.SystemException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mep.database.entity.Administrator;
 import com.mep.domain.admin.administrator.dao.AdministratorListDao;
@@ -17,6 +20,7 @@ public class AdministratorListServiceImpl implements AdministratorListService {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SystemException.class)
 	public List<AdministratorListDto> getAdministratorList() throws Exception {
 
 		List<Administrator> administrator = administratorListDao

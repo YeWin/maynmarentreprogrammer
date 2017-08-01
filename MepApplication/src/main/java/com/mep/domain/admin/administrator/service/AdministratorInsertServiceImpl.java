@@ -3,11 +3,14 @@ package com.mep.domain.admin.administrator.service;
 import java.util.Locale;
 import java.util.Objects;
 
+import org.omg.CORBA.SystemException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.thymeleaf.util.StringUtils;
 
 import com.mep.database.entity.Administrator;
@@ -92,6 +95,7 @@ public class AdministratorInsertServiceImpl implements
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SystemException.class)
 	public boolean insertAdministrator(AdministratorDto adminDto)
 			throws Exception {
 

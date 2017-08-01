@@ -1,7 +1,10 @@
 package com.mep.domain.admin.category.service;
 
+import org.omg.CORBA.SystemException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mep.database.entity.Category;
 import com.mep.domain.admin.category.dao.CategoryInsertDao;
@@ -15,6 +18,7 @@ public class CategoryInsertServiceImpl implements CategoryInsertService {
 	CategoryInsertDao categoryInsertDao;
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SystemException.class)
 	public boolean insertCategory(CategoryDto categoryDto) throws Exception {
 
 		categoryInsertDao.insertCategory(setDtoModelToEntityModel(categoryDto));
