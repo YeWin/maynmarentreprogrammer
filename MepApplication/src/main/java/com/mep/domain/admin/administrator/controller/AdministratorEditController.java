@@ -15,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mep.domain.admin.administrator.dto.AdministratorDto;
 import com.mep.domain.admin.administrator.service.AdministratorDeleteService;
 import com.mep.domain.admin.administrator.service.AdministratorInsertService;
+import com.mep.domain.admin.administrator.service.AdministratorUpdateConfirmService;
+import com.mep.domain.admin.administrator.service.AdministratorUpdateService;
 import com.mep.message.MessageHelper;
 import com.mep.message.ResultMessages;
 
@@ -26,11 +28,21 @@ public class AdministratorEditController {
 
 	private static final String INPUT_COMPLETE_PATH = "/admin/administrator/administratorInputComplete";
 
+	private static final String UPDATE_PATH = "/admin/administrator/administratorUpdate";
+
+	private static final String UPDATE_COMPLETE_PATH = "/admin/administrator/administratorUpdateComplete";
+
 	@Autowired
 	AdministratorInsertService administratorInsertService;
 
 	@Autowired
 	AdministratorDeleteService administratorDeleteService;
+
+	@Autowired
+	AdministratorUpdateService administratorUpdateService;
+
+	@Autowired
+	AdministratorUpdateConfirmService administratorUpdateConfirmService;
 
 	@Autowired
 	private MessageHelper messageHelper;
@@ -66,6 +78,40 @@ public class AdministratorEditController {
 		}
 
 		administratorInsertService.insertAdministrator(adminDto);
+
+		messageHelper.setCompleteMessage(mav, "MSP0001");
+
+		return mav;
+	}
+
+	@GetMapping(value = "/administrator/update")
+	public ModelAndView administratorUpdate(
+			@ModelAttribute("adminId") Integer adminId) throws Exception {
+
+		ModelAndView mav = new ModelAndView(UPDATE_PATH);
+
+		AdministratorDto adminDto = administratorUpdateService
+				.getAdministratorById(adminId);
+
+		mav.addObject("adminDto", adminDto);
+
+		return mav;
+	}
+
+	@PostMapping(value = "/administrator/updateConfirm")
+	public ModelAndView administratorUpdateConfirm(
+			@Validated @ModelAttribute("adminDto") AdministratorDto adminDto,
+			BindingResult bindingResult) throws Exception {
+
+		ModelAndView mav = new ModelAndView(UPDATE_COMPLETE_PATH);
+		mav.addObject(adminDto);
+
+		if (bindingResult.hasErrors()) {
+			mav.setViewName(UPDATE_PATH);
+			return mav;
+		}
+
+		administratorUpdateConfirmService.updateAdministrator(adminDto);
 
 		messageHelper.setCompleteMessage(mav, "MSP0001");
 

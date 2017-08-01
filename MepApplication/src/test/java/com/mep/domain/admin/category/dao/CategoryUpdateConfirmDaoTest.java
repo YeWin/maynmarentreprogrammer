@@ -8,20 +8,19 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.mep.database.entity.Category;
-import com.mep.database.mapper.CategoryMapper;
 import com.mep.util.TestAbstract;
 
 public class CategoryUpdateConfirmDaoTest extends TestAbstract {
 
 	@Autowired
-	private CategoryMapper categoryMapper;
+	private CategoryUpdateConfirmDao categoryUpdateConfirmDao;
 
 	@Test
 	public void shouldUpdate() {
 		Category category = newCategory();
 		category.setCategoryId(3);
 		category.setCategoryName("Java Best Practice");
-		int count = this.categoryMapper.updateByPrimaryKeySelective(category);
+		int count = this.categoryUpdateConfirmDao.updateCategory(category);
 		assertThat(count, is(1));
 	}
 }
