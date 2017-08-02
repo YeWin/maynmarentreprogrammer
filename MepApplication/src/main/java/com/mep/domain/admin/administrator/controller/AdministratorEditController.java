@@ -84,7 +84,7 @@ public class AdministratorEditController {
 		return mav;
 	}
 
-	@GetMapping(value = "/administrator/update")
+	@GetMapping(value = "/administrator/update/{adminId}")
 	public ModelAndView administratorUpdate(
 			@ModelAttribute("adminId") Integer adminId) throws Exception {
 
