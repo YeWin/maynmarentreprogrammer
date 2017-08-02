@@ -28,3 +28,9 @@ http://www.mybatis.org/spring-boot-starter/mybatis-spring-boot-test-autoconfigur
 @MybatisTest
 @Import(AdministratorUpdateConfirmDaoImpl.class)
 @AutoConfigureTestDatabase(replace=Replace.NONE)
+
+
+URL Rewriting
+@GetMapping(value = "/administrator/update{adminId}{adminName}")
+<a
+th:href="@{/admin/administrator/update/{adminId}{adminName}(adminId=${admin.adminId}, adminName=${admin.adminName})}">
