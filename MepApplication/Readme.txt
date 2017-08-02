@@ -21,3 +21,10 @@ mvn useful command
 -install
 -test-compile
 -compile
+
+In-memory database test
+http://www.mybatis.org/spring-boot-starter/mybatis-spring-boot-test-autoconfigure/
+@RunWith(SpringRunner.class)
+@MybatisTest
+@Import(AdministratorUpdateConfirmDaoImpl.class)
+@AutoConfigureTestDatabase(replace=Replace.NONE)
