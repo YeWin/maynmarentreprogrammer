@@ -27,7 +27,7 @@ public class LoginServiceImpl implements LoginService {
 
 		if (!bindingResult.hasErrors()) {
 			resultMessages.addError(new DisplayMessage(messageSource
-					.getMessage("MSG00003", new Object[] { "Administrator information" }, locale)));
+					.getMessage("MEP00003", new Object[] { "Administrator information" }, locale)));
 		}
 
 		return resultMessages;
