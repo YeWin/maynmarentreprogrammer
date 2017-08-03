@@ -23,6 +23,10 @@ public class AdministratorDto implements Serializable {
 	
 	private String adminConfirmPassword;
 	
+	private String adminImageUrl;
+	
+	private String aboutAdmin;
+	
 	private Date createdDate;
 	
 	private Date updatedDate;
@@ -81,5 +85,21 @@ public class AdministratorDto implements Serializable {
 
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
+	}
+
+	public String getAdminImageUrl() {
+		return adminImageUrl;
+	}
+
+	public void setAdminImageUrl(String adminImageUrl) {
+		this.adminImageUrl = adminImageUrl;
+	}
+
+	public String getAboutAdmin() {
+		return aboutAdmin;
+	}
+
+	public void setAboutAdmin(String aboutAdmin) {
+		this.aboutAdmin = aboutAdmin;
 	}
 }

@@ -114,6 +114,8 @@ public class AdministratorInsertServiceImpl implements
 		admin.setAdminName(adminDto.getAdminName());
 		admin.setAdminEmail(adminDto.getAdminEmail());
 		admin.setAdminPassword(encryptPassword);
+		admin.setAdminImageUrl(adminDto.getAdminImageUrl());
+		admin.setAboutAdmin(adminDto.getAboutAdmin());
 		admin.setCreatedDate(DateUtil.getCurrentTime());
 
 		return admin;

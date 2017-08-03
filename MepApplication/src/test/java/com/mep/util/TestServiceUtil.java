@@ -20,6 +20,8 @@ public class TestServiceUtil {
 
 		adminDto.setAdminName("Ye Win");
 		adminDto.setAdminEmail("yewin29081990@gmail.com");
+		adminDto.setAdminImageUrl("URL");
+		adminDto.setAboutAdmin("About author");
 
 		return adminDto;
 	}

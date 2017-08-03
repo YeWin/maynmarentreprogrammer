@@ -36,7 +36,9 @@ public class AdministratorUpdateConfirmServiceImpl implements
 		admin.setAdminId(adminDto.getAdminId());
 		admin.setAdminName(adminDto.getAdminName());
 		admin.setAdminEmail(adminDto.getAdminEmail());
-		admin.setUpdatedDate(DateUtil.getCurrentTime());
+		admin.setAdminImageUrl(adminDto.getAdminImageUrl());
+		admin.setAboutAdmin(adminDto.getAboutAdmin());
+		admin.setUpdatedDate(DateUtil.getCurrentTime());		
 
 		return admin;
 	}

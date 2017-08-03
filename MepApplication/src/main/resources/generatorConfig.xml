@@ -35,12 +35,12 @@
 		<!-- Automatically generated target table -->
 		<table tableName="administrator" delimitIdentifiers="true"
 			delimitAllColumns="true" />
-		<table tableName="archive" delimitIdentifiers="true"
+		<!-- <table tableName="archive" delimitIdentifiers="true"
 			delimitAllColumns="true" />
 		<table tableName="category" delimitIdentifiers="true"
 			delimitAllColumns="true" />
 		<table tableName="post" delimitIdentifiers="true"
-			delimitAllColumns="true" />
+			delimitAllColumns="true" /> -->
 	</context>
 
 </generatorConfiguration>

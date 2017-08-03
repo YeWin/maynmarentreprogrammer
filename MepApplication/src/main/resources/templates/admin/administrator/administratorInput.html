@@ -6,6 +6,8 @@
 
 <div th:replace="fragments/header :: header-css" />
 
+<script th:src="@{/theme/ckeditor/ckeditor.js}"></script>
+
 </head>
 <body>
 
@@ -44,6 +46,21 @@
 					<div class="form-group">
 						<input type="password" th:field="*{adminConfirmPassword}"
 							class="form-control" placeholder="Confirm Password" />
+					</div>
+					
+					<div class="form-group">
+						<input type="text" th:field="*{adminImageUrl}" class="form-control"
+							placeholder="Image URL" />
+					</div>
+					
+					<div class="form-group">
+
+						<textarea th:field="*{aboutAdmin}" id="editor" cols="30" placeholder="About Author"></textarea>
+						<script>
+							CKEDITOR.replace('editor', {
+								removePlugins : 'sourcearea'								
+							});
+						</script>
 					</div>
 
 					<input type="submit" class="btn btn-danger pull-right" value="Save" />

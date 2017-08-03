@@ -34,6 +34,8 @@ public class AdministratorUpdateServiceImpl implements
 		adminDto.setAdminId(admin.getAdminId());
 		adminDto.setAdminName(admin.getAdminName());
 		adminDto.setAdminEmail(admin.getAdminEmail());
+		adminDto.setAdminImageUrl(admin.getAdminImageUrl());
+		adminDto.setAboutAdmin(admin.getAboutAdmin());
 
 		return adminDto;
 	}

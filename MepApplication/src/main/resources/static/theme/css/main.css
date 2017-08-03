@@ -2,3 +2,8 @@
 	content: " *";
 	color: red;
 }
+
+.adminImageList {
+	width: 95px;
+    height: 110px;
+}
