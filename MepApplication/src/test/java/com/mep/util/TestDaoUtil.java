@@ -2,6 +2,7 @@ package com.mep.util;
 
 import com.mep.database.entity.Administrator;
 import com.mep.database.entity.Category;
+import com.mep.database.entity.Post;
 
 public class TestDaoUtil {
 
@@ -22,5 +23,19 @@ public class TestDaoUtil {
 		admin.setAdminEmail("yewin29081990@gmail.com");
 
 		return admin;
+	}
+	
+	public static Post newPost() {
+
+		Post post = new Post();
+
+		post.setAdminId(2);
+		post.setCategoryId(3);
+		post.setPostTitleEng("What kind of software developer are you?");
+		post.setPostTitleMmr("What kind of software developer are you?");
+		post.setPostTitleImgUrl("https://github.com/YeWin/msp-research/blob/master/ext%20(1).jpg?raw=true");
+		post.setPostContent("Post content");
+
+		return post;
 	}
 }
