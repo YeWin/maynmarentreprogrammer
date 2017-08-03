@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.util.StringUtils;
 
 import com.mep.database.entity.Administrator;
 import com.mep.domain.login.dto.SessionLoginAdminDto;
@@ -32,9 +31,39 @@ public class AdminDetailsServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String adminEmail)
 			throws UsernameNotFoundException {
 
-		if (checkAdminEmailIsEmpty(adminEmail)) {
-			throw new UsernameNotFoundException("Mail Address not entered");
-		}
+		List<Administrator> administratorList = getAdminInformationByEmail(adminEmail);
+
+		AuthLoginAdminDto admin = getAuthLoginAdminDtoWithAuthData(administratorList);
+
+		saveAdminInformationInSession(administratorList);
+
+		return new LoginAdmin(admin);
+	}
+
+	private void saveAdminInformationInSession(
+			List<Administrator> administratorList) {
+		SessionLoginAdminDto sessionLoginAdminDto = new SessionLoginAdminDto();
+		sessionLoginAdminDto.setAdminId(administratorList.get(0).getAdminId());
+		sessionLoginAdminDto.setAdminName(administratorList.get(0)
+				.getAdminName());
+		sessionLoginAdminDto.setAdminEmail(administratorList.get(0)
+				.getAdminEmail());
+		session.setAttribute(Constant.SESSION_KEY, sessionLoginAdminDto);
+	}
+
+	private AuthLoginAdminDto getAuthLoginAdminDtoWithAuthData(
+			List<Administrator> administratorList) {
+
+		AuthLoginAdminDto admin = new AuthLoginAdminDto();
+
+		admin.setAdminId(String.valueOf(administratorList.get(0).getAdminId()));
+		admin.setAdminPassword(administratorList.get(0).getAdminPassword());
+
+		return admin;
+	}
+
+	private List<Administrator> getAdminInformationByEmail(String adminEmail)
+			throws UsernameNotFoundException {
 
 		List<Administrator> administratorList = administratorReferDao
 				.getAdminInformationByEmail(adminEmail);
@@ -44,26 +73,6 @@ public class AdminDetailsServiceImpl implements UserDetailsService {
 					"Administrator information was not found");
 		}
 
-		AuthLoginAdminDto admin = new AuthLoginAdminDto();
-		admin.setAdminId(String.valueOf(administratorList.get(0).getAdminId()));
-		admin.setAdminPassword(administratorList.get(0).getAdminPassword());
-
-		SessionLoginAdminDto sessionLoginAdminDto = new SessionLoginAdminDto();
-		sessionLoginAdminDto.setAdminId(administratorList.get(0).getAdminId());
-		sessionLoginAdminDto.setAdminName(administratorList.get(0)
-				.getAdminName());
-		sessionLoginAdminDto.setAdminEmail(administratorList.get(0)
-				.getAdminEmail());
-		session.setAttribute(Constant.SESSION_KEY, sessionLoginAdminDto);
-
-		return new LoginAdmin(admin);
-	}
-
-	private boolean checkAdminEmailIsEmpty(String adminEmail) {
-
-		if (StringUtils.isEmpty(adminEmail)) {
-			return true;
-		}
-		return false;
+		return administratorList;
 	}
 }

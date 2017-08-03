@@ -7,9 +7,6 @@ import org.hibernate.validator.constraints.NotBlank;
 
 public class LoginAdminDto implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Email

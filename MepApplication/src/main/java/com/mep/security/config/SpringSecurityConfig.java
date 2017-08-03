@@ -1,7 +1,5 @@
 package com.mep.security.config;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,68 +15,62 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.mep.security.service.AdminDetailsServiceImpl;
 
-/**
- * Spring Security設定クラス
- *
- * @author TechFun
- *
- */
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	public void configure(WebSecurity web) throws Exception{
-		// セキュリティ設定を無視するリクエスト設定
-		web.ignoring().antMatchers("/theme/**");
+	public void configure(WebSecurity web) throws Exception{		
+		web.ignoring().antMatchers("/", "/theme/**", "/webjars/**");
 	}
 
 	@Override
 	protected void configure(HttpSecurity http)throws Exception{
 
-		// 認可の設定
 		http.authorizeRequests()
 			.antMatchers("/login",
-						"/login-error",
-						"/admin/input",
+						"/login-error",						
 						"admin/**",
-						"/admin/confirm",
-						"/admin/complete",
-						"/auth").permitAll()	// 認証無しでアクセスを許可
-			.anyRequest().authenticated();		// それ以外は全て認証無しの場合アクセス不許可
+						"/auth").permitAll()	
+			.anyRequest().authenticated()
+		.and()
+        
+		//this config is require as website have to use embedded script.
+        .headers().defaultsDisabled()
+        .xssProtection().xssProtectionEnabled(false)
+        .and()
+        .and();
 
-		// ログイン設定
 		http.formLogin()
-			.loginProcessingUrl("/auth")									// 認証処理のパス
-			.loginPage("/login")											// ログインフォームのパス
-			.failureForwardUrl("/login-error")								// 認証失敗時の遷移先
-			.defaultSuccessUrl("/login-success", true)						// 認証成功時の遷移先(固定)
-			.usernameParameter("adminEmail")										// ユーザ名
-			.passwordParameter("adminPassword")									// パスワード
+			.loginProcessingUrl("/auth")		
+			.loginPage("/login")				
+			.failureForwardUrl("/login-error")	
+			.defaultSuccessUrl("/login-success", true)
+			.usernameParameter("adminEmail")			
+			.passwordParameter("adminPassword")			
 			.and();
 
-		// ログアウト設定
 		http.logout()
-			.logoutRequestMatcher(new AntPathRequestMatcher("/logout**"))	// ログアウト処理のパス
-			.logoutSuccessUrl("/login")										// ログアウト完了時のパス
-			.invalidateHttpSession(true);									// セッションの破棄
+			.logoutRequestMatcher(new AntPathRequestMatcher("/logout**"))
+			.logoutSuccessUrl("/login")
+			.invalidateHttpSession(true);
 	}
 
 	@Configuration
     protected static class AuthenticationConfiguration extends GlobalAuthenticationConfigurerAdapter {
 
         @Autowired
-        AdminDetailsServiceImpl userDetailsService;
+        AdminDetailsServiceImpl adminDetailsServiceImpl;
 
-        @Bean //パスワードの暗号化方式
+        @Bean
         public PasswordEncoder passwordEncoder() {
             return new BCryptPasswordEncoder();
         }
 
         @Override
         public void init(AuthenticationManagerBuilder auth) throws Exception {
-            // 認証するユーザーを設定する
-            auth.userDetailsService(userDetailsService)
-            // 入力値をbcryptでハッシュ化した値でパスワード認証を行う
+            
+            auth.userDetailsService(adminDetailsServiceImpl)
+            
             .passwordEncoder(passwordEncoder());
         }
     }
