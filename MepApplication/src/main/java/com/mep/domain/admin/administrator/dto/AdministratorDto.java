@@ -1,11 +1,14 @@
 package com.mep.domain.admin.administrator.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
-public class AdministratorDto {
+public class AdministratorDto implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
 	private Integer adminId;
 	
