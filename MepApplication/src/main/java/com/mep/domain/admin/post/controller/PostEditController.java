@@ -4,42 +4,52 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mep.domain.admin.post.dto.PostDto;
+import com.mep.domain.admin.post.service.PostDeleteService;
 import com.mep.domain.admin.post.service.PostInitService;
 import com.mep.domain.admin.post.service.PostInsertService;
+import com.mep.domain.admin.post.service.PostUpdateService;
 import com.mep.message.MessageHelper;
 
 @Controller
 @RequestMapping("/admin/*")
-@RequestScope
-public class PostEditController extends PostEditControllerHelper {
+public class PostEditController extends PostControllerHelper {
 
 	private static final String INPUT_PATH = "/admin/post/postInput";
 
 	private static final String INPUT_COMPLETE_PATH = "/admin/post/postInputComplete";
+	
+	private static final String UPDATE_PATH = "/admin/post/postUpdate";
+
+	private static final String UPDATE_COMPLETE_PATH = "/admin/post/postUpdateComplete";
 
 	@Autowired
 	PostInitService postInitService;
 
 	@Autowired
 	PostInsertService postInsertService;
+	
+	@Autowired
+	PostDeleteService postDeleteService;
+	
+	@Autowired
+	PostUpdateService postUpdateService;
 
 	@Autowired
 	private MessageHelper messageHelper;
 
 	@GetMapping(value = "/post/insert")
-	public ModelAndView init() throws Exception {
+	public ModelAndView insert() throws Exception {
 
 		ModelAndView mav = new ModelAndView(INPUT_PATH);
 
@@ -55,8 +65,8 @@ public class PostEditController extends PostEditControllerHelper {
 	@PostMapping(value = "/post/insertConfirm")
 	public @ResponseBody ModelAndView postInsert(
 			@Validated @ModelAttribute("postDto") PostDto postDto,
-			BindingResult bindingResult, ModelMap model,
-			HttpServletRequest request) throws Exception {
+			BindingResult bindingResult, HttpServletRequest request)
+			throws Exception {
 
 		ModelAndView mav = new ModelAndView(INPUT_COMPLETE_PATH);
 		mav.addObject(postDto);
@@ -73,6 +83,31 @@ public class PostEditController extends PostEditControllerHelper {
 		messageHelper.setCompleteMessage(mav, "MSP0001");
 
 		return mav;
+	}
+	
+	@GetMapping(value = "/post/update/{postId}")
+	public ModelAndView postUpdate(
+			@ModelAttribute("postId") Integer postId) throws Exception {
+
+		ModelAndView mav = new ModelAndView(UPDATE_PATH);
+
+		PostDto postDto = postUpdateService
+				.getPostById(postId);
+		
+		postDto = setCategoryDropdownToPostDtoObject(postInitService, postDto);
+
+		mav.addObject("postDto", postDto);
+
+		return mav;
+	}
+	
+	@GetMapping(value = "/post/delete/{postId}")
+	public String postDelete(@PathVariable("postId") Integer postId)
+			throws Exception {
+
+		postDeleteService.postDelete(postId);
+
+		return "redirect:/admin/post/";
 	}
 
 }

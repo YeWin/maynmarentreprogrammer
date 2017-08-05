@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mep.domain.admin.post.mapper.PostListMapper">
+	<select id="getPostList" resultType="com.mep.database.entity.Post">
+	<bind name="pattern1" value="'%' + post.postTitleEng + '%'" />
+		SELECT
+			*
+		FROM
+			post
+		<where>
+			<if test="post.categoryId != null">
+				"category_id" = #{post.categoryId}
+			</if>
+			<if test="post.postTitleEng != ''">
+				AND lower("post_title_eng") LIKE lower(#{pattern1})
+			</if>
+		</where>
+	</select>
+</mapper>

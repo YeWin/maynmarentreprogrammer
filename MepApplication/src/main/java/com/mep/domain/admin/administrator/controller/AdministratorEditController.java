@@ -33,16 +33,16 @@ public class AdministratorEditController {
 	private static final String UPDATE_COMPLETE_PATH = "/admin/administrator/administratorUpdateComplete";
 
 	@Autowired
-	AdministratorInsertService administratorInsertService;
+	private AdministratorInsertService administratorInsertService;
 
 	@Autowired
-	AdministratorDeleteService administratorDeleteService;
+	private AdministratorDeleteService administratorDeleteService;
 
 	@Autowired
-	AdministratorUpdateService administratorUpdateService;
+	private AdministratorUpdateService administratorUpdateService;
 
 	@Autowired
-	AdministratorUpdateConfirmService administratorUpdateConfirmService;
+	private AdministratorUpdateConfirmService administratorUpdateConfirmService;
 
 	@Autowired
 	private MessageHelper messageHelper;

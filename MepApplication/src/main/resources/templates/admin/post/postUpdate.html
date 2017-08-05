@@ -17,7 +17,7 @@
 
 		<div class="panel panel-success">
 			<div class="panel-heading">
-				<h3 class="panel-title">Add Post</h3>
+				<h3 class="panel-title">Edit Post</h3>
 			</div>
 
 			<div class="panel-body">
@@ -27,6 +27,8 @@
 
 					<div th:replace="fragments/validatorMessage :: message"></div>
 					<div th:replace="fragments/customMessage :: message"></div>
+					
+					<input type="hidden" th:field="*{postId}" />
 
 					<div class="form-group">
 						<select class="form-control" th:field="*{categoryId}">
@@ -61,7 +63,7 @@
 						</script>
 					</div>
 
-					<input type="submit" class="btn btn-danger pull-right" value="Save" />
+					<input type="submit" class="btn btn-danger pull-right" value="Update" />
 				</form>
 			</div>
 

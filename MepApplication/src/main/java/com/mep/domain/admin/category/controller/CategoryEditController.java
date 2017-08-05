@@ -32,16 +32,16 @@ public class CategoryEditController {
 	private static final String UPDATE_COMPLETE_PATH = "/admin/category/categoryUpdateComplete";
 
 	@Autowired
-	CategoryInsertService categoryInsertService;
+	private CategoryInsertService categoryInsertService;
 
 	@Autowired
-	CategoryDeleteService categoryDeleteService;
+	private CategoryDeleteService categoryDeleteService;
 
 	@Autowired
-	CategoryUpdateService categoryUpdateService;
+	private CategoryUpdateService categoryUpdateService;
 
 	@Autowired
-	CategoryUpdateConfirmService categoryUpdateConfirmService;
+	private CategoryUpdateConfirmService categoryUpdateConfirmService;
 
 	@Autowired
 	private MessageHelper messageHelper;

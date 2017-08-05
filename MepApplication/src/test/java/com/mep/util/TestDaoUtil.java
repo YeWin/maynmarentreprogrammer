@@ -24,7 +24,7 @@ public class TestDaoUtil {
 
 		return admin;
 	}
-	
+
 	public static Post newPost() {
 
 		Post post = new Post();
@@ -37,5 +37,15 @@ public class TestDaoUtil {
 		post.setPostContent("Post content");
 
 		return post;
+	}
+
+	public static Post getSearchCriteriaPost() {
+		Post post = new Post();
+
+		post.setCategoryId(2);
+		post.setPostTitleEng("What kind");
+
+		return post;
+
 	}
 }
