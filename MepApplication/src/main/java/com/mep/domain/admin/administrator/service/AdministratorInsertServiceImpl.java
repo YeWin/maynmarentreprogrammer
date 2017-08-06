@@ -16,6 +16,7 @@ import org.thymeleaf.util.StringUtils;
 import com.mep.database.entity.Administrator;
 import com.mep.domain.admin.administrator.dao.AdministratorInsertDao;
 import com.mep.domain.admin.administrator.dto.AdministratorDto;
+import com.mep.log.ApplyAspect;
 import com.mep.message.DisplayMessage;
 import com.mep.message.ResultMessages;
 import com.mep.util.DateUtil;
@@ -96,6 +97,7 @@ public class AdministratorInsertServiceImpl implements
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SystemException.class)
+	@ApplyAspect
 	public boolean insertAdministrator(AdministratorDto adminDto)
 			throws Exception {
 

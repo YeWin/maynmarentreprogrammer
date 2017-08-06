@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mep.database.entity.Administrator;
 import com.mep.domain.admin.administrator.dao.AdministratorUpdateConfirmDao;
 import com.mep.domain.admin.administrator.dto.AdministratorDto;
+import com.mep.log.ApplyAspect;
 import com.mep.util.DateUtil;
 
 @Service
@@ -20,6 +21,7 @@ public class AdministratorUpdateConfirmServiceImpl implements
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SystemException.class)
+	@ApplyAspect
 	public boolean updateAdministrator(AdministratorDto adminDto)
 			throws Exception {
 

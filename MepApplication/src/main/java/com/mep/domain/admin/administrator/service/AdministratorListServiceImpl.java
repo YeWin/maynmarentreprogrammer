@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mep.database.entity.Administrator;
 import com.mep.domain.admin.administrator.dao.AdministratorListDao;
 import com.mep.domain.admin.administrator.dto.AdministratorListDto;
+import com.mep.log.ApplyAspect;
 
 @Service
 public class AdministratorListServiceImpl implements AdministratorListService {
@@ -21,6 +22,7 @@ public class AdministratorListServiceImpl implements AdministratorListService {
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SystemException.class)
+	@ApplyAspect
 	public List<AdministratorListDto> getAdministratorList() throws Exception {
 
 		List<Administrator> administrator = administratorListDao

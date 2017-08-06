@@ -12,6 +12,7 @@ import com.mep.database.entity.Post;
 import com.mep.domain.admin.post.dao.PostListDao;
 import com.mep.domain.admin.post.dto.PostDto;
 import com.mep.domain.admin.post.dto.PostListDto;
+import com.mep.log.ApplyAspect;
 
 @Service
 public class PostListServiceImpl implements PostListService {
@@ -22,6 +23,7 @@ public class PostListServiceImpl implements PostListService {
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SystemException.class)
+	@ApplyAspect
 	public List<PostListDto> getPostList(PostDto postDto) throws Exception {
 
 		List<Post> postList = postListDao.getPostList(

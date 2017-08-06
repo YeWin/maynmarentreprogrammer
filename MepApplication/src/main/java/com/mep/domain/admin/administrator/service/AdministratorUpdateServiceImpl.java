@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mep.database.entity.Administrator;
 import com.mep.domain.admin.administrator.dao.AdministratorUpdateDao;
 import com.mep.domain.admin.administrator.dto.AdministratorDto;
+import com.mep.log.ApplyAspect;
 
 @Service
 public class AdministratorUpdateServiceImpl implements
@@ -19,6 +20,7 @@ public class AdministratorUpdateServiceImpl implements
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SystemException.class)
+	@ApplyAspect
 	public AdministratorDto getAdministratorById(Integer adminId)
 			throws Exception {
 

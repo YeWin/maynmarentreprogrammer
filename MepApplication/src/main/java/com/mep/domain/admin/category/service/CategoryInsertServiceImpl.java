@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mep.database.entity.Category;
 import com.mep.domain.admin.category.dao.CategoryInsertDao;
 import com.mep.domain.admin.category.dto.CategoryDto;
+import com.mep.log.ApplyAspect;
 import com.mep.util.DateUtil;
 
 @Service
@@ -19,6 +20,7 @@ public class CategoryInsertServiceImpl implements CategoryInsertService {
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SystemException.class)
+	@ApplyAspect
 	public boolean insertCategory(CategoryDto categoryDto) throws Exception {
 
 		categoryInsertDao.insertCategory(setDtoModelToEntityModel(categoryDto));

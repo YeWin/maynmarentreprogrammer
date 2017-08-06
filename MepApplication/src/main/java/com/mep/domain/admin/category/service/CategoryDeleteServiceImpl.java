@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mep.domain.admin.category.dao.CategoryDeleteDao;
+import com.mep.log.ApplyAspect;
 
 @Service
 public class CategoryDeleteServiceImpl implements CategoryDeleteService {
@@ -16,6 +17,7 @@ public class CategoryDeleteServiceImpl implements CategoryDeleteService {
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SystemException.class)
+	@ApplyAspect
 	public boolean categoryDelete(Integer categoryId) throws Exception {
 		categoryDeleteDao.categoryDelete(categoryId);
 

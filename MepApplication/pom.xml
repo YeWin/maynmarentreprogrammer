@@ -42,6 +42,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
 		<!-- exclude tomcat-jdbc, Spring Boot will use HikariCP automatically -->
 		<dependency>
 			<groupId>com.zaxxer</groupId>

@@ -13,6 +13,7 @@ import com.mep.database.entity.Post;
 import com.mep.domain.admin.post.dao.PostInsertDao;
 import com.mep.domain.admin.post.dto.PostDto;
 import com.mep.domain.login.dto.SessionLoginAdminDto;
+import com.mep.log.ApplyAspect;
 import com.mep.util.Constant;
 import com.mep.util.DateUtil;
 
@@ -24,6 +25,7 @@ public class PostInsertServiceImpl implements PostInsertService {
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SystemException.class)
+	@ApplyAspect
 	public boolean insertPost(HttpServletRequest request, PostDto postDto) throws Exception {
 
 		postInsertDao.insertPost(setDtoModelToEntityModel(request, postDto));

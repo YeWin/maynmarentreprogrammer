@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mep.database.entity.Category;
 import com.mep.domain.admin.post.dao.PostInitDao;
 import com.mep.domain.admin.post.dto.CategoryDropdownDto;
+import com.mep.log.ApplyAspect;
 
 @Service
 public class PostInitServiceImpl implements PostInitService {
@@ -21,6 +22,7 @@ public class PostInitServiceImpl implements PostInitService {
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SystemException.class)
+	@ApplyAspect
 	public List<CategoryDropdownDto> getCategoryDropdown() throws Exception {
 		List<Category> categoryDropdown = postInitDao.getCategoryDropdown();
 

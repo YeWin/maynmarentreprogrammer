@@ -5,7 +5,7 @@
 
 <mapper namespace="com.mep.domain.admin.post.mapper.PostListMapper">
 	<select id="getPostList" resultType="com.mep.database.entity.Post">
-	<bind name="pattern1" value="'%' + post.postTitleEng + '%'" />
+	<bind name="pattern" value="'%' + post.postTitleEng + '%'" />
 		SELECT
 			*
 		FROM
@@ -15,7 +15,7 @@
 				"category_id" = #{post.categoryId}
 			</if>
 			<if test="post.postTitleEng != ''">
-				AND lower("post_title_eng") LIKE lower(#{pattern1})
+				AND lower("post_title_eng") LIKE lower(#{pattern})
 			</if>
 		</where>
 	</select>
