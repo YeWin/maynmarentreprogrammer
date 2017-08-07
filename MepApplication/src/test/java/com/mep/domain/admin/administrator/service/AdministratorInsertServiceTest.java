@@ -20,21 +20,41 @@ public class AdministratorInsertServiceTest extends TestAbstract {
 	public void validateTest() {
 		AdministratorDto adminDto = newAdministratorDto();
 
-		ResultMessages result1 = this.administratorInsertService
-				.validate(adminDto);
+		ResultMessages result1 = passwordEmptyTest(adminDto);
 		assertThat(result1.getErrorList().isEmpty(), is(false));
 
-		adminDto.setAdminPassword("12TD");
-		ResultMessages result2 = this.administratorInsertService
-				.validate(adminDto);
+		ResultMessages result2 = passwordAndConfirmPasswordNotEqualTest(adminDto);
 		assertThat(result2.getErrorList().isEmpty(), is(false));
 
-		adminDto.setAdminPassword("TECHadmin12#$");
-		adminDto.setAdminConfirmPassword("TECHadmin12#$12");
+		ResultMessages result3 = passwordAndConfirmPasswordEqualTest(adminDto);
+		assertThat(result3.getErrorList().isEmpty(), is(true));
+		
+		ResultMessages result4 = passwordComplexityTest(adminDto);
+		assertThat(result4.getErrorList().isEmpty(), is(false));
+	}
 
-		ResultMessages result3 = this.administratorInsertService
-				.validate(adminDto);
-		assertThat(result3.getErrorList().isEmpty(), is(false));
+	private ResultMessages passwordEmptyTest(AdministratorDto adminDto) {
+		return this.administratorInsertService.validate(adminDto);
+	}
+
+	private ResultMessages passwordAndConfirmPasswordNotEqualTest(
+			AdministratorDto adminDto) {
+
+		adminDto.setAdminPassword("ADMINmep99#$");
+		adminDto.setAdminConfirmPassword("1ADMINmep99#$12");
+		return this.administratorInsertService.validate(adminDto);
+	}
+
+	private ResultMessages passwordAndConfirmPasswordEqualTest(
+			AdministratorDto adminDto) {
+		adminDto.setAdminPassword("ADMINmep99#$");
+		adminDto.setAdminConfirmPassword("ADMINmep99#$");
+		return this.administratorInsertService.validate(adminDto);
+	}
+
+	private ResultMessages passwordComplexityTest(AdministratorDto adminDto) {
+		adminDto.setAdminPassword("ADMINmep99");
+		return this.administratorInsertService.validate(adminDto);
 	}
 
 	@Test

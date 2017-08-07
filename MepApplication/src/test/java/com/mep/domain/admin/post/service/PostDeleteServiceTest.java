@@ -15,7 +15,7 @@ public class PostDeleteServiceTest extends TestAbstract {
 
 	@Test
 	public void shouldDelete() throws Exception {
-		boolean flag = postDeleteService.postDelete(10);
+		boolean flag = postDeleteService.postDelete(3);
 		assertThat(flag, is(true));
 	}
 

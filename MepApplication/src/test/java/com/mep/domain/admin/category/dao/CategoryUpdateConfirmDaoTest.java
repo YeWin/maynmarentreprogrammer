@@ -18,7 +18,7 @@ public class CategoryUpdateConfirmDaoTest extends TestAbstract {
 	@Test
 	public void shouldUpdate() {
 		Category category = newCategory();
-		category.setCategoryId(3);
+		category.setCategoryId(2);
 		category.setCategoryName("Java Best Practice");
 		int count = this.categoryUpdateConfirmDao.updateCategory(category);
 		assertThat(count, is(1));

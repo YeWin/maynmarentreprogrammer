@@ -15,7 +15,7 @@ public class AdministratorDeleteServiceTest extends TestAbstract {
 
 	@Test
 	public void shouldDelete() throws Exception {
-		boolean flag = administratorDeleteService.admnistratorDelete(1);
+		boolean flag = administratorDeleteService.admnistratorDelete(3);
 		assertThat(flag, is(true));
 	}
 }

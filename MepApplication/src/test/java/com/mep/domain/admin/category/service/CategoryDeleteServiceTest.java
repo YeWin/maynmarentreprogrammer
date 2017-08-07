@@ -15,7 +15,7 @@ public class CategoryDeleteServiceTest extends TestAbstract {
 
 	@Test
 	public void shouldDelete() throws Exception {
-		boolean flag = categoryDeleteService.categoryDelete(2);
+		boolean flag = categoryDeleteService.categoryDelete(3);
 		assertThat(flag, is(true));
 	}
 }

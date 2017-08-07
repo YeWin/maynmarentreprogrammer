@@ -30,7 +30,7 @@ public class TestDaoUtil {
 		Post post = new Post();
 
 		post.setAdminId(2);
-		post.setCategoryId(3);
+		post.setCategoryId(2);
 		post.setPostTitleEng("What kind of software developer are you?");
 		post.setPostTitleMmr("What kind of software developer are you?");
 		post.setPostTitleImgUrl("https://github.com/YeWin/msp-research/blob/master/ext%20(1).jpg?raw=true");
