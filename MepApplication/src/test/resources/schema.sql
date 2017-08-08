@@ -58,23 +58,43 @@ ALTER TABLE administrator ADD COLUMN about_admin text;
 INSERT INTO category(
 			category_name, created_date, updated_date)
     VALUES ('Category1', now(), now());
+INSERT INTO category(
+			category_name, created_date, updated_date)
+    VALUES ('Category2', now(), now());
+INSERT INTO category(
+			category_name, created_date, updated_date)
+    VALUES ('Category3', now(), now());
 
 INSERT INTO administrator(
 			admin_name, admin_email, admin_password, created_date, 
             updated_date, admin_image_url, about_admin)
     VALUES ('Admin1', 'admin1@gmail.com', 'admin1', now(), 
             now(), 'imageurl', 'admin1 author');
+INSERT INTO administrator(
+			admin_name, admin_email, admin_password, created_date, 
+            updated_date, admin_image_url, about_admin)
+    VALUES ('Admin2', 'admin2@gmail.com', 'admin1', now(), 
+            now(), 'imageurl', 'admin1 author');
+INSERT INTO administrator(
+			admin_name, admin_email, admin_password, created_date, 
+            updated_date, admin_image_url, about_admin)
+    VALUES ('Admin3', 'admin3@gmail.com', 'admin1', now(), 
+            now(), 'imageurl', 'admin1 author');
             
 INSERT INTO post(
 			admin_id, category_id, post_title_eng, post_title_mmr, 
             post_title_img_url, post_content, created_date, updated_date)
     VALUES (1, 1, 'What kind of developer are you?', 'What kind of developer are you?', 
-            'Imgurl', 'Post content 1', now(), now());
-            
+            'Imgurl', 'Post content 1', now(), now());            
 INSERT INTO post(
 			admin_id, category_id, post_title_eng, post_title_mmr, 
             post_title_img_url, post_content, created_date, updated_date)
     VALUES (1, 1, 'What kind of developer are you?', 'What kind of developer are you?', 
             'Imgurl', 'Post content 2', now(), now());
+INSERT INTO post(
+			admin_id, category_id, post_title_eng, post_title_mmr, 
+            post_title_img_url, post_content, created_date, updated_date)
+    VALUES (1, 1, 'What kind of developer are you?', 'What kind of developer are you?', 
+            'Imgurl', 'Post content 3', now(), now());
 
             

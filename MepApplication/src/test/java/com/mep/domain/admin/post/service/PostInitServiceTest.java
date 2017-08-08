@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.mep.domain.admin.post.dto.CategoryDropdownDto;
 import com.mep.util.TestAbstract;
 
-public class PostInitServiceTest  extends TestAbstract {
+public class PostInitServiceTest extends TestAbstract {
 
 	@Autowired
 	private PostInitService postInitService;

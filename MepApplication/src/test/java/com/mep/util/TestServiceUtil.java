@@ -30,9 +30,23 @@ public class TestServiceUtil {
 	public static PostDto getSearchCriteriaPostDto() {
 		PostDto postDto = new PostDto();
 
-		postDto.setCategoryId(2);
+		postDto.setCategoryId(1);
 		postDto.setPostTitleEng("");
 
 		return postDto;
+	}
+	
+	public static PostDto newPostDto() {
+		PostDto postDto = new PostDto();
+
+		postDto.setAdminId(2);
+		postDto.setCategoryId(2);
+		postDto.setPostTitleEng("Programmer Guide");
+		postDto.setPostTitleMmr("What kind of software developer are you?");
+		postDto.setPostTitleImgUrl("https://github.com/YeWin/msp-research/blob/master/ext%20(1).jpg?raw=true");
+		postDto.setPostContent("Post content1");
+
+		return postDto;
+		
 	}
 }

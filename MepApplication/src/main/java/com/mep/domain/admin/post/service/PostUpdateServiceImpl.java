@@ -30,11 +30,12 @@ public class PostUpdateServiceImpl implements PostUpdateService {
 	private PostDto setEntityModelToDtoModel(Post post) {
 		PostDto postDto = new PostDto();
 
-		postDto.setPostId(post.getAdminId());
+		postDto.setPostId(post.getPostId());
 		postDto.setCategoryId(post.getCategoryId());
+		postDto.setAdminId(post.getAdminId());
 		postDto.setPostTitleEng(post.getPostTitleEng());
 		postDto.setPostTitleMmr(post.getPostTitleMmr());
-		postDto.setPostContent(post.getPostTitleImgUrl());
+		postDto.setPostContent(post.getPostContent());
 
 		return postDto;
 	}

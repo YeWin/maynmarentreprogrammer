@@ -18,6 +18,7 @@ import com.mep.domain.admin.post.dto.PostDto;
 import com.mep.domain.admin.post.service.PostDeleteService;
 import com.mep.domain.admin.post.service.PostInitService;
 import com.mep.domain.admin.post.service.PostInsertService;
+import com.mep.domain.admin.post.service.PostUpdateConfirmService;
 import com.mep.domain.admin.post.service.PostUpdateService;
 import com.mep.message.MessageHelper;
 
@@ -34,16 +35,19 @@ public class PostEditController extends PostControllerHelper {
 	private static final String UPDATE_COMPLETE_PATH = "/admin/post/postUpdateComplete";
 
 	@Autowired
-	PostInitService postInitService;
+	private PostInitService postInitService;
 
 	@Autowired
-	PostInsertService postInsertService;
+	private PostInsertService postInsertService;
 	
 	@Autowired
-	PostDeleteService postDeleteService;
+	private PostDeleteService postDeleteService;
 	
 	@Autowired
-	PostUpdateService postUpdateService;
+	private PostUpdateService postUpdateService;
+	
+	@Autowired
+	private PostUpdateConfirmService postUpdateConfirmService;
 
 	@Autowired
 	private MessageHelper messageHelper;
@@ -78,7 +82,7 @@ public class PostEditController extends PostControllerHelper {
 			return mav;
 		}
 
-		postInsertService.insertPost(request, postDto);
+		postInsertService.insertPost(getAdminIdFromSession(request), postDto);
 
 		messageHelper.setCompleteMessage(mav, "MSP0001");
 
@@ -97,6 +101,28 @@ public class PostEditController extends PostControllerHelper {
 		postDto = setCategoryDropdownToPostDtoObject(postInitService, postDto);
 
 		mav.addObject("postDto", postDto);
+
+		return mav;
+	}
+	
+	@PostMapping(value = "/post/updateConfirm")
+	public ModelAndView postUpdateConfirm(
+			@Validated @ModelAttribute("postDto") PostDto postDto,
+			BindingResult bindingResult) throws Exception {
+
+		ModelAndView mav = new ModelAndView(UPDATE_COMPLETE_PATH);
+		mav.addObject(postDto);
+
+		if (bindingResult.hasErrors()) {
+			postDto = setCategoryDropdownToPostDtoObject(postInitService,
+					postDto);
+			mav.setViewName(UPDATE_PATH);
+			return mav;
+		}
+
+		postUpdateConfirmService.updatePost(postDto);
+
+		messageHelper.setCompleteMessage(mav, "MSP0001");
 
 		return mav;
 	}

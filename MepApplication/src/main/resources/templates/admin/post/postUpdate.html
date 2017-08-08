@@ -22,13 +22,14 @@
 
 			<div class="panel-body">
 				<form th:object="${postDto}"
-					th:action="@{/admin/post/insertConfirm}" action="#"
+					th:action="@{/admin/post/updateConfirm}" action="#"
 					method="post">
 
 					<div th:replace="fragments/validatorMessage :: message"></div>
 					<div th:replace="fragments/customMessage :: message"></div>
 					
 					<input type="hidden" th:field="*{postId}" />
+					<input type="hidden" th:field="*{adminId}" />
 
 					<div class="form-group">
 						<select class="form-control" th:field="*{categoryId}">

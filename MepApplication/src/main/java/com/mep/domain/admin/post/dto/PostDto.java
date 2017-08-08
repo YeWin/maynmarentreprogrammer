@@ -15,6 +15,7 @@ public class PostDto implements Serializable {
 	
 	private List<CategoryDropdownDto> categoryDropdown;	
 	
+	@NotBlank
 	private String postTitleEng;
 	
 	private String postTitleMmr;	

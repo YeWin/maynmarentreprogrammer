@@ -1,6 +1,7 @@
 package com.mep.util;
 
 import com.mep.database.entity.Administrator;
+import com.mep.database.entity.Archive;
 import com.mep.database.entity.Category;
 import com.mep.database.entity.Post;
 
@@ -42,10 +43,20 @@ public class TestDaoUtil {
 	public static Post getSearchCriteriaPost() {
 		Post post = new Post();
 
-		post.setCategoryId(2);
+		post.setCategoryId(1);
 		post.setPostTitleEng("What kind");
 
 		return post;
 
+	}
+	
+	public static Archive newArchive() {
+		Archive archive = new Archive();
+		
+		archive.setPostId(2);
+		archive.setYear("2017");
+		archive.setMonth("08");
+		
+		return archive;
 	}
 }

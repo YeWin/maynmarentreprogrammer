@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
@@ -79,6 +80,7 @@ public interface PostMapper {
      * @mbg.generated Sun Jul 16 17:56:51 MMT 2017
      */
     @InsertProvider(type=PostSqlProvider.class, method="insertSelective")
+    @Options(useGeneratedKeys = true, keyProperty = "postId", keyColumn="post_id")
     int insertSelective(Post record);    
 
     /**
