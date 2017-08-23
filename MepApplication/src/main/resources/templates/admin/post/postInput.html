@@ -52,6 +52,13 @@
 					</div>
 					
 					<div class="form-group">
+						<select class="form-control" th:field="*{contentType}">
+							<option value="0">Article</option>
+							<option value="1">Tutorial</option>
+						</select>
+					</div>
+					
+					<div class="form-group">
 
 						<textarea th:field="*{postContent}" id="editor" cols="30"></textarea>
 						<script>

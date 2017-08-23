@@ -33,14 +33,14 @@
 			targetProject=".\src\main\java\" type="ANNOTATEDMAPPER" />
 
 		<!-- Automatically generated target table -->
-		<table tableName="administrator" delimitIdentifiers="true"
-			delimitAllColumns="true" />
-		<!-- <table tableName="archive" delimitIdentifiers="true"
-			delimitAllColumns="true" />
-		<table tableName="category" delimitIdentifiers="true"
-			delimitAllColumns="true" />
-		<table tableName="post" delimitIdentifiers="true"
+		<!-- <table tableName="administrator" delimitIdentifiers="true"
 			delimitAllColumns="true" /> -->
+		<!-- <table tableName="archive" delimitIdentifiers="true"
+			delimitAllColumns="true" /> -->
+		<!-- <table tableName="category" delimitIdentifiers="true"
+			delimitAllColumns="true" /> -->
+		<table tableName="post" delimitIdentifiers="true"
+			delimitAllColumns="true" />
 	</context>
 
 </generatorConfiguration>

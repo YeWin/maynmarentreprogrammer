@@ -55,6 +55,8 @@ ALTER TABLE administrator ADD COLUMN admin_image_url character varying(150);
 
 ALTER TABLE administrator ADD COLUMN about_admin text;
 
+ALTER TABLE post ADD COLUMN content_type integer; -- 1 tutorial, 0 articles
+
 INSERT INTO category(
 			category_name, created_date, updated_date)
     VALUES ('Category1', now(), now());
@@ -83,18 +85,18 @@ INSERT INTO administrator(
             
 INSERT INTO post(
 			admin_id, category_id, post_title_eng, post_title_mmr, 
-            post_title_img_url, post_content, created_date, updated_date)
+            post_title_img_url, post_content, created_date, updated_date, content_type)
     VALUES (1, 1, 'What kind of developer are you?', 'What kind of developer are you?', 
-            'Imgurl', 'Post content 1', now(), now());            
+            'Imgurl', 'Post content 1', now(), now(), 0);
 INSERT INTO post(
 			admin_id, category_id, post_title_eng, post_title_mmr, 
-            post_title_img_url, post_content, created_date, updated_date)
+            post_title_img_url, post_content, created_date, updated_date, content_type)
     VALUES (1, 1, 'What kind of developer are you?', 'What kind of developer are you?', 
-            'Imgurl', 'Post content 2', now(), now());
+            'Imgurl', 'Post content 2', now(), now(), 0);
 INSERT INTO post(
 			admin_id, category_id, post_title_eng, post_title_mmr, 
-            post_title_img_url, post_content, created_date, updated_date)
+            post_title_img_url, post_content, created_date, updated_date, content_type)
     VALUES (1, 1, 'What kind of developer are you?', 'What kind of developer are you?', 
-            'Imgurl', 'Post content 3', now(), now());
+            'Imgurl', 'Post content 3', now(), now(), 1);
 
             

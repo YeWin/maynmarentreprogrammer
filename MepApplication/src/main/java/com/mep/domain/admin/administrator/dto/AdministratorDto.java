@@ -30,6 +30,9 @@ public class AdministratorDto implements Serializable {
 	private Date createdDate;
 	
 	private Date updatedDate;
+	
+	@Email
+	private String adminNewEmail;
 
 	public Integer getAdminId() {
 		return adminId;
@@ -101,5 +104,13 @@ public class AdministratorDto implements Serializable {
 
 	public void setAboutAdmin(String aboutAdmin) {
 		this.aboutAdmin = aboutAdmin;
+	}
+
+	public String getAdminNewEmail() {
+		return adminNewEmail;
+	}
+
+	public void setAdminNewEmail(String adminNewEmail) {
+		this.adminNewEmail = adminNewEmail;
 	}
 }

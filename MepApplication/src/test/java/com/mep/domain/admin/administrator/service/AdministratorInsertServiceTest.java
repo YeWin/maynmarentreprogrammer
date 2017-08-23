@@ -34,6 +34,8 @@ public class AdministratorInsertServiceTest extends TestAbstract {
 	}
 
 	private ResultMessages passwordEmptyTest(AdministratorDto adminDto) {
+		adminDto.setAdminPassword("");
+		adminDto.setAdminConfirmPassword("");
 		return this.administratorInsertService.validate(adminDto);
 	}
 
@@ -55,6 +57,14 @@ public class AdministratorInsertServiceTest extends TestAbstract {
 	private ResultMessages passwordComplexityTest(AdministratorDto adminDto) {
 		adminDto.setAdminPassword("ADMINmep99");
 		return this.administratorInsertService.validate(adminDto);
+	}
+	
+	@Test
+	public void validateEmailDuplicateTest() {
+		AdministratorDto adminDto = newAdministratorDto();
+		adminDto.setAdminEmail("admin1@gmail.com");
+		ResultMessages result = this.administratorInsertService.validateEmailDuplicate(adminDto);
+		assertThat(result.getErrorList().isEmpty(), is(false));
 	}
 
 	@Test

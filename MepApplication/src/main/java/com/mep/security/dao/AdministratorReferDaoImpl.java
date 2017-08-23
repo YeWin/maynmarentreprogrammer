@@ -9,7 +9,7 @@ import com.mep.database.entity.Administrator;
 import com.mep.database.entity.AdministratorExample;
 import com.mep.database.mapper.AdministratorMapper;
 
-@Repository("AdministratorReferDaoImpl1")
+@Repository
 public class AdministratorReferDaoImpl implements AdministratorReferDao {
 
 	@Autowired

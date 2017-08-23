@@ -20,12 +20,15 @@ public class PostDto implements Serializable {
 	
 	private String postTitleMmr;	
 	
+	@NotBlank
 	private String postTitleImgUrl;
 	
 	private Integer categoryId;
 	
 	@NotBlank
 	private String postContent;
+	
+	private Integer contentType;
 
 	public Integer getPostId() {
 		return postId;
@@ -89,5 +92,13 @@ public class PostDto implements Serializable {
 
 	public void setCategoryId(Integer categoryId) {
 		this.categoryId = categoryId;
+	}
+
+	public Integer getContentType() {
+		return contentType;
+	}
+
+	public void setContentType(Integer contentType) {
+		this.contentType = contentType;
 	}
 }

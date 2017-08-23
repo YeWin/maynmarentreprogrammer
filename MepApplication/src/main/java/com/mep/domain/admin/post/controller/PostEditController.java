@@ -33,6 +33,8 @@ public class PostEditController extends PostControllerHelper {
 	private static final String UPDATE_PATH = "/admin/post/postUpdate";
 
 	private static final String UPDATE_COMPLETE_PATH = "/admin/post/postUpdateComplete";
+	
+	private static final String POST_DTO = "postDto";
 
 	@Autowired
 	private PostInitService postInitService;
@@ -61,7 +63,7 @@ public class PostEditController extends PostControllerHelper {
 
 		postDto = setCategoryDropdownToPostDtoObject(postInitService, postDto);
 
-		mav.addObject("postDto", postDto);
+		mav.addObject(POST_DTO, postDto);
 
 		return mav;
 	}
@@ -74,19 +76,28 @@ public class PostEditController extends PostControllerHelper {
 
 		ModelAndView mav = new ModelAndView(INPUT_COMPLETE_PATH);
 		mav.addObject(postDto);
-
-		if (bindingResult.hasErrors()) {
-			postDto = setCategoryDropdownToPostDtoObject(postInitService,
-					postDto);
-			mav.setViewName(INPUT_PATH);
+		
+		if(checkBeanValidator(bindingResult, postDto, mav, INPUT_PATH)) {
 			return mav;
 		}
 
 		postInsertService.insertPost(getAdminIdFromSession(request), postDto);
-
 		messageHelper.setCompleteMessage(mav, "MSP0001");
 
 		return mav;
+	}
+	
+	private boolean checkBeanValidator(BindingResult bindingResult,
+			PostDto postDto, ModelAndView mav, String path) throws Exception {
+
+		if (bindingResult.hasErrors()) {
+			postDto = setCategoryDropdownToPostDtoObject(postInitService,
+					postDto);
+			mav.setViewName(path);
+			return true;
+		}
+
+		return false;
 	}
 	
 	@GetMapping(value = "/post/update/{postId}")
@@ -100,7 +111,7 @@ public class PostEditController extends PostControllerHelper {
 		
 		postDto = setCategoryDropdownToPostDtoObject(postInitService, postDto);
 
-		mav.addObject("postDto", postDto);
+		mav.addObject(POST_DTO, postDto);
 
 		return mav;
 	}
@@ -113,19 +124,15 @@ public class PostEditController extends PostControllerHelper {
 		ModelAndView mav = new ModelAndView(UPDATE_COMPLETE_PATH);
 		mav.addObject(postDto);
 
-		if (bindingResult.hasErrors()) {
-			postDto = setCategoryDropdownToPostDtoObject(postInitService,
-					postDto);
-			mav.setViewName(UPDATE_PATH);
+		if(checkBeanValidator(bindingResult, postDto, mav, UPDATE_PATH)) {
 			return mav;
 		}
 
 		postUpdateConfirmService.updatePost(postDto);
-
 		messageHelper.setCompleteMessage(mav, "MSP0001");
 
 		return mav;
-	}
+	}	
 	
 	@GetMapping(value = "/post/delete/{postId}")
 	public String postDelete(@PathVariable("postId") Integer postId)

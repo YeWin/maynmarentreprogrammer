@@ -22,6 +22,8 @@ public class PostListController extends PostControllerHelper {
 
 	private static final String INIT_PATH = "/admin/post/postList";
 	
+	private static final String POST_DTO = "postDto";
+	
 	@Autowired
 	private PostInitService postInitService;
 	
@@ -37,7 +39,7 @@ public class PostListController extends PostControllerHelper {
 
 		postDto = setCategoryDropdownToPostDtoObject(postInitService, postDto);
 
-		mav.addObject("postDto", postDto);
+		mav.addObject(POST_DTO, postDto);
 
 		return mav;
 	}	
@@ -52,7 +54,7 @@ public class PostListController extends PostControllerHelper {
 		
 		postDto = setCategoryDropdownToPostDtoObject(postInitService, postDto);
 
-		mav.addObject("postDto", postDto);
+		mav.addObject(POST_DTO, postDto);
 		mav.addObject("postList", postList);
 
 		return mav;

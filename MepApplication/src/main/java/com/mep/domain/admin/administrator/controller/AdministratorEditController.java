@@ -18,12 +18,11 @@ import com.mep.domain.admin.administrator.service.AdministratorInsertService;
 import com.mep.domain.admin.administrator.service.AdministratorUpdateConfirmService;
 import com.mep.domain.admin.administrator.service.AdministratorUpdateService;
 import com.mep.message.MessageHelper;
-import com.mep.message.ResultMessages;
 
 @Controller
 @RequestMapping("/admin/*")
-public class AdministratorEditController {
-
+public class AdministratorEditController extends AdministratorUpdateControllerHelper {
+ 
 	private static final String INPUT_PATH = "/admin/administrator/administratorInput";
 
 	private static final String INPUT_COMPLETE_PATH = "/admin/administrator/administratorInputComplete";
@@ -31,6 +30,8 @@ public class AdministratorEditController {
 	private static final String UPDATE_PATH = "/admin/administrator/administratorUpdate";
 
 	private static final String UPDATE_COMPLETE_PATH = "/admin/administrator/administratorUpdateComplete";
+	
+	private static final String ADMIN_DTO = "adminDto";
 
 	@Autowired
 	private AdministratorInsertService administratorInsertService;
@@ -51,7 +52,7 @@ public class AdministratorEditController {
 	public ModelAndView init() {
 
 		ModelAndView mav = new ModelAndView(INPUT_PATH);
-		mav.addObject("adminDto", new AdministratorDto());
+		mav.addObject(ADMIN_DTO, new AdministratorDto());
 		return mav;
 	}
 
@@ -63,25 +64,31 @@ public class AdministratorEditController {
 		ModelAndView mav = new ModelAndView(INPUT_COMPLETE_PATH);
 		mav.addObject(adminDto);
 
-		if (bindingResult.hasErrors()) {
-			mav.setViewName(INPUT_PATH);
-			return mav;
-		}
-
-		ResultMessages resultMessages = administratorInsertService
-				.validate(adminDto);
-
-		if (!resultMessages.getErrorList().isEmpty()) {
-			mav.addObject("resultMessages", resultMessages);
-			mav.setViewName(INPUT_PATH);
+		if(checkInputValueIsInvalid(bindingResult, adminDto, mav)) {
 			return mav;
 		}
 
 		administratorInsertService.insertAdministrator(adminDto);
-
 		messageHelper.setCompleteMessage(mav, "MSP0001");
 
 		return mav;
+	}
+	
+	public boolean checkInputValueIsInvalid(BindingResult bindingResult, AdministratorDto adminDto, ModelAndView mav) {
+		boolean flag = false; 
+		if(checkBeanValidator(bindingResult, INPUT_PATH, mav)) {
+			return true;
+		}
+		
+		if(checkCustomValidator(administratorInsertService, adminDto, INPUT_PATH, mav)) {
+			flag = true;
+		}
+		
+		if(checkCustomEmailDuplicateValidatorForInsert(administratorInsertService, adminDto, INPUT_PATH, mav)) {
+			flag = true;
+		}
+		
+		return flag;
 	}
 
 	@GetMapping(value = "/administrator/update/{adminId}")
@@ -93,7 +100,7 @@ public class AdministratorEditController {
 		AdministratorDto adminDto = administratorUpdateService
 				.getAdministratorById(adminId);
 
-		mav.addObject("adminDto", adminDto);
+		mav.addObject(ADMIN_DTO, adminDto);
 
 		return mav;
 	}
@@ -106,8 +113,7 @@ public class AdministratorEditController {
 		ModelAndView mav = new ModelAndView(UPDATE_COMPLETE_PATH);
 		mav.addObject(adminDto);
 
-		if (bindingResult.hasErrors()) {
-			mav.setViewName(UPDATE_PATH);
+		if(checkInputUpdateValueIsInvalid(bindingResult, adminDto, mav)) {
 			return mav;
 		}
 
@@ -116,6 +122,19 @@ public class AdministratorEditController {
 		messageHelper.setCompleteMessage(mav, "MSP0001");
 
 		return mav;
+	}
+	
+	public boolean checkInputUpdateValueIsInvalid(BindingResult bindingResult, AdministratorDto adminDto, ModelAndView mav) {
+		
+		if(checkBeanValidator(bindingResult, UPDATE_PATH, mav)) {
+			return true;
+		}		
+		
+		if(checkCustomEmailDuplicateValidatorForUpdate(administratorUpdateConfirmService, adminDto, UPDATE_PATH, mav)) {
+			return true;
+		}
+		
+		return false;
 	}
 
 	@GetMapping(value = "/administrator/delete/{adminId}")

@@ -14,6 +14,7 @@ import com.mep.domain.admin.post.dao.ArchiveInsertDao;
 import com.mep.domain.admin.post.dao.PostInsertDao;
 import com.mep.domain.admin.post.dto.PostDto;
 import com.mep.log.ApplyAspect;
+import com.mep.util.Constant;
 import com.mep.util.DateUtil;
 
 @Service
@@ -58,6 +59,7 @@ public class PostInsertServiceImpl implements PostInsertService {
 		post.setPostTitleMmr(postDto.getPostTitleMmr());
 		post.setPostTitleImgUrl(postDto.getPostTitleImgUrl());
 		post.setPostContent(postDto.getPostContent());
+		post.setContentType(postDto.getContentType());
 		post.setCreatedDate(currentDate);
 		
 		return post;
@@ -73,8 +75,8 @@ public class PostInsertServiceImpl implements PostInsertService {
 		Archive archive = new Archive();
 		
 		archive.setPostId(post.getPostId());
-		archive.setYear(DateUtil.changeDateFormat(currentDate, "yyyy"));
-		archive.setMonth(DateUtil.changeDateFormat(currentDate, "MM"));
+		archive.setYear(DateUtil.changeDateFormat(currentDate, Constant.DATE_FORMAT[2]));
+		archive.setMonth(DateUtil.changeDateFormat(currentDate, Constant.DATE_FORMAT[3]));
 		
 		return archive;
 		

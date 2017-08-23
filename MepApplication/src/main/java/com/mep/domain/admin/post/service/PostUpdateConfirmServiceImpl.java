@@ -41,6 +41,7 @@ public class PostUpdateConfirmServiceImpl implements PostUpdateConfirmService {
 		post.setPostTitleMmr(postDto.getPostTitleMmr());
 		post.setPostTitleImgUrl(postDto.getPostTitleImgUrl());
 		post.setPostContent(postDto.getPostContent());
+		post.setContentType(postDto.getContentType());
 		post.setUpdatedDate(DateUtil.getCurrentTime());
 		
 		return post;

@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,7 +20,6 @@ import com.mep.util.Constant;
 public class AdminDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
-	@Qualifier("AdministratorReferDaoImpl1")
 	private AdministratorReferDao administratorReferDao;
 
 	@Autowired

@@ -21,7 +21,7 @@ import com.mep.message.MessageHelper;
 
 @Controller
 @RequestMapping("/admin/*")
-public class CategoryEditController {
+public class CategoryEditController extends CategoryEditControllerHelper {
 
 	private static final String INPUT_PATH = "/admin/category/categoryInput";
 
@@ -61,9 +61,8 @@ public class CategoryEditController {
 
 		ModelAndView mav = new ModelAndView(INPUT_COMPLETE_PATH);
 		mav.addObject(categoryDto);
-
-		if (bindingResult.hasErrors()) {
-			mav.setViewName(INPUT_PATH);
+		
+		if(checkBeanValidator(bindingResult, INPUT_PATH, mav)) {
 			return mav;
 		}
 
@@ -95,9 +94,8 @@ public class CategoryEditController {
 
 		ModelAndView mav = new ModelAndView(UPDATE_COMPLETE_PATH);
 		mav.addObject(categoryDto);
-
-		if (bindingResult.hasErrors()) {
-			mav.setViewName(UPDATE_PATH);
+		
+		if(checkBeanValidator(bindingResult, UPDATE_PATH, mav)) {
 			return mav;
 		}
 

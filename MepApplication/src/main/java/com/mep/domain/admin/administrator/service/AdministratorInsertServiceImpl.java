@@ -38,22 +38,16 @@ public class AdministratorInsertServiceImpl implements
 		ResultMessages resultMessages = new ResultMessages();
 		Locale locale = LocaleContextHolder.getLocale();
 
-		if (checkPasswordIsEmpty(resultMessages, adminDto.getAdminPassword(),
-				locale)) {
-			return resultMessages;
-		}
+		checkPasswordIsEmpty(resultMessages, adminDto.getAdminPassword(),
+				locale);
 
-		if (checkPasswordComplexity(resultMessages,
-				adminDto.getAdminPassword(), locale)) {
-			return resultMessages;
-		}
+		checkPasswordComplexity(resultMessages, adminDto.getAdminPassword(),
+				locale);
 
-		if (checkPasswordAndConfirmPasswordIsNotEqual(resultMessages,
+		checkPasswordAndConfirmPasswordIsNotEqual(resultMessages,
 				adminDto.getAdminPassword(),
-				adminDto.getAdminConfirmPassword(), locale)) {
-			return resultMessages;
-		}
-
+				adminDto.getAdminConfirmPassword(), locale);
+		
 		return resultMessages;
 	}
 
@@ -93,6 +87,32 @@ public class AdministratorInsertServiceImpl implements
 							"Confirm Password" }, locale)));
 		}
 		return false;
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SystemException.class)
+	@ApplyAspect
+	public ResultMessages validateEmailDuplicate(AdministratorDto adminDto) {
+		ResultMessages resultMessages = new ResultMessages();
+		Locale locale = LocaleContextHolder.getLocale();
+
+		checkEmailIsDuplicateOrNot(resultMessages, adminDto, locale);
+
+		return resultMessages;
+	}
+	
+	private void checkEmailIsDuplicateOrNot(ResultMessages resultMessages,
+			AdministratorDto adminDto, Locale locale) {
+
+		long count = administratorInsertDao.selectAdministratorByEmail(adminDto
+				.getAdminEmail());
+
+		if (count > 0) {
+			resultMessages.addError(new DisplayMessage(messageSource
+					.getMessage("MEP00004", new Object[] { "Email Address" },
+							locale)));
+		}
+
 	}
 
 	@Override

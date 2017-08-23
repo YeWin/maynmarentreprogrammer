@@ -45,6 +45,7 @@ public class TestServiceUtil {
 		postDto.setPostTitleMmr("What kind of software developer are you?");
 		postDto.setPostTitleImgUrl("https://github.com/YeWin/msp-research/blob/master/ext%20(1).jpg?raw=true");
 		postDto.setPostContent("Post content1");
+		postDto.setContentType(1);
 
 		return postDto;
 		
