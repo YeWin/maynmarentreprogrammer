@@ -1,10 +1,13 @@
 package com.mep.domain.admin.category.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,6 +48,12 @@ public class CategoryEditController extends CategoryEditControllerHelper {
 
 	@Autowired
 	private MessageHelper messageHelper;
+	
+	/* Converts empty strings into null when a form is submitted */
+	@InitBinder	
+	public void initBinder(WebDataBinder binder) {
+		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
+	}
 
 	@GetMapping(value = "/category/insert")
 	public ModelAndView init() {

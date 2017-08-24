@@ -13,7 +13,7 @@ import com.mep.log.ApplyAspect;
 public class PostDeleteServiceImpl implements PostDeleteService {
 	
 	@Autowired
-	PostDeleteDao postDeleteDao;
+	private PostDeleteDao postDeleteDao;
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SystemException.class)

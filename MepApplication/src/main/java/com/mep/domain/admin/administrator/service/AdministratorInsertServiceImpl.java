@@ -33,13 +33,16 @@ public class AdministratorInsertServiceImpl implements
 	AdministratorInsertDao administratorInsertDao;
 
 	@Override
+	@ApplyAspect
 	public ResultMessages validate(AdministratorDto adminDto) {
 
 		ResultMessages resultMessages = new ResultMessages();
 		Locale locale = LocaleContextHolder.getLocale();
 
-		checkPasswordIsEmpty(resultMessages, adminDto.getAdminPassword(),
-				locale);
+		if(checkPasswordIsEmpty(resultMessages, adminDto.getAdminPassword(),
+				locale)){
+			return resultMessages;
+		}
 
 		checkPasswordComplexity(resultMessages, adminDto.getAdminPassword(),
 				locale);

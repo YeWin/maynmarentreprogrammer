@@ -17,7 +17,7 @@ import com.mep.domain.admin.post.dto.PostDto;
 import com.mep.domain.admin.post.dto.PostListDto;
 import com.mep.util.TestAbstract;
 
-public class PostListServiceTest  extends TestAbstract {
+public class PostListServiceTest extends TestAbstract {
 
 	@Autowired
 	private PostListService postListService;

@@ -12,7 +12,7 @@ import com.mep.domain.admin.post.mapper.PostListMapper;
 public class PostListDaoImpl implements PostListDao {
 	
 	@Autowired
-	PostListMapper postListMapper;
+	private PostListMapper postListMapper;
 
 	@Override
 	public List<Post> getPostList(Post post) {

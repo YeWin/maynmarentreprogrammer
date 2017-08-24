@@ -9,5 +9,6 @@
     </settings>
     <mappers>
         <mapper resource="mybatis/mapper/PostListMapper.xml"/>        
+        <mapper resource="mybatis/mapper/ArticleDashboardMapper.xml"/>
     </mappers>
 </configuration>

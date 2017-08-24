@@ -15,7 +15,7 @@ import com.mep.log.ApplyAspect;
 public class PostUpdateServiceImpl implements PostUpdateService {
 
 	@Autowired
-	PostUpdateDao postUpdateDao;
+	private PostUpdateDao postUpdateDao;
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SystemException.class)

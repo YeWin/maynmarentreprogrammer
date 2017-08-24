@@ -18,7 +18,7 @@ import com.mep.log.ApplyAspect;
 public class PostListServiceImpl implements PostListService {
 
 	@Autowired
-	PostListDao postListDao;
+	private PostListDao postListDao;
 
 	@SuppressWarnings("unchecked")
 	@Override

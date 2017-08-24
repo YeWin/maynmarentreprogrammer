@@ -6,5 +6,5 @@ import com.mep.database.entity.Post;
 
 public interface PostListDao {
 
-	public List<Post> getPostList(Post post);
+	List<Post> getPostList(Post post);
 }

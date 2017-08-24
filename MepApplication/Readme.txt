@@ -34,3 +34,5 @@ URL Rewriting
 @GetMapping(value = "/administrator/update{adminId}{adminName}")
 <a
 th:href="@{/admin/administrator/update/{adminId}{adminName}(adminId=${admin.adminId}, adminName=${admin.adminName})}">
+
+http://www.thymeleaf.org/doc/articles/standardurlsyntax.html

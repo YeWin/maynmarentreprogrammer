@@ -33,9 +33,7 @@ public class AdministratorInsertServiceTest extends TestAbstract {
 		assertThat(result4.getErrorList().isEmpty(), is(false));
 	}
 
-	private ResultMessages passwordEmptyTest(AdministratorDto adminDto) {
-		adminDto.setAdminPassword("");
-		adminDto.setAdminConfirmPassword("");
+	private ResultMessages passwordEmptyTest(AdministratorDto adminDto) {		
 		return this.administratorInsertService.validate(adminDto);
 	}
 

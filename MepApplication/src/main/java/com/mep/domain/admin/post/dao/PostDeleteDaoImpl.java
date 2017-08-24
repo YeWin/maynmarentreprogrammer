@@ -9,7 +9,7 @@ import com.mep.database.mapper.PostMapper;
 public class PostDeleteDaoImpl implements PostDeleteDao {
 	
 	@Autowired
-	PostMapper postMapper;
+	private PostMapper postMapper;
 
 	@Override
 	public int postDelete(Integer postId) {

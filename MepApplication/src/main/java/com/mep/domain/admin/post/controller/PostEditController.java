@@ -3,10 +3,13 @@ package com.mep.domain.admin.post.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,11 +32,11 @@ public class PostEditController extends PostControllerHelper {
 	private static final String INPUT_PATH = "/admin/post/postInput";
 
 	private static final String INPUT_COMPLETE_PATH = "/admin/post/postInputComplete";
-	
+
 	private static final String UPDATE_PATH = "/admin/post/postUpdate";
 
 	private static final String UPDATE_COMPLETE_PATH = "/admin/post/postUpdateComplete";
-	
+
 	private static final String POST_DTO = "postDto";
 
 	@Autowired
@@ -41,18 +44,24 @@ public class PostEditController extends PostControllerHelper {
 
 	@Autowired
 	private PostInsertService postInsertService;
-	
+
 	@Autowired
 	private PostDeleteService postDeleteService;
-	
+
 	@Autowired
 	private PostUpdateService postUpdateService;
-	
+
 	@Autowired
 	private PostUpdateConfirmService postUpdateConfirmService;
 
 	@Autowired
 	private MessageHelper messageHelper;
+
+	/* Converts empty strings into null when a form is submitted */
+	@InitBinder	
+	public void initBinder(WebDataBinder binder) {
+		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
+	}
 
 	@GetMapping(value = "/post/insert")
 	public ModelAndView insert() throws Exception {
@@ -76,8 +85,8 @@ public class PostEditController extends PostControllerHelper {
 
 		ModelAndView mav = new ModelAndView(INPUT_COMPLETE_PATH);
 		mav.addObject(postDto);
-		
-		if(checkBeanValidator(bindingResult, postDto, mav, INPUT_PATH)) {
+
+		if (checkBeanValidator(bindingResult, postDto, mav, INPUT_PATH)) {
 			return mav;
 		}
 
@@ -86,7 +95,7 @@ public class PostEditController extends PostControllerHelper {
 
 		return mav;
 	}
-	
+
 	private boolean checkBeanValidator(BindingResult bindingResult,
 			PostDto postDto, ModelAndView mav, String path) throws Exception {
 
@@ -99,23 +108,22 @@ public class PostEditController extends PostControllerHelper {
 
 		return false;
 	}
-	
+
 	@GetMapping(value = "/post/update/{postId}")
-	public ModelAndView postUpdate(
-			@ModelAttribute("postId") Integer postId) throws Exception {
+	public ModelAndView postUpdate(@ModelAttribute("postId") Integer postId)
+			throws Exception {
 
 		ModelAndView mav = new ModelAndView(UPDATE_PATH);
 
-		PostDto postDto = postUpdateService
-				.getPostById(postId);
-		
+		PostDto postDto = postUpdateService.getPostById(postId);
+
 		postDto = setCategoryDropdownToPostDtoObject(postInitService, postDto);
 
 		mav.addObject(POST_DTO, postDto);
 
 		return mav;
 	}
-	
+
 	@PostMapping(value = "/post/updateConfirm")
 	public ModelAndView postUpdateConfirm(
 			@Validated @ModelAttribute("postDto") PostDto postDto,
@@ -124,7 +132,7 @@ public class PostEditController extends PostControllerHelper {
 		ModelAndView mav = new ModelAndView(UPDATE_COMPLETE_PATH);
 		mav.addObject(postDto);
 
-		if(checkBeanValidator(bindingResult, postDto, mav, UPDATE_PATH)) {
+		if (checkBeanValidator(bindingResult, postDto, mav, UPDATE_PATH)) {
 			return mav;
 		}
 
@@ -132,8 +140,8 @@ public class PostEditController extends PostControllerHelper {
 		messageHelper.setCompleteMessage(mav, "MSP0001");
 
 		return mav;
-	}	
-	
+	}
+
 	@GetMapping(value = "/post/delete/{postId}")
 	public String postDelete(@PathVariable("postId") Integer postId)
 			throws Exception {

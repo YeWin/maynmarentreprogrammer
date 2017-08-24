@@ -30,6 +30,7 @@ public class AdministratorUpdateConfirmServiceImpl implements
 	AdministratorUpdateConfirmDao administratorUpdateConfirmDao;
 
 	@Override
+	@ApplyAspect
 	public ResultMessages validateEmailDuplicate(AdministratorDto adminDto) {
 		ResultMessages resultMessages = new ResultMessages();
 		Locale locale = LocaleContextHolder.getLocale();

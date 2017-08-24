@@ -17,7 +17,7 @@ import com.mep.log.ApplyAspect;
 public class PostInitServiceImpl implements PostInitService {
 
 	@Autowired
-	PostInitDao postInitDao;
+	private PostInitDao postInitDao;
 
 	@SuppressWarnings("unchecked")
 	@Override

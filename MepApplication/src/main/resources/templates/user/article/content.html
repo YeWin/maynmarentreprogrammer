@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+<title>Articles - Myanmar Entreprogrammer</title>
+
+<div th:replace="fragments/userHeader :: user-header-css" />
+
+</head>
+<body>
+
+	<div th:replace="fragments/userHeader :: user-header"></div>
+
+	<!-- Main Content -->
+	<div class="container">
+		<div class="row" th:each="article : ${articleDashboardList}">
+			<div class="col-lg-8 col-md-10 mx-auto">
+				<div class="post-preview">
+					<a href="#">
+						<h2 class="post-title">
+							<span th:utext="${article.postTitle} "></span>
+						</h2>
+					</a>
+					<p class="post-meta">
+						<span
+							th:utext="${#dates.format(article.createdDate, 'MMMMM dd, yyyy')}" ></span>
+							BY <span th:utext="${article.adminName}" ></span>
+					</p>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+	<!-- <div class="container">
+		<div class="row" style="margin-bottom: 50px;">
+
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h3 class="panel-title">All Articles</h3>
+				</div>
+				<div class="panel-body">
+					<table class="table table-bordered">
+						<thead>
+							<tr class="btn-success">
+								<th>Article Date</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							
+							<tr th:each="article : ${articleDashboardList}">								
+								<td th:text="${#dates.format(article.createdDate, 'MMMMM dd, yyyy')}"></td>
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+		</div>
+	</div> -->
+
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>
