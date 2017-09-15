@@ -6,14 +6,26 @@ import java.util.Date;
 public class ArticleDashboard implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	private Integer postId;
 
 	private String postTitle;
 	
 	private String postTitleImgUrl;
 	
+	private String postTitleEng;
+	
 	private Date createdDate;
 	
 	private String adminName;
+
+	public Integer getPostId() {
+		return postId;
+	}
+
+	public void setPostId(Integer postId) {
+		this.postId = postId;
+	}
 
 	public String getPostTitle() {
 		return postTitle;
@@ -29,6 +41,14 @@ public class ArticleDashboard implements Serializable {
 
 	public void setPostTitleImgUrl(String postTitleImgUrl) {
 		this.postTitleImgUrl = postTitleImgUrl;
+	}
+
+	public String getPostTitleEng() {
+		return postTitleEng;
+	}
+
+	public void setPostTitleEng(String postTitleEng) {
+		this.postTitleEng = postTitleEng;
 	}
 
 	public Date getCreatedDate() {

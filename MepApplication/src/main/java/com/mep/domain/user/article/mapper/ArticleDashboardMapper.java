@@ -10,5 +10,6 @@ import com.mep.domain.user.article.entity.ArticleDashboard;
 @Mapper
 public interface ArticleDashboardMapper {
 
-	List<ArticleDashboard> getArticleDashboardList(@Param("categoryName") String categoryName);
+	List<ArticleDashboard> getArticleDashboardList(
+			@Param("categoryName") String categoryName);	
 }

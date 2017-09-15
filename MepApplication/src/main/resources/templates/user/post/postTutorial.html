@@ -6,14 +6,34 @@
 
 <div th:replace="fragments/userHeader :: user-header-css" />
 
-<link rel="stylesheet" th:href="@{/theme/css/user.css}" />
-
 </head>
 <body>
 
 	<div th:replace="fragments/userHeader :: user-header"></div>
 
 	<!-- Main Content -->
+	<div class="container">
+		<div class="row" th:each="article : ${articleSingleDto}">
+
+			<div class="post-preview">
+				<a href="#">
+					<h2 class="post-title">
+						<span th:utext="${article.postTitle} "></span>
+					</h2>
+				</a>
+				<p class="post-meta text-uppercase text-muted">
+					<span
+						th:utext="${#dates.format(article.createdDate, 'MMMMM dd, yyyy')}"></span>
+					 / BY <span th:utext="${article.adminName}"></span>
+				</p>
+			</div>
+			<hr style="border-top: dotted 1px;" />
+			<span th:remove="tag" th:utext="${article.postContent} "></span>
+		</div>
+
+	</div>
+	
+	<!-- Lastest Articles -->
 	<div class="container">
 		<div class="row" th:each="article : ${articleDashboardList}">
 
@@ -37,35 +57,6 @@
 
 		</div>
 	</div>
-
-	<!-- <div class="container">
-		<div class="row" style="margin-bottom: 50px;">
-
-			<div class="panel panel-success">
-				<div class="panel-heading">
-					<h3 class="panel-title">All Articles</h3>
-				</div>
-				<div class="panel-body">
-					<table class="table table-bordered">
-						<thead>
-							<tr class="btn-success">
-								<th>Article Date</th>
-								
-							</tr>
-						</thead>
-						<tbody>
-							
-							<tr th:each="article : ${articleDashboardList}">								
-								<td th:text="${#dates.format(article.createdDate, 'MMMMM dd, yyyy')}"></td>
-							</tr>
-
-						</tbody>
-					</table>
-				</div>
-
-			</div>
-		</div>
-	</div> -->
 
 	<div th:replace="fragments/footer :: footer"></div>
 

@@ -32,4 +32,17 @@ public class ArticleDashboardController {
 
 		return mav;
 	}
+	
+	@GetMapping(value = { "/professional-programmer" })
+	public @ResponseBody ModelAndView getProfessionalProgrammer() throws Exception {
+
+		ModelAndView mav = new ModelAndView(ARTICLE_PATH);
+
+		List<ArticleDashboardDto> articleDashboardList = dashboradService
+				.getArticleDashboardList(Constant.MENU[1]);
+
+		mav.addObject("articleDashboardList", articleDashboardList);
+
+		return mav;
+	}
 }

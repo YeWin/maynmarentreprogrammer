@@ -10,6 +10,7 @@
 			post.post_id,
 			COALESCE(post.post_title_mmr, post.post_title_eng) AS post_title,
 			post.post_title_img_url,
+			post.post_title_eng,
 			post.created_date,
 			admin.admin_name
 		FROM
@@ -25,7 +26,7 @@
 								FROM
 									category
 								WHERE
-									category_name = #{categoryName}
+									lower(category_name) = lower(#{categoryName})
 								)
 		ORDER BY
 			post.post_id desc

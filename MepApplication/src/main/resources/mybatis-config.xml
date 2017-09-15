@@ -8,7 +8,8 @@
         <setting name="mapUnderscoreToCamelCase" value="true" />
     </settings>
     <mappers>
-        <mapper resource="mybatis/mapper/PostListMapper.xml"/>        
+        <mapper resource="mybatis/mapper/PostListMapper.xml"/>
         <mapper resource="mybatis/mapper/ArticleDashboardMapper.xml"/>
+        <mapper resource="mybatis/mapper/ArticleSingleMapper.xml"/>
     </mappers>
 </configuration>

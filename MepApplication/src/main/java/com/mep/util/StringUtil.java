@@ -20,4 +20,12 @@ public class StringUtil {
 		Matcher m = p.matcher(str);
 		return m.find();
 	}
+	
+	public static String replaceWhiteSpaceWithHyphen(String str) {		
+		return str.replace(' ', '-');
+	}
+	
+	public static String replaceHyphenWithWhiteSpace(String str) {
+		return str.replace('-', ' ');
+	}
 }

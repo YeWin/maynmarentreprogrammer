@@ -35,4 +35,6 @@ URL Rewriting
 <a
 th:href="@{/admin/administrator/update/{adminId}{adminName}(adminId=${admin.adminId}, adminName=${admin.adminName})}">
 
+<a th:href="@{/{createdDate}/{postTitleEng}(createdDate=${article.createdDate}, postTitleEng=${article.postTitleEng})}">
+@GetMapping(value = { "/{createdDate}/{postTitleEng}" })
 http://www.thymeleaf.org/doc/articles/standardurlsyntax.html
