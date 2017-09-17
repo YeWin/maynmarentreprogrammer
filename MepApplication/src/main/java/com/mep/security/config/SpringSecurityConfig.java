@@ -20,7 +20,7 @@ import com.mep.security.service.AdminDetailsServiceImpl;
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	public void configure(WebSecurity web) throws Exception{		
-		web.ignoring().antMatchers("/", "/2**/**", "/articles","/professional-programmer", "/theme/**", "/webjars/**");
+		web.ignoring().antMatchers("/", "/searchArticle",  "/2**/**", "/articles","/professional-programmer", "/theme/**", "/webjars/**");
 	}
 
 	@Override

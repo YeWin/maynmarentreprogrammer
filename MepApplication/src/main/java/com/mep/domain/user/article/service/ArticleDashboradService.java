@@ -8,4 +8,7 @@ public interface ArticleDashboradService {
 
 	List<ArticleDashboardDto> getArticleDashboardList(String categoryName)
 			throws Exception;
+	
+	List<ArticleDashboardDto> searchArticleList(String searchValue)
+			throws Exception;
 }

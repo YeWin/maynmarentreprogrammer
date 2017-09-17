@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mep.domain.user.article.dto.ArticleDashboardDto;
 import com.mep.domain.user.article.dto.ArticleSingleDto;
 import com.mep.domain.user.article.service.ArticleSingleService;
-import com.mep.util.Constant;
 import com.mep.util.StringUtil;
 
 @Controller

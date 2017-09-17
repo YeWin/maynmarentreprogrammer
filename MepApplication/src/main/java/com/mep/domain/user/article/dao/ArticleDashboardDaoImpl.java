@@ -19,4 +19,9 @@ public class ArticleDashboardDaoImpl implements ArticleDashboardDao {
 		return articleDashboardMapper.getArticleDashboardList(categoryName);
 	}
 
+	@Override
+	public List<ArticleDashboard> searchArticleList(String postTitleEng) {
+		return articleDashboardMapper.searchArticleList(postTitleEng);
+	}
+
 }

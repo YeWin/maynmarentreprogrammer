@@ -29,5 +29,45 @@ public class ArticleDashboradServiceTest extends TestAbstract {
 		assertThat(articleDashboardDto.size(),
 				anyOf(greaterThan(-1), is(not(0))));
 	}
+	
+	@Test
+	public void shouldReturnSearchArticle() throws Exception {
+
+		List<ArticleDashboardDto> articleDashboardDto = articleDashboradService
+				.searchArticleList("What");
+		assertThat(articleDashboardDto, notNullValue());
+		assertThat(articleDashboardDto.size(),
+				anyOf(greaterThan(-1), is(not(0))));
+	}
+	
+	@Test
+	public void shouldReturnSevenArticle1() throws Exception {
+
+		List<ArticleDashboardDto> articleDashboardDto = articleDashboradService
+				.searchArticleList("12");
+		assertThat(articleDashboardDto, notNullValue());
+		assertThat(articleDashboardDto.size(),
+				anyOf(greaterThan(-1), is((7))));
+	}
+	
+	@Test
+	public void shouldReturnSevenArticle2() throws Exception {
+
+		List<ArticleDashboardDto> articleDashboardDto = articleDashboradService
+				.searchArticleList("");
+		assertThat(articleDashboardDto, notNullValue());
+		assertThat(articleDashboardDto.size(),
+				anyOf(greaterThan(-1), is((7))));
+	}
+	
+	@Test
+	public void shouldReturnSevenArticle3() throws Exception {
+
+		List<ArticleDashboardDto> articleDashboardDto = articleDashboradService
+				.searchArticleList("လမ္းညြန္");
+		assertThat(articleDashboardDto, notNullValue());
+		assertThat(articleDashboardDto.size(),
+				anyOf(greaterThan(-1), is((7))));
+	}
 
 }

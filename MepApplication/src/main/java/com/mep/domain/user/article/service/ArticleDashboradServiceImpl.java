@@ -54,4 +54,34 @@ public class ArticleDashboradServiceImpl implements ArticleDashboradService {
 		return dashboardDtoList;
 	}
 
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SystemException.class)
+	@ApplyAspect
+	public List<ArticleDashboardDto> searchArticleList(String searchValue)
+			throws Exception {
+		List<ArticleDashboard> searchList = articleDashboardDao
+				.searchArticleList(checkSearchInputLangauge(searchValue));
+		
+		if(!(searchList.size() > 0)) {
+			searchList = getLastSevenArticles(searchList);
+		}
+		
+		return getDtoList(searchList);
+	}
+	
+	private String checkSearchInputLangauge(String searchValue) {
+		
+		if (!StringUtil.validateInputLanguage(searchValue)) {
+			searchValue = "";
+		}
+		
+		return searchValue;
+	}
+	
+	private List<ArticleDashboard> getLastSevenArticles(List<ArticleDashboard> searchList) {
+		
+		return articleDashboardDao
+				.searchArticleList(checkSearchInputLangauge(""));
+	}
+
 }

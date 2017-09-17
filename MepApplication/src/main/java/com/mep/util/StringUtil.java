@@ -6,9 +6,19 @@ import java.util.regex.Pattern;
 public class StringUtil {
 
 	private static final String PASSWORD_CHECK = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+	
+	private static final String ENGLISH_LANGUAGE_CHECK = "^[\\s*a-zA-Z0-9]+$";
 
 	public static boolean validatePassword(String strPassword) {
 		if (!validateRegex(strPassword, PASSWORD_CHECK)) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	public static boolean validateInputLanguage(String str) {
+		if (!validateRegex(str, ENGLISH_LANGUAGE_CHECK)) {
 			return false;
 		} else {
 			return true;

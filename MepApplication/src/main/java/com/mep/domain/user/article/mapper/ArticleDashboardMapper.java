@@ -12,4 +12,7 @@ public interface ArticleDashboardMapper {
 
 	List<ArticleDashboard> getArticleDashboardList(
 			@Param("categoryName") String categoryName);	
+	
+	List<ArticleDashboard> searchArticleList(
+			@Param("postTitleEng") String postTitleEng);
 }

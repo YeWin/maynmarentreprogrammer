@@ -29,5 +29,15 @@ public class ArticleDashboardDaoTest extends TestAbstract {
 		assertThat(articleDashboardList.size(),
 				anyOf(greaterThan(-1), is(not(0))));
 	}
+	
+	@Test
+	public void shouldReturnSearchArticle() {
+		List<ArticleDashboard> articleSearchList = articleDashboardDao
+				.searchArticleList("what");
+		
+		assertThat(articleSearchList, notNullValue());
+		assertThat(articleSearchList.size(),
+				anyOf(greaterThan(-1), is(not(0))));
+	}
 
 }

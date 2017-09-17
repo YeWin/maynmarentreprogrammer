@@ -31,4 +31,29 @@
 		ORDER BY
 			post.post_id desc
 	</select>
+	
+	<select id="searchArticleList" resultType="com.mep.domain.user.article.entity.ArticleDashboard">
+	<bind name="pattern" value="'%' + postTitleEng + '%'" />
+	
+		SELECT
+			post.post_id,
+			COALESCE(post.post_title_mmr, post.post_title_eng) AS post_title,
+			post.post_title_img_url,
+			post.post_title_eng,
+			post.created_date,
+			admin.admin_name
+		FROM
+			post
+		JOIN
+			administrator AS admin
+		ON
+			(post.admin_id = admin.admin_id)
+		WHERE
+				post.content_type = 0
+			AND
+				lower(post.post_title_eng) LIKE lower(#{pattern})
+		ORDER BY
+			post.post_id desc
+		LIMIT 7
+	</select>
 </mapper>

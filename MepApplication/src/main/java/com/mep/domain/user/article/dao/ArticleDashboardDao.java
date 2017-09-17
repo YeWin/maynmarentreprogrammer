@@ -7,4 +7,6 @@ import com.mep.domain.user.article.entity.ArticleDashboard;
 public interface ArticleDashboardDao {
 
 	List<ArticleDashboard> getArticleDashboardList(String categoryName);
+	
+	List<ArticleDashboard> searchArticleList(String postTitleEng);
 }
