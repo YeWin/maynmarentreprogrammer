@@ -86,17 +86,40 @@ INSERT INTO administrator(
 INSERT INTO post(
 			admin_id, category_id, post_title_eng, post_title_mmr, 
             post_title_img_url, post_content, created_date, updated_date, content_type)
-    VALUES (1, 1, 'What kind of developer are you?', 'What kind of developer are you?', 
+    VALUES (1, 1, 'What kind of developer are you?', 'What kind of developer are you1?', 
             'Imgurl', 'Post content 1', now(), now(), 0);
 INSERT INTO post(
 			admin_id, category_id, post_title_eng, post_title_mmr, 
             post_title_img_url, post_content, created_date, updated_date, content_type)
-    VALUES (1, 1, 'What kind of developer are you?', 'What kind of developer are you?', 
+    VALUES (1, 1, 'What kind of developer are you?', 'What kind of developer are you2?', 
             'Imgurl', 'Post content 2', now(), now(), 0);
 INSERT INTO post(
 			admin_id, category_id, post_title_eng, post_title_mmr, 
             post_title_img_url, post_content, created_date, updated_date, content_type)
-    VALUES (1, 1, 'What kind of developer are you?', 'What kind of developer are you?', 
+    VALUES (1, 1, 'What kind of developer are you?', 'What kind of developer are you3?', 
             'Imgurl', 'Post content 3', now(), now(), 1);
 
-            
+INSERT INTO archive(
+			post_id, year, month, created_date, updated_date)
+    VALUES (1, '2016', '02', now(), now());
+INSERT INTO archive(
+			post_id, year, month, created_date, updated_date)
+    VALUES (1, '2016', '02', now(), now());
+INSERT INTO archive(
+			post_id, year, month, created_date, updated_date)
+    VALUES (1, '2016', '03', now(), now());
+INSERT INTO archive(
+			post_id, year, month, created_date, updated_date)
+    VALUES (1, '2016', '03', now(), now());
+INSERT INTO archive(
+			post_id, year, month, created_date, updated_date)
+    VALUES (1, '2015', '06', now(), now());
+INSERT INTO archive(
+			post_id, year, month, created_date, updated_date)
+    VALUES (1, '2015', '06', now(), now());
+INSERT INTO archive(
+			post_id, year, month, created_date, updated_date)
+    VALUES (1, '2015', '03', now(), now());
+INSERT INTO archive(
+			post_id, year, month, created_date, updated_date)
+    VALUES (1, '2015', '03', now(), now());

@@ -91,7 +91,7 @@ public class PostEditController extends PostControllerHelper {
 		}
 
 		postInsertService.insertPost(getAdminIdFromSession(request), postDto);
-		messageHelper.setCompleteMessage(mav, "MSP0001");
+		messageHelper.setCompleteMessage(mav, "MSP00001");
 
 		return mav;
 	}
@@ -137,7 +137,7 @@ public class PostEditController extends PostControllerHelper {
 		}
 
 		postUpdateConfirmService.updatePost(postDto);
-		messageHelper.setCompleteMessage(mav, "MSP0001");
+		messageHelper.setCompleteMessage(mav, "MSP00001");
 
 		return mav;
 	}

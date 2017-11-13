@@ -78,7 +78,7 @@ public class AdministratorEditController extends AdministratorUpdateControllerHe
 		}
 
 		administratorInsertService.insertAdministrator(adminDto);
-		messageHelper.setCompleteMessage(mav, "MSP0001");
+		messageHelper.setCompleteMessage(mav, "MSP00001");
 
 		return mav;
 	}
@@ -128,7 +128,7 @@ public class AdministratorEditController extends AdministratorUpdateControllerHe
 
 		administratorUpdateConfirmService.updateAdministrator(adminDto);
 
-		messageHelper.setCompleteMessage(mav, "MSP0001");
+		messageHelper.setCompleteMessage(mav, "MSP00001");
 
 		return mav;
 	}

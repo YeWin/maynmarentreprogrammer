@@ -77,7 +77,7 @@ public class CategoryEditController extends CategoryEditControllerHelper {
 
 		categoryInsertService.insertCategory(categoryDto);
 
-		messageHelper.setCompleteMessage(mav, "MSP0001");
+		messageHelper.setCompleteMessage(mav, "MSP00001");
 
 		return mav;
 	}
@@ -110,7 +110,7 @@ public class CategoryEditController extends CategoryEditControllerHelper {
 
 		categoryUpdateConfirmService.updateCategory(categoryDto);
 
-		messageHelper.setCompleteMessage(mav, "MSP0001");
+		messageHelper.setCompleteMessage(mav, "MSP00001");
 
 		return mav;
 	}
