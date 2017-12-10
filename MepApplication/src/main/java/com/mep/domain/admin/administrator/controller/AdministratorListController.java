@@ -24,7 +24,7 @@ public class AdministratorListController {
 	private AdministratorListService administratorListService;
 
 	@GetMapping(value = "/")
-	public @ResponseBody ModelAndView categoryList() throws Exception {
+	public @ResponseBody ModelAndView categoryList() {
 
 		ModelAndView mav = new ModelAndView(INIT_PATH);
 

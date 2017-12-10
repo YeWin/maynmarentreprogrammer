@@ -6,9 +6,7 @@ import com.mep.domain.user.article.dto.ArticleDashboardDto;
 
 public interface ArticleDashboradService {
 
-	List<ArticleDashboardDto> getArticleDashboardList(String categoryName)
-			throws Exception;
-	
-	List<ArticleDashboardDto> searchArticleList(String searchValue)
-			throws Exception;
+	List<ArticleDashboardDto> getArticleDashboardList(String categoryName);
+
+	List<ArticleDashboardDto> searchArticleList(String searchValue);
 }

@@ -2,7 +2,6 @@ package com.mep.domain.admin.administrator.service;
 
 import java.util.Locale;
 
-import org.omg.CORBA.SystemException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -14,7 +13,6 @@ import org.thymeleaf.util.StringUtils;
 import com.mep.database.entity.Administrator;
 import com.mep.domain.admin.administrator.dao.AdministratorUpdateConfirmDao;
 import com.mep.domain.admin.administrator.dto.AdministratorDto;
-import com.mep.log.ApplyAspect;
 import com.mep.message.DisplayMessage;
 import com.mep.message.ResultMessages;
 import com.mep.util.DateUtil;
@@ -30,7 +28,6 @@ public class AdministratorUpdateConfirmServiceImpl implements
 	AdministratorUpdateConfirmDao administratorUpdateConfirmDao;
 
 	@Override
-	@ApplyAspect
 	public ResultMessages validateEmailDuplicate(AdministratorDto adminDto) {
 		ResultMessages resultMessages = new ResultMessages();
 		Locale locale = LocaleContextHolder.getLocale();
@@ -78,10 +75,8 @@ public class AdministratorUpdateConfirmServiceImpl implements
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SystemException.class)
-	@ApplyAspect
-	public boolean updateAdministrator(AdministratorDto adminDto)
-			throws Exception {
+	@Transactional(propagation = Propagation.REQUIRED)
+	public boolean updateAdministrator(AdministratorDto adminDto) {
 
 		administratorUpdateConfirmDao
 				.updateAdministrator(setDtoModelToEntityModel(adminDto));
@@ -89,8 +84,7 @@ public class AdministratorUpdateConfirmServiceImpl implements
 		return true;
 	}
 
-	private Administrator setDtoModelToEntityModel(AdministratorDto adminDto)
-			throws Exception {
+	private Administrator setDtoModelToEntityModel(AdministratorDto adminDto) {
 		Administrator admin = new Administrator();
 
 		if (checkNewEmailIsEmpty(adminDto.getAdminNewEmail())) {

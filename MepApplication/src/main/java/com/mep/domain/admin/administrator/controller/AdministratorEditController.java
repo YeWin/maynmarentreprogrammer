@@ -20,12 +20,14 @@ import com.mep.domain.admin.administrator.service.AdministratorDeleteService;
 import com.mep.domain.admin.administrator.service.AdministratorInsertService;
 import com.mep.domain.admin.administrator.service.AdministratorUpdateConfirmService;
 import com.mep.domain.admin.administrator.service.AdministratorUpdateService;
+import com.mep.handler.ApplicationException;
 import com.mep.message.MessageHelper;
 
 @Controller
 @RequestMapping("/admin/*")
-public class AdministratorEditController extends AdministratorUpdateControllerHelper {
- 
+public class AdministratorEditController extends
+		AdministratorUpdateControllerHelper {
+
 	private static final String INPUT_PATH = "/admin/administrator/administratorInput";
 
 	private static final String INPUT_COMPLETE_PATH = "/admin/administrator/administratorInputComplete";
@@ -33,7 +35,7 @@ public class AdministratorEditController extends AdministratorUpdateControllerHe
 	private static final String UPDATE_PATH = "/admin/administrator/administratorUpdate";
 
 	private static final String UPDATE_COMPLETE_PATH = "/admin/administrator/administratorUpdateComplete";
-	
+
 	private static final String ADMIN_DTO = "adminDto";
 
 	@Autowired
@@ -50,9 +52,9 @@ public class AdministratorEditController extends AdministratorUpdateControllerHe
 
 	@Autowired
 	private MessageHelper messageHelper;
-	
+
 	/* Converts empty strings into null when a form is submitted */
-	@InitBinder	
+	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
 	}
@@ -68,12 +70,12 @@ public class AdministratorEditController extends AdministratorUpdateControllerHe
 	@PostMapping(value = "/administrator/insertConfirm")
 	public @ResponseBody ModelAndView administratorInsert(
 			@Validated @ModelAttribute("adminDto") AdministratorDto adminDto,
-			BindingResult bindingResult) throws Exception {
+			BindingResult bindingResult) throws ApplicationException {
 
 		ModelAndView mav = new ModelAndView(INPUT_COMPLETE_PATH);
 		mav.addObject(adminDto);
 
-		if(checkInputValueIsInvalid(bindingResult, adminDto, mav)) {
+		if (checkInputValueIsInvalid(bindingResult, adminDto, mav)) {
 			return mav;
 		}
 
@@ -82,27 +84,30 @@ public class AdministratorEditController extends AdministratorUpdateControllerHe
 
 		return mav;
 	}
-	
-	public boolean checkInputValueIsInvalid(BindingResult bindingResult, AdministratorDto adminDto, ModelAndView mav) {
-		boolean flag = false; 
-		if(checkBeanValidator(bindingResult, INPUT_PATH, mav)) {
+
+	public boolean checkInputValueIsInvalid(BindingResult bindingResult,
+			AdministratorDto adminDto, ModelAndView mav) {
+		boolean flag = false;
+		if (checkBeanValidator(bindingResult, INPUT_PATH, mav)) {
 			return true;
 		}
-		
-		if(checkCustomValidator(administratorInsertService, adminDto, INPUT_PATH, mav)) {
+
+		if (checkCustomValidator(administratorInsertService, adminDto,
+				INPUT_PATH, mav)) {
 			flag = true;
 		}
-		
-		if(checkCustomEmailDuplicateValidatorForInsert(administratorInsertService, adminDto, INPUT_PATH, mav)) {
+
+		if (checkCustomEmailDuplicateValidatorForInsert(
+				administratorInsertService, adminDto, INPUT_PATH, mav)) {
 			flag = true;
 		}
-		
+
 		return flag;
 	}
 
 	@GetMapping(value = "/administrator/update/{adminId}")
 	public ModelAndView administratorUpdate(
-			@ModelAttribute("adminId") Integer adminId) throws Exception {
+			@ModelAttribute("adminId") Integer adminId) {
 
 		ModelAndView mav = new ModelAndView(UPDATE_PATH);
 
@@ -117,12 +122,12 @@ public class AdministratorEditController extends AdministratorUpdateControllerHe
 	@PostMapping(value = "/administrator/updateConfirm")
 	public ModelAndView administratorUpdateConfirm(
 			@Validated @ModelAttribute("adminDto") AdministratorDto adminDto,
-			BindingResult bindingResult) throws Exception {
+			BindingResult bindingResult) {
 
 		ModelAndView mav = new ModelAndView(UPDATE_COMPLETE_PATH);
 		mav.addObject(adminDto);
 
-		if(checkInputUpdateValueIsInvalid(bindingResult, adminDto, mav)) {
+		if (checkInputUpdateValueIsInvalid(bindingResult, adminDto, mav)) {
 			return mav;
 		}
 
@@ -132,23 +137,24 @@ public class AdministratorEditController extends AdministratorUpdateControllerHe
 
 		return mav;
 	}
-	
-	public boolean checkInputUpdateValueIsInvalid(BindingResult bindingResult, AdministratorDto adminDto, ModelAndView mav) {
-		
-		if(checkBeanValidator(bindingResult, UPDATE_PATH, mav)) {
-			return true;
-		}		
-		
-		if(checkCustomEmailDuplicateValidatorForUpdate(administratorUpdateConfirmService, adminDto, UPDATE_PATH, mav)) {
+
+	public boolean checkInputUpdateValueIsInvalid(BindingResult bindingResult,
+			AdministratorDto adminDto, ModelAndView mav) {
+
+		if (checkBeanValidator(bindingResult, UPDATE_PATH, mav)) {
 			return true;
 		}
-		
+
+		if (checkCustomEmailDuplicateValidatorForUpdate(
+				administratorUpdateConfirmService, adminDto, UPDATE_PATH, mav)) {
+			return true;
+		}
+
 		return false;
 	}
 
 	@GetMapping(value = "/administrator/delete/{adminId}")
-	public String administratorDelete(@PathVariable("adminId") Integer adminId)
-			throws Exception {
+	public String administratorDelete(@PathVariable("adminId") Integer adminId) {
 
 		administratorDeleteService.admnistratorDelete(adminId);
 

@@ -7,5 +7,5 @@ import com.mep.domain.admin.post.dto.PostListDto;
 
 public interface PostListService {
 
-	List<PostListDto> getPostList(PostDto postDto) throws Exception;
+	List<PostListDto> getPostList(PostDto postDto);
 }

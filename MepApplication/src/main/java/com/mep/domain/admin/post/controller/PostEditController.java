@@ -58,13 +58,13 @@ public class PostEditController extends PostControllerHelper {
 	private MessageHelper messageHelper;
 
 	/* Converts empty strings into null when a form is submitted */
-	@InitBinder	
+	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
 	}
 
 	@GetMapping(value = "/post/insert")
-	public ModelAndView insert() throws Exception {
+	public ModelAndView insert() {
 
 		ModelAndView mav = new ModelAndView(INPUT_PATH);
 
@@ -80,8 +80,7 @@ public class PostEditController extends PostControllerHelper {
 	@PostMapping(value = "/post/insertConfirm")
 	public @ResponseBody ModelAndView postInsert(
 			@Validated @ModelAttribute("postDto") PostDto postDto,
-			BindingResult bindingResult, HttpServletRequest request)
-			throws Exception {
+			BindingResult bindingResult, HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView(INPUT_COMPLETE_PATH);
 		mav.addObject(postDto);
@@ -97,7 +96,7 @@ public class PostEditController extends PostControllerHelper {
 	}
 
 	private boolean checkBeanValidator(BindingResult bindingResult,
-			PostDto postDto, ModelAndView mav, String path) throws Exception {
+			PostDto postDto, ModelAndView mav, String path) {
 
 		if (bindingResult.hasErrors()) {
 			postDto = setCategoryDropdownToPostDtoObject(postInitService,
@@ -110,8 +109,7 @@ public class PostEditController extends PostControllerHelper {
 	}
 
 	@GetMapping(value = "/post/update/{postId}")
-	public ModelAndView postUpdate(@ModelAttribute("postId") Integer postId)
-			throws Exception {
+	public ModelAndView postUpdate(@ModelAttribute("postId") Integer postId) {
 
 		ModelAndView mav = new ModelAndView(UPDATE_PATH);
 
@@ -127,7 +125,7 @@ public class PostEditController extends PostControllerHelper {
 	@PostMapping(value = "/post/updateConfirm")
 	public ModelAndView postUpdateConfirm(
 			@Validated @ModelAttribute("postDto") PostDto postDto,
-			BindingResult bindingResult) throws Exception {
+			BindingResult bindingResult) {
 
 		ModelAndView mav = new ModelAndView(UPDATE_COMPLETE_PATH);
 		mav.addObject(postDto);
@@ -143,8 +141,7 @@ public class PostEditController extends PostControllerHelper {
 	}
 
 	@GetMapping(value = "/post/delete/{postId}")
-	public String postDelete(@PathVariable("postId") Integer postId)
-			throws Exception {
+	public String postDelete(@PathVariable("postId") Integer postId) {
 
 		postDeleteService.postDelete(postId);
 

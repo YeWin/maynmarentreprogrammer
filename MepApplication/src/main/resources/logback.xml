@@ -6,8 +6,7 @@
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<layout class="ch.qos.logback.classic.PatternLayout">
 			<Pattern>
-				%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} -
-				%msg%n
+				[%d{yyyy/MM/dd HH:mm:ss.SSS}] [%-5p] [%t] [%X{ipAddress}] [%X{sessionId}] - %msg%n
 			</Pattern>
 		</layout>
 	</appender>
@@ -17,7 +16,7 @@
 		<file>${DEV_HOME}/mep-application.log</file>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<Pattern>
-				%d{yyyy-MM-dd HH:mm:ss} - %msg%n
+				[%d{yyyy/MM/dd HH:mm:ss.SSS}] [%-5p] [%t] [%X{ipAddress}] [%X{sessionId}] - %msg%n
 			</Pattern>
 		</encoder>
 

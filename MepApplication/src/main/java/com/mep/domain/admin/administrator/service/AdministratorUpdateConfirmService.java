@@ -7,5 +7,5 @@ public interface AdministratorUpdateConfirmService {
 	
 	ResultMessages validateEmailDuplicate(AdministratorDto adminDto);
 
-	boolean updateAdministrator(AdministratorDto adminDto) throws Exception;
+	boolean updateAdministrator(AdministratorDto adminDto);
 }

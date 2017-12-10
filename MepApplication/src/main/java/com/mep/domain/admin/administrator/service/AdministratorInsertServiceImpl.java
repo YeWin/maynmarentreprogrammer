@@ -3,7 +3,6 @@ package com.mep.domain.admin.administrator.service;
 import java.util.Locale;
 import java.util.Objects;
 
-import org.omg.CORBA.SystemException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -16,7 +15,7 @@ import org.thymeleaf.util.StringUtils;
 import com.mep.database.entity.Administrator;
 import com.mep.domain.admin.administrator.dao.AdministratorInsertDao;
 import com.mep.domain.admin.administrator.dto.AdministratorDto;
-import com.mep.log.ApplyAspect;
+import com.mep.handler.ApplicationException;
 import com.mep.message.DisplayMessage;
 import com.mep.message.ResultMessages;
 import com.mep.util.DateUtil;
@@ -32,15 +31,14 @@ public class AdministratorInsertServiceImpl implements
 	@Autowired
 	AdministratorInsertDao administratorInsertDao;
 
-	@Override
-	@ApplyAspect
+	@Override	
 	public ResultMessages validate(AdministratorDto adminDto) {
 
 		ResultMessages resultMessages = new ResultMessages();
 		Locale locale = LocaleContextHolder.getLocale();
 
-		if(checkPasswordIsEmpty(resultMessages, adminDto.getAdminPassword(),
-				locale)){
+		if (checkPasswordIsEmpty(resultMessages, adminDto.getAdminPassword(),
+				locale)) {
 			return resultMessages;
 		}
 
@@ -50,7 +48,7 @@ public class AdministratorInsertServiceImpl implements
 		checkPasswordAndConfirmPasswordIsNotEqual(resultMessages,
 				adminDto.getAdminPassword(),
 				adminDto.getAdminConfirmPassword(), locale);
-		
+
 		return resultMessages;
 	}
 
@@ -93,8 +91,7 @@ public class AdministratorInsertServiceImpl implements
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SystemException.class)
-	@ApplyAspect
+	@Transactional(propagation = Propagation.REQUIRED)
 	public ResultMessages validateEmailDuplicate(AdministratorDto adminDto) {
 		ResultMessages resultMessages = new ResultMessages();
 		Locale locale = LocaleContextHolder.getLocale();
@@ -103,7 +100,7 @@ public class AdministratorInsertServiceImpl implements
 
 		return resultMessages;
 	}
-	
+
 	private void checkEmailIsDuplicateOrNot(ResultMessages resultMessages,
 			AdministratorDto adminDto, Locale locale) {
 
@@ -119,10 +116,9 @@ public class AdministratorInsertServiceImpl implements
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SystemException.class)
-	@ApplyAspect
+	@Transactional(propagation = Propagation.REQUIRED)
 	public boolean insertAdministrator(AdministratorDto adminDto)
-			throws Exception {
+			throws ApplicationException {
 
 		administratorInsertDao
 				.insertAdministrator(setDtoModelToEntityModel(adminDto));
@@ -131,7 +127,7 @@ public class AdministratorInsertServiceImpl implements
 	}
 
 	private Administrator setDtoModelToEntityModel(AdministratorDto adminDto)
-			throws Exception {
+			throws ApplicationException {
 		Administrator admin = new Administrator();
 
 		String encryptPassword = encryptPassword(adminDto.getAdminPassword());
@@ -146,7 +142,7 @@ public class AdministratorInsertServiceImpl implements
 		return admin;
 	}
 
-	private String encryptPassword(String password) throws Exception {
+	private String encryptPassword(String password) throws ApplicationException {
 
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 

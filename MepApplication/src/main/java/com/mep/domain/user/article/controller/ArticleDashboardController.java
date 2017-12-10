@@ -26,7 +26,7 @@ public class ArticleDashboardController {
 	@GetMapping(value = { "/searchArticle" })
 	public @ResponseBody ModelAndView searchArticle(
 			@RequestParam(name = "searchValue") String searchValue)
-			throws Exception {
+			{
 
 		ModelAndView mav = new ModelAndView(ARTICLE_PATH);
 
@@ -39,7 +39,7 @@ public class ArticleDashboardController {
 	}
 
 	@GetMapping(value = { "/", "/articles" })
-	public @ResponseBody ModelAndView getArticles() throws Exception {
+	public @ResponseBody ModelAndView getArticles() {
 
 		ModelAndView mav = new ModelAndView(ARTICLE_PATH);
 

@@ -15,7 +15,7 @@ public class AdministratorUpdateServiceTest extends TestAbstract {
 	private AdministratorUpdateService administratorUpdateService;
 
 	@Test
-	public void shouldReturnAdministratorById() throws Exception {
+	public void shouldReturnAdministratorById() {
 		AdministratorDto adminDto = this.administratorUpdateService
 				.getAdministratorById(2);
 		assertThat(adminDto, notNullValue());

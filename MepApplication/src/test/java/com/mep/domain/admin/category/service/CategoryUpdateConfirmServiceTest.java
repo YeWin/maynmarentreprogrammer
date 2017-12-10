@@ -16,7 +16,7 @@ public class CategoryUpdateConfirmServiceTest extends TestAbstract {
 	CategoryUpdateConfirmService categoryUpdateConfirmService;
 
 	@Test
-	public void shouldUpdate() throws Exception {
+	public void shouldUpdate() {
 		CategoryDto categoryDto = newCategoryDto();
 		categoryDto.setCategoryId(2);
 		categoryDto.setCategoryName("Java Best Practices");

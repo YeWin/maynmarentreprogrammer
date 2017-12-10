@@ -6,5 +6,5 @@ import com.mep.domain.admin.post.dto.CategoryDropdownDto;
 
 public interface PostInitService {
 
-	List<CategoryDropdownDto> getCategoryDropdown() throws Exception;
+	List<CategoryDropdownDto> getCategoryDropdown();
 }

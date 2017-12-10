@@ -21,7 +21,7 @@ public class ArticleDashboradServiceTest extends TestAbstract {
 	private ArticleDashboradService articleDashboradService;
 
 	@Test
-	public void shouldReturnArticleDashboardList() throws Exception {
+	public void shouldReturnArticleDashboardList() {
 
 		List<ArticleDashboardDto> articleDashboardDto = articleDashboradService
 				.getArticleDashboardList("Java Best Practice");
@@ -31,7 +31,7 @@ public class ArticleDashboradServiceTest extends TestAbstract {
 	}
 	
 	@Test
-	public void shouldReturnSearchArticle() throws Exception {
+	public void shouldReturnSearchArticle() {
 
 		List<ArticleDashboardDto> articleDashboardDto = articleDashboradService
 				.searchArticleList("What");
@@ -41,7 +41,7 @@ public class ArticleDashboradServiceTest extends TestAbstract {
 	}
 	
 	@Test
-	public void shouldReturnSevenArticle1() throws Exception {
+	public void shouldReturnSevenArticle1() {
 
 		List<ArticleDashboardDto> articleDashboardDto = articleDashboradService
 				.searchArticleList("12");
@@ -51,7 +51,7 @@ public class ArticleDashboradServiceTest extends TestAbstract {
 	}
 	
 	@Test
-	public void shouldReturnSevenArticle2() throws Exception {
+	public void shouldReturnSevenArticle2() {
 
 		List<ArticleDashboardDto> articleDashboardDto = articleDashboradService
 				.searchArticleList("");
@@ -61,7 +61,7 @@ public class ArticleDashboradServiceTest extends TestAbstract {
 	}
 	
 	@Test
-	public void shouldReturnSevenArticle3() throws Exception {
+	public void shouldReturnSevenArticle3() {
 
 		List<ArticleDashboardDto> articleDashboardDto = articleDashboradService
 				.searchArticleList("လမ္းညြန္");

@@ -13,46 +13,43 @@ import com.mep.database.entity.Post;
 import com.mep.domain.admin.post.dao.ArchiveInsertDao;
 import com.mep.domain.admin.post.dao.PostInsertDao;
 import com.mep.domain.admin.post.dto.PostDto;
-import com.mep.log.ApplyAspect;
 import com.mep.util.Constant;
 import com.mep.util.DateUtil;
 
 @Service
-public class PostInsertServiceImpl implements PostInsertService { 
-	
+public class PostInsertServiceImpl implements PostInsertService {
+
 	@Autowired
 	private PostInsertDao postInsertDao;
-	
+
 	@Autowired
 	private ArchiveInsertDao archiveInsertDao;
-	
+
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SystemException.class)
-	@ApplyAspect
-	public boolean insertPost(Integer adminId, PostDto postDto) throws Exception {
-		
+	public boolean insertPost(Integer adminId, PostDto postDto) {
+
 		Date currentDate = DateUtil.getCurrentTime();
-		
-		Post post = insertPost(adminId, postDto, currentDate);		
-		
-		insertArchive(post, currentDate);	
-		
+
+		Post post = insertPost(adminId, postDto, currentDate);
+
+		insertArchive(post, currentDate);
+
 		return true;
 	}
-	
-	private Post insertPost(Integer adminId, PostDto postDto,
-			Date currentDate) throws Exception {
-		
+
+	private Post insertPost(Integer adminId, PostDto postDto, Date currentDate) {
+
 		Post post = setDtoModelToEntityModel(adminId, postDto, currentDate);
 		postInsertDao.insertPost(post);
-		
-		return post;	
+
+		return post;
 	}
-	
-	private Post setDtoModelToEntityModel(Integer adminId, PostDto postDto, Date currentDate)
-			throws Exception {
-		Post post = new Post();	
-		
+
+	private Post setDtoModelToEntityModel(Integer adminId, PostDto postDto,
+			Date currentDate) {
+		Post post = new Post();
+
 		post.setAdminId(adminId);
 		post.setCategoryId(postDto.getCategoryId());
 		post.setPostTitleEng(postDto.getPostTitleEng());
@@ -61,25 +58,27 @@ public class PostInsertServiceImpl implements PostInsertService {
 		post.setPostContent(postDto.getPostContent());
 		post.setContentType(postDto.getContentType());
 		post.setCreatedDate(currentDate);
-		
+
 		return post;
 	}
-	
+
 	private void insertArchive(Post post, Date currentDate) {
 		Archive archive = prepareArchiveData(post, currentDate);
 		archiveInsertDao.insertArchive(archive);
 	}
-	
+
 	private Archive prepareArchiveData(Post post, Date currentDate) {
-		
+
 		Archive archive = new Archive();
-		
+
 		archive.setPostId(post.getPostId());
-		archive.setYear(DateUtil.changeDateFormat(currentDate, Constant.DATE_FORMAT[2]));
-		archive.setMonth(DateUtil.changeDateFormat(currentDate, Constant.DATE_FORMAT[3]));
-		
+		archive.setYear(DateUtil.changeDateFormat(currentDate,
+				Constant.DATE_FORMAT[2]));
+		archive.setMonth(DateUtil.changeDateFormat(currentDate,
+				Constant.DATE_FORMAT[3]));
+
 		return archive;
-		
-	}	
+
+	}
 
 }

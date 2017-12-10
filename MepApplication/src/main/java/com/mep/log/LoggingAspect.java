@@ -1,50 +1,90 @@
 package com.mep.log;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.mep.domain.admin.administrator.service.AdministratorListServiceImpl;
 
 @Aspect
 @Component
 public class LoggingAspect {
+	
+	private static final String MDC_KEY_SESSIONID = "sessionId";
+
+	private static final String MDC_KEY_IP_ADDRESS = "ipAddress";
+	
+	@Autowired
+	private HttpServletRequest request;
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(AdministratorListServiceImpl.class);
+			.getLogger(LoggingAspect.class);
+	
+	@Pointcut(value = "execution(public * *(..)) && within(com.mep..service..*)")
+	private void logServicePointcut() {
+	}
 
-	@Before("@annotation(ApplyAspect)")
+	@Pointcut(value = "execution(public * *(..)) && within(com.mep..controller..*)")
+	private void logControllerPointcut() {
+	}
+
+	@Before("logControllerPointcut() || logServicePointcut()")
 	public void loggingServiceBefore(JoinPoint jointPoint) {
-		Signature signature = jointPoint.getSignature();
-		String declareTypeName = signature.getDeclaringTypeName();
-		String name = signature.getName();
-		String methodName = declareTypeName + "." + name + "() ";
+		
+		String methodName = getMethodName(jointPoint);
+		
+		addIpAddressAndSessionId();
+		
 		logger.debug(methodName + "method has been started.");
 
 	}
 
-	@AfterReturning("@annotation(ApplyAspect)")
-	public void loggingServiceAfterReturn(JoinPoint joinPoint) {
-		Signature signature = joinPoint.getSignature();
-		String declareTypeName = signature.getDeclaringTypeName();
-		String name = signature.getName();
-		String methodName = declareTypeName + "." + name + "() ";
+	@AfterReturning("logControllerPointcut() || logServicePointcut()")
+	public void loggingServiceAfterReturn(JoinPoint jointPoint) {
+		
+		String methodName = getMethodName(jointPoint);
+		
+		addIpAddressAndSessionId();
+		
 		logger.debug(methodName + "method has been successfully finished.");
 	}
 
-	@AfterThrowing(pointcut = "@annotation(ApplyAspect)", throwing = "e")
-	public void loggingServiceAfterThrow(JoinPoint joinPoint, RuntimeException e) {
-		Signature signature = joinPoint.getSignature();
+	@AfterThrowing(pointcut = "logControllerPointcut() || logServicePointcut()", throwing = "exception")
+	public void loggingServiceAfterThrow(JoinPoint jointPoint, RuntimeException exception) {
+		
+		String methodName = getMethodName(jointPoint);
+		
+		addIpAddressAndSessionId();
+		
+		logger.error(methodName + "method has been failed.");
+		logger.error("Exception is ", exception);
+	}
+	
+	public String getMethodName(JoinPoint jointPoint) {
+		MDC.clear();
+		
+		Signature signature = jointPoint.getSignature();
 		String declareTypeName = signature.getDeclaringTypeName();
 		String name = signature.getName();
-		String methodName = declareTypeName + "." + name + "() ";
-		logger.error(methodName + "method has been failed.");
-		logger.error("Exception is ", e);
+		
+		return declareTypeName + "." + name + "() ";		
+	}
+	
+	public void addIpAddressAndSessionId() {
+		
+		MDC.putCloseable(MDC_KEY_IP_ADDRESS, request.getRemoteAddr());
+
+		if (request.getSession() != null) {
+			MDC.putCloseable(MDC_KEY_SESSIONID, request.getSession().getId());
+		}		
 	}
 }

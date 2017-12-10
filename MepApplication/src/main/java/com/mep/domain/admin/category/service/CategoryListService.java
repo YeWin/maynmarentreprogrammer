@@ -6,5 +6,5 @@ import com.mep.domain.admin.category.dto.CategoryListDto;
 
 public interface CategoryListService {
 
-	List<CategoryListDto> getCategoryList() throws Exception;
+	List<CategoryListDto> getCategoryList();
 }

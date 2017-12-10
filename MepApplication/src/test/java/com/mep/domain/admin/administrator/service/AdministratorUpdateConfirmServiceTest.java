@@ -57,7 +57,7 @@ public class AdministratorUpdateConfirmServiceTest extends TestAbstract {
 	}
 
 	@Test
-	public void shouldUpdate() throws Exception {
+	public void shouldUpdate() {
 		AdministratorDto adminDto = newAdministratorDto();
 		adminDto.setAdminId(2);
 		adminDto.setAdminEmail("yewin@gmail.com");

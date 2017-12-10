@@ -15,7 +15,7 @@ public class PostUpdateServiceTest  extends TestAbstract {
 	private PostUpdateService postUpdateService;
 
 	@Test
-	public void shouldReturnPostById() throws Exception {
+	public void shouldReturnPostById() {
 		PostDto postDto = this.postUpdateService
 				.getPostById(2);
 		assertThat(postDto, notNullValue());

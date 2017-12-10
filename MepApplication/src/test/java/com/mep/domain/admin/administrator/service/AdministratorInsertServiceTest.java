@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.mep.domain.admin.administrator.dto.AdministratorDto;
+import com.mep.handler.ApplicationException;
 import com.mep.message.ResultMessages;
 import com.mep.util.TestAbstract;
 
@@ -66,7 +67,7 @@ public class AdministratorInsertServiceTest extends TestAbstract {
 	}
 
 	@Test
-	public void shouldInsert() throws Exception {
+	public void shouldInsert() throws ApplicationException {
 		AdministratorDto adminDto = newAdministratorDto();
 		adminDto.setAdminPassword("123456");
 		boolean flag = this.administratorInsertService

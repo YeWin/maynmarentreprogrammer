@@ -16,7 +16,7 @@ public class CategoryInsertServiceTest extends TestAbstract {
 	private CategoryInsertService categoryInsertService;
 
 	@Test
-	public void shouldInsert() throws Exception {
+	public void shouldInsert() {
 		CategoryDto categoryDto = newCategoryDto();
 		boolean flag = categoryInsertService.insertCategory(categoryDto);
 		assertThat(flag, is(true));

@@ -6,5 +6,5 @@ import com.mep.domain.admin.administrator.dto.AdministratorListDto;
 
 public interface AdministratorListService {
 
-	List<AdministratorListDto> getAdministratorList() throws Exception;
+	List<AdministratorListDto> getAdministratorList();
 }

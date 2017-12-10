@@ -1,6 +1,5 @@
 package com.mep.domain.admin.category.service;
 
-import org.omg.CORBA.SystemException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -9,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mep.database.entity.Category;
 import com.mep.domain.admin.category.dao.CategoryUpdateConfirmDao;
 import com.mep.domain.admin.category.dto.CategoryDto;
-import com.mep.log.ApplyAspect;
 import com.mep.util.DateUtil;
 
 @Service
@@ -20,8 +18,7 @@ public class CategoryUpdateConfirmServiceImpl implements
 	CategoryUpdateConfirmDao categoryUpdateConfirmDao;
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SystemException.class)
-	@ApplyAspect
+	@Transactional(propagation = Propagation.REQUIRED)
 	public boolean updateCategory(CategoryDto categoryDto) {
 
 		categoryUpdateConfirmDao

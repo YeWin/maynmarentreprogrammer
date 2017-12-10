@@ -22,4 +22,23 @@ class GlobalExceptionHandler {
 
 		return mav;
 	}
+
+	@ExceptionHandler(ApplicationException.class)
+	public ModelAndView handleApplicationException(HttpServletRequest req,
+			Exception e) throws Exception {
+		if (AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class) != null)
+			throw e;
+		ModelAndView mav = new ModelAndView("/error/errors");
+
+		return mav;
+	}
+
+	@ExceptionHandler(SystemException.class)
+	public ModelAndView handleSystemException(HttpServletRequest req,
+			Exception e) throws Exception {
+		if (AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class) != null)
+			throw e;
+		ModelAndView mav = new ModelAndView("/error/errors");
+		return mav;
+	}
 }

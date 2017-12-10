@@ -23,7 +23,7 @@ public class PostListServiceTest extends TestAbstract {
 	private PostListService postListService;
 
 	@Test
-	public void shouldReturnPostList() throws Exception {
+	public void shouldReturnPostList() {
 		PostDto postDto = getSearchCriteriaPostDto();
 		
 		List<PostListDto> postListDto = postListService

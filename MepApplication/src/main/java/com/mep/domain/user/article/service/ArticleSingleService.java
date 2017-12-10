@@ -7,7 +7,7 @@ import com.mep.domain.user.article.dto.ArticleSingleDto;
 
 public interface ArticleSingleService {
 
-	List<ArticleSingleDto> getArticle(String postTitleEng) throws Exception;
+	List<ArticleSingleDto> getArticle(String postTitleEng);
 
-	List<ArticleDashboardDto> getLastSevenArticle(String postTitleEng) throws Exception;
+	List<ArticleDashboardDto> getLastSevenArticle(String postTitleEng);
 }

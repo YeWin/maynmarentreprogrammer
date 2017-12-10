@@ -21,7 +21,7 @@ public class PostInitServiceTest extends TestAbstract {
 	private PostInitService postInitService;
 
 	@Test
-	public void shouldReturnCategoryDropdown() throws Exception {
+	public void shouldReturnCategoryDropdown() {
 		List<CategoryDropdownDto> categoryDropdownDto = postInitService
 				.getCategoryDropdown();
 		assertThat(categoryDropdownDto, notNullValue());

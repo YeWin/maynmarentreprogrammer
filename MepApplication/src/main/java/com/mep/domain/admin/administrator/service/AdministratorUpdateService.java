@@ -4,5 +4,5 @@ import com.mep.domain.admin.administrator.dto.AdministratorDto;
 
 public interface AdministratorUpdateService {
 
-	AdministratorDto getAdministratorById(Integer adminId)throws Exception;
+	AdministratorDto getAdministratorById(Integer adminId);
 }

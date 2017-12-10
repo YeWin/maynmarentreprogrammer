@@ -4,5 +4,5 @@ import com.mep.domain.admin.post.dto.PostDto;
 
 public interface PostUpdateService {
 
-	PostDto getPostById(Integer postId) throws Exception;
+	PostDto getPostById(Integer postId);
 }

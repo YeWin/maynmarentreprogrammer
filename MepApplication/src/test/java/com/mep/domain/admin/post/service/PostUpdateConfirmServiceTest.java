@@ -16,7 +16,7 @@ public class PostUpdateConfirmServiceTest extends TestAbstract {
 	private PostUpdateConfirmService postUpdateConfirmService;
 
 	@Test
-	public void shouldUpdate() throws Exception {
+	public void shouldUpdate() {
 		PostDto postDto = newPostDto();
 		postDto.setPostId(2);
 		boolean flag = this.postUpdateConfirmService.updatePost(postDto);

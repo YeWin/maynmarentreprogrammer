@@ -3,7 +3,6 @@ package com.mep.domain.user.article.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.omg.CORBA.SystemException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -14,7 +13,6 @@ import com.mep.domain.user.article.dto.ArticleDashboardDto;
 import com.mep.domain.user.article.dto.ArticleSingleDto;
 import com.mep.domain.user.article.entity.ArticleDashboard;
 import com.mep.domain.user.article.entity.ArticleSingle;
-import com.mep.log.ApplyAspect;
 import com.mep.util.StringUtil;
 
 @Service
@@ -24,10 +22,8 @@ public class ArticleSingleServiceImpl implements ArticleSingleService {
 	private ArticleSingleDao articleSingleDao;
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SystemException.class)
-	@ApplyAspect
-	public List<ArticleSingleDto> getArticle(String postTitleEng)
-			throws Exception {
+	@Transactional(propagation = Propagation.REQUIRED)
+	public List<ArticleSingleDto> getArticle(String postTitleEng) {
 		List<ArticleSingle> articleSingleList = articleSingleDao
 				.getArticle(postTitleEng);
 
@@ -56,8 +52,7 @@ public class ArticleSingleServiceImpl implements ArticleSingleService {
 	}
 
 	@Override
-	public List<ArticleDashboardDto> getLastSevenArticle(String postTitleEng)
-			throws Exception {
+	public List<ArticleDashboardDto> getLastSevenArticle(String postTitleEng) {
 		List<ArticleDashboard> lastSevenList = articleSingleDao
 				.getLastSevenArticle(postTitleEng);
 

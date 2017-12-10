@@ -16,7 +16,7 @@ public class PostInsertServiceTest extends TestAbstract {
 	PostInsertService postInsertService;
 	
 	@Test
-	public void shouldInsert() throws Exception {
+	public void shouldInsert() {
 		PostDto postDto = newPostDto();
 		boolean flag = postInsertService.insertPost(2, postDto);
 		assertThat(flag, is(true));

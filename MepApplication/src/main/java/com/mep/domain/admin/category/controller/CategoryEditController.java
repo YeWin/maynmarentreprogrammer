@@ -48,9 +48,9 @@ public class CategoryEditController extends CategoryEditControllerHelper {
 
 	@Autowired
 	private MessageHelper messageHelper;
-	
+
 	/* Converts empty strings into null when a form is submitted */
-	@InitBinder	
+	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
 	}
@@ -66,12 +66,12 @@ public class CategoryEditController extends CategoryEditControllerHelper {
 	@PostMapping(value = "/category/insertConfirm")
 	public @ResponseBody ModelAndView categoryInsert(
 			@Validated @ModelAttribute("categoryDto") CategoryDto categoryDto,
-			BindingResult bindingResult) throws Exception {
+			BindingResult bindingResult) {
 
 		ModelAndView mav = new ModelAndView(INPUT_COMPLETE_PATH);
 		mav.addObject(categoryDto);
-		
-		if(checkBeanValidator(bindingResult, INPUT_PATH, mav)) {
+
+		if (checkBeanValidator(bindingResult, INPUT_PATH, mav)) {
 			return mav;
 		}
 
@@ -84,7 +84,7 @@ public class CategoryEditController extends CategoryEditControllerHelper {
 
 	@GetMapping(value = "/category/update")
 	public ModelAndView categoryUpdate(
-			@ModelAttribute("categoryId") Integer categoryId) throws Exception {
+			@ModelAttribute("categoryId") Integer categoryId) {
 
 		ModelAndView mav = new ModelAndView(UPDATE_PATH);
 
@@ -99,12 +99,12 @@ public class CategoryEditController extends CategoryEditControllerHelper {
 	@PostMapping(value = "/category/updateConfirm")
 	public ModelAndView categoryUpdateConfirm(
 			@Validated @ModelAttribute("categoryDto") CategoryDto categoryDto,
-			BindingResult bindingResult) throws Exception {
+			BindingResult bindingResult) {
 
 		ModelAndView mav = new ModelAndView(UPDATE_COMPLETE_PATH);
 		mav.addObject(categoryDto);
-		
-		if(checkBeanValidator(bindingResult, UPDATE_PATH, mav)) {
+
+		if (checkBeanValidator(bindingResult, UPDATE_PATH, mav)) {
 			return mav;
 		}
 
@@ -116,8 +116,7 @@ public class CategoryEditController extends CategoryEditControllerHelper {
 	}
 
 	@GetMapping(value = "/category/delete/{categoryId}")
-	public String categoryDelete(@PathVariable("categoryId") Integer categoryId)
-			throws Exception {
+	public String categoryDelete(@PathVariable("categoryId") Integer categoryId) {
 
 		categoryDeleteService.categoryDelete(categoryId);
 

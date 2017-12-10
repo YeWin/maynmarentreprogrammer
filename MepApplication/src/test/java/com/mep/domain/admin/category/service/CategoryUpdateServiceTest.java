@@ -15,7 +15,7 @@ public class CategoryUpdateServiceTest extends TestAbstract {
 	private CategoryUpdateService categoryUpdateService;
 
 	@Test
-	public void shouldReturnCategoryById() throws Exception {
+	public void shouldReturnCategoryById() {
 		CategoryDto categoryDto = this.categoryUpdateService.getCategoryById(2);
 		assertThat(categoryDto, notNullValue());
 	}

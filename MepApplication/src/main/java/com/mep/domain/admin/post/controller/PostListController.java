@@ -21,17 +21,17 @@ import com.mep.domain.admin.post.service.PostListService;
 public class PostListController extends PostControllerHelper {
 
 	private static final String INIT_PATH = "/admin/post/postList";
-	
+
 	private static final String POST_DTO = "postDto";
-	
+
 	@Autowired
 	private PostInitService postInitService;
-	
+
 	@Autowired
 	private PostListService postListService;
-	
+
 	@GetMapping(value = "/post")
-	public ModelAndView init() throws Exception {
+	public ModelAndView init() {
 
 		ModelAndView mav = new ModelAndView(INIT_PATH);
 
@@ -42,16 +42,16 @@ public class PostListController extends PostControllerHelper {
 		mav.addObject(POST_DTO, postDto);
 
 		return mav;
-	}	
+	}
 
 	@PostMapping(value = "/post/search")
-	public @ResponseBody ModelAndView categoryList(@ModelAttribute("postDto") PostDto postDto) throws Exception {
+	public @ResponseBody ModelAndView categoryList(
+			@ModelAttribute("postDto") PostDto postDto) {
 
 		ModelAndView mav = new ModelAndView(INIT_PATH);
 
-		List<PostListDto> postList = postListService
-				.getPostList(postDto);
-		
+		List<PostListDto> postList = postListService.getPostList(postDto);
+
 		postDto = setCategoryDropdownToPostDtoObject(postInitService, postDto);
 
 		mav.addObject(POST_DTO, postDto);

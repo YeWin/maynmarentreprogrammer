@@ -21,7 +21,7 @@ public class AdministratorListServiceTest extends TestAbstract {
 	private AdministratorListService administratorListService;
 
 	@Test
-	public void shouldReturnAdministratorList() throws Exception {
+	public void shouldReturnAdministratorList() {
 		List<AdministratorListDto> administratorListDto = administratorListService
 				.getAdministratorList();
 		assertThat(administratorListDto, notNullValue());

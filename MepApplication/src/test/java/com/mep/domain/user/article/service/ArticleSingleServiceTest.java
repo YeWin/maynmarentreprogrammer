@@ -22,7 +22,7 @@ public class ArticleSingleServiceTest extends TestAbstract {
 	private ArticleSingleService articleSingleService;
 
 	@Test
-	public void shouldReturnArticle() throws Exception {
+	public void shouldReturnArticle() {
 
 		List<ArticleSingleDto> articleSingleDto = articleSingleService
 				.getArticle("What kind of developer are you?");
@@ -31,7 +31,7 @@ public class ArticleSingleServiceTest extends TestAbstract {
 	}
 
 	@Test
-	public void shouldReturnLastSevenArticle() throws Exception {
+	public void shouldReturnLastSevenArticle() {
 
 		List<ArticleDashboardDto> articleDashboardDto = articleSingleService
 				.getLastSevenArticle("Programmer Guide");

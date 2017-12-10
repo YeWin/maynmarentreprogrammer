@@ -21,7 +21,7 @@ public class CategoryListServiceTest extends TestAbstract {
 	private CategoryListService categoryListService;
 
 	@Test
-	public void shouldReturnCategoryList() throws Exception {
+	public void shouldReturnCategoryList() {
 		List<CategoryListDto> categoryListDto = categoryListService
 				.getCategoryList();
 		assertThat(categoryListDto, notNullValue());

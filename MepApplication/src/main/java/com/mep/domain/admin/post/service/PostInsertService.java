@@ -4,5 +4,5 @@ import com.mep.domain.admin.post.dto.PostDto;
 
 public interface PostInsertService {
 
-	boolean insertPost(Integer adminId, PostDto postDto) throws Exception;
+	boolean insertPost(Integer adminId, PostDto postDto);
 }

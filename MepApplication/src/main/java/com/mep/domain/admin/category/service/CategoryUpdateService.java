@@ -4,5 +4,5 @@ import com.mep.domain.admin.category.dto.CategoryDto;
 
 public interface CategoryUpdateService {
 
-	CategoryDto getCategoryById(Integer categoryId)throws Exception;
+	CategoryDto getCategoryById(Integer categoryId);
 }
