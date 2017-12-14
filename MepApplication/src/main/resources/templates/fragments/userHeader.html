@@ -8,39 +8,64 @@
 </div>
 </head>
 <body>
-	<div th:fragment="user-header">
-
-
+	<section th:fragment="user-header">
+	<header>
+		<div class="overlay"></div>
+		<div class="logo container padding-small">
+			<h2><img alt="" th:src="@{/theme/images/logo.png}" />
+			Myanmar Effective Programmer
+			<br/>(Solve the problem, write the code!)</h2>
+			
+			
+		</div>
 		<!-- https://getbootstrap.com/docs/3.3/examples/navbar/
 		https://getbootstrap.com/docs/3.3/components/#navbar -->
-
-		<nav class="navbar navbar-inverse">
+		
+		
+		<div id="navbar">
 			<div class="container">
-				<div class="navbar-header">
-					<a class="navbar-brand" th:href="@{/articles}">Articles</a>
-				</div>
-				<div id="navbar" class="collapse navbar-collapse">
-					<ul class="nav navbar-nav">
-						<li class="active"><a th:href="@{/professional-programmer}">Professional
-								Programmer</a></li>
-						<li class="active"><a th:href="@{/}">Programming Best
-								Practices</a></li>
-						<li class="active"><a th:href="@{/}">Java</a></li>
-						<li class="active"><a th:href="@{/}">About Us</a></li>
-						<li>
-							<div>
+					<div class="row">
+						<div class="col-sm-12 col-md-9 col-lg-9">
+							<!-- button -->
+							<div class="fm-button">
+								<span class="fm-bar"></span>
+								<span class="fm-bar"></span>
+								<span class="fm-bar"></span>
+							</div>
+							<!-- end button -->
+							<div class="navigation">
+								<ul class="menu">
+									<li class="dropdown">
+										<a href="#" title="">Articles</a>
+											<ul class="menu">
+												<li>
+													<a href="#">Articles Type 01</a></li>
+												<li><a href="#">Articles Type 02</a></li>
+											</ul></li>
+									<li>
+										<a href="#">Professional Programmer</a></li>
+									<li>
+										<a href="#">Programming Best Practices</a></li>
+									<li>
+										<a href="#">Java</a></li>
+									<li>
+										<a href="#">About Us</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-sm-12 col-md-3 col-lg-3">
+							<div class="search">
 								<form th:action="@{/searchArticle}" method="get">
 									<input name="searchValue" type="text" th:value="*{searchValue}"
 										placeholder="Search" /> <input type="submit"
 										class="btn btn-danger" />
 								</form>
 							</div>
-						</li>
-					</ul>
+						</div>
+					</div>
 				</div>
-			</div>
-		</nav>
-	</div>
-
+		</div>
+		</header>
+	</section>
 </body>
 </html>
