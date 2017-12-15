@@ -45,7 +45,7 @@ public class ArticleSingleController {
 
 		checkArticleOrTutorial(articleSingleDto, mav);
 
-		mav.addObject("lastSevenList", lastSevenList);
+		mav.addObject("articleDashboardList", lastSevenList);
 
 		mav.addObject("articleSingleDto", articleSingleDto);
 		

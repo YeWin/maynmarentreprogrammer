@@ -1,7 +1,7 @@
 package com.mep.domain.user.archive.service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -13,6 +13,8 @@ import com.mep.domain.user.archive.dto.ArchiveArticleListDto;
 import com.mep.domain.user.archive.dto.ArchiveMonthListDto;
 import com.mep.domain.user.archive.dto.ArchiveYearListDto;
 import com.mep.domain.user.archive.entity.ArchiveList;
+import com.mep.util.DateUtil;
+import com.mep.util.StringUtil;
 
 @Service
 public class ArchiveListServiceImpl implements ArchiveListService {
@@ -29,7 +31,7 @@ public class ArchiveListServiceImpl implements ArchiveListService {
 
 		List<String> year = new ArrayList<>();
 
-		Set<String> yearHs = new HashSet<>();
+		Set<String> yearHs = new LinkedHashSet<>();
 
 		for (ArchiveList archive : arhiveList) {
 
@@ -51,19 +53,19 @@ public class ArchiveListServiceImpl implements ArchiveListService {
 
 			List<String> month = new ArrayList<>();
 
-			Set<String> monthHs = new HashSet<>();
+			Set<String> monthHs = new LinkedHashSet<>();
 
 			for (ArchiveList archive : arhiveList) {
 
 				if (archive.getYear().equals(yearValue)) {
-					month.add(archive.getMonth());
+					month.add(DateUtil.convertMonthNumberToMonthName(Integer.parseInt(archive.getMonth())));					
 				}
 
 			}
-
+			
 			monthHs.addAll(month);
 			month.clear();
-			month.addAll(monthHs);
+			month.addAll(monthHs);						
 
 			for (String monthValue : month) {
 				ArchiveMonthListDto archiveMonthListDto = new ArchiveMonthListDto();
@@ -74,20 +76,25 @@ public class ArchiveListServiceImpl implements ArchiveListService {
 				archiveMonthListDto.setMonth(monthValue);
 
 				for (ArchiveList archive : arhiveList) {
-					if (archive.getYear().equals(yearValue)) {
-
-						if (archive.getMonth().equals(monthValue)) {
+					if (archive.getYear().equals(yearValue)) {							
+							String monthFromArchive = DateUtil.convertMonthNumberToMonthName(
+									Integer.parseInt(archive.getMonth()));
+						if (monthFromArchive.equals(monthValue)) {
 							ArchiveArticleListDto archiveArticleListDto = new ArchiveArticleListDto();
 
 							archiveArticleListDto.setPostTitle(archive
 									.getPostTitle());
+							archiveArticleListDto.setPostTitleEng((StringUtil.replaceWhiteSpaceWithHyphen(
+									archive.getPostTitleEng()).toLowerCase()));									
+									
+							archiveArticleListDto.setCreatedDate(archive.getCreatedDate());
 
 							archiveMonthListDto.getArticleList().add(
 									archiveArticleListDto);
 						}
 					}
-				}
-
+				}				
+				
 				archiveYearListDto.getMonthList().add(archiveMonthListDto);
 			}
 

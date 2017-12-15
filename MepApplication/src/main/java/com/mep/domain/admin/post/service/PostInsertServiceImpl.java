@@ -76,6 +76,7 @@ public class PostInsertServiceImpl implements PostInsertService {
 				Constant.DATE_FORMAT[2]));
 		archive.setMonth(DateUtil.changeDateFormat(currentDate,
 				Constant.DATE_FORMAT[3]));
+		archive.setCreatedDate(currentDate);
 
 		return archive;
 

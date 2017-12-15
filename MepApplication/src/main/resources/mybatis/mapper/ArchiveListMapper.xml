@@ -12,13 +12,16 @@
 		SELECT
 			archive.year,
 			archive.month,
-			COALESCE(post.post_title_mmr, post.post_title_eng) AS post_title
+			COALESCE(post.post_title_mmr, post.post_title_eng) AS post_title,
+			post.post_title_eng,
+			archive.created_date
 		FROM
 			archive
 		JOIN
 			post
 		ON
 			(archive.post_id = post.post_id)
+		ORDER By 1 desc, 2 desc;
 	</select>
 
 	<!-- <resultMap type="com.mep.domain.user.archive.dto.ArchiveYearListDto"
