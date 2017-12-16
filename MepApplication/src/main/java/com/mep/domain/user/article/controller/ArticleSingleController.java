@@ -19,9 +19,7 @@ import com.mep.util.StringUtil;
 @Controller
 public class ArticleSingleController {
 
-	private static final String ARTICLE_PATH = "/user/post/postArticle";
-
-	private static final String TUTORIAL_PATH = "/user/post/postTutorial";
+	private static final String ARTICLE_PATH = "/user/article/articleDetails";
 
 	@Autowired
 	private ArticleSingleService singleService;
@@ -41,9 +39,7 @@ public class ArticleSingleController {
 
 		List<ArticleDashboardDto> lastSevenList = singleService
 				.getLastSevenArticle(StringUtil
-						.replaceHyphenWithWhiteSpace(postTitleEng));
-
-		checkArticleOrTutorial(articleSingleDto, mav);
+						.replaceHyphenWithWhiteSpace(postTitleEng));		
 
 		mav.addObject("articleDashboardList", lastSevenList);
 
@@ -54,13 +50,5 @@ public class ArticleSingleController {
 		mav.addObject("archiveList", archiveList);
 
 		return mav;
-	}
-
-	private void checkArticleOrTutorial(
-			List<ArticleSingleDto> articleSingleDto, ModelAndView mav) {
-
-		if (articleSingleDto.get(0).getContentType() == 1) {
-			mav.setViewName(TUTORIAL_PATH);
-		}
 	}
 }

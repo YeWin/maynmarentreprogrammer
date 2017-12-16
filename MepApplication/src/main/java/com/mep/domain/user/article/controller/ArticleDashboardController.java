@@ -16,7 +16,7 @@ import com.mep.util.Constant;
 @Controller
 public class ArticleDashboardController {
 
-	private static final String ARTICLE_PATH = "/user/article/content";
+	private static final String ARTICLE_PATH = "/user/article/articleDashboard";
 
 	private String searchValue;
 	
