@@ -21,8 +21,9 @@
 	        <div class="col-sm-8 blog-main">
 	
 	          <section class="blog-post">
-	            <div class="panel panel-default">
-	              <img th:src="${(!#strings.isEmpty(article.postTitleImgUrl)) ? article.postTitleImgUrl : ''}" class="img-responsive" />
+	            <div class="panel panel-default">	            
+	              <img th:src="${(!#strings.isEmpty(article.postTitleImgUrl)) ? article.postTitleImgUrl : 
+	              			'https://github.com/YeWin/MEP_Images/blob/master/tutorial_1.jpeg?raw=true'}" class="img-responsive" />
 	              <div class="panel-body">
 	                <div class="blog-post-meta">
 	                  <span class="label label-light label-warning">Apps</span>                                   

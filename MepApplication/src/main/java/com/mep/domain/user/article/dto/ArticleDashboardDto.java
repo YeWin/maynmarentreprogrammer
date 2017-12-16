@@ -18,6 +18,8 @@ public class ArticleDashboardDto implements Serializable {
 	private Date createdDate;
 	
 	private String adminName;
+	
+	private Integer contentType;
 
 	public Integer getPostId() {
 		return postId;
@@ -65,5 +67,13 @@ public class ArticleDashboardDto implements Serializable {
 
 	public void setAdminName(String adminName) {
 		this.adminName = adminName;
+	}
+
+	public Integer getContentType() {
+		return contentType;
+	}
+
+	public void setContentType(Integer contentType) {
+		this.contentType = contentType;
 	}
 }

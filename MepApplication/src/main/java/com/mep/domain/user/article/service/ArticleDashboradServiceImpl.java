@@ -44,7 +44,8 @@ public class ArticleDashboradServiceImpl implements ArticleDashboradService {
 			dto.setPostTitleEng(StringUtil.replaceWhiteSpaceWithHyphen(dashboard
 					.getPostTitleEng()).toLowerCase());
 			dto.setPostTitleImgUrl(dashboard.getPostTitleImgUrl());
-
+			dto.setContentType(dashboard.getContentType());
+			
 			dashboardDtoList.add(dto);
 		}
 

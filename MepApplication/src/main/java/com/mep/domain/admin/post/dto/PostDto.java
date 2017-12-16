@@ -20,7 +20,6 @@ public class PostDto implements Serializable {
 	
 	private String postTitleMmr;	
 	
-	@NotBlank
 	private String postTitleImgUrl;
 	
 	private Integer categoryId;
