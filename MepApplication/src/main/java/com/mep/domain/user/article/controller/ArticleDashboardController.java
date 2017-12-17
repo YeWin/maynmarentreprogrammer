@@ -1,5 +1,6 @@
 package com.mep.domain.user.article.controller;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -129,6 +130,24 @@ public class ArticleDashboardController {
 		
 		List<ArticleDashboardDto> articleDashboardList = dashboradService
 				.getArticleDashboardList(category);
+		
+		
+		// Trick for iterate 3 time per one row.
+		/*List<ArticleDashboardDto> excursions = dashboradService
+				.getArticleDashboardList(category);
+	    List<List<ArticleDashboardDto>> articleDashboardList = new LinkedList<List<ArticleDashboardDto>>();
+	    List<ArticleDashboardDto> tempList = new LinkedList<ArticleDashboardDto>();
+
+	    int listSize = excursions.size();
+	    for ( int i = 0; i < listSize; i++ )
+	    {
+	        tempList.add( excursions.get( i ) );
+	        if ( listSize == ( i+1 ) || tempList.size() == 3 )
+	        {
+	        	articleDashboardList.add( tempList );
+	            tempList = new LinkedList<ArticleDashboardDto>();
+	        }
+	    }*/	   
 
 		return articleDashboardList;
 	}
