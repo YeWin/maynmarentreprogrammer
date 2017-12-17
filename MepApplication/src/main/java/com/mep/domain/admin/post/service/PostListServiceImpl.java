@@ -37,6 +37,7 @@ public class PostListServiceImpl implements PostListService {
 
 		post.setCategoryId(postDto.getCategoryId());
 		post.setPostTitleEng(postDto.getPostTitleEng());
+		post.setContentType(postDto.getContentType());
 
 		return post;
 	}

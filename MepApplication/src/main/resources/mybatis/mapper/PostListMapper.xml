@@ -17,6 +17,9 @@
 			<if test="post.postTitleEng != ''">
 				AND lower("post_title_eng") LIKE lower(#{pattern})
 			</if>
+			<if test="post.contentType != null">
+				AND "content_type" = #{post.contentType}
+			</if>
 		</where>
 	</select>
 </mapper>

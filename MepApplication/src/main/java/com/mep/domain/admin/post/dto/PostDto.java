@@ -1,6 +1,7 @@
 package com.mep.domain.admin.post.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -10,24 +11,26 @@ public class PostDto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer postId;
-	
+
 	private Integer adminId;
-	
-	private List<CategoryDropdownDto> categoryDropdown;	
-	
+
+	private List<CategoryDropdownDto> categoryDropdown;
+
 	@NotBlank
 	private String postTitleEng;
-	
-	private String postTitleMmr;	
-	
+
+	private String postTitleMmr;
+
 	private String postTitleImgUrl;
-	
+
 	private Integer categoryId;
-	
+
 	@NotBlank
 	private String postContent;
-	
+
 	private Integer contentType;
+
+	private List<ArticleDropdownDto> articleDropdownDto;
 
 	public Integer getPostId() {
 		return postId;
@@ -99,5 +102,15 @@ public class PostDto implements Serializable {
 
 	public void setContentType(Integer contentType) {
 		this.contentType = contentType;
+	}
+
+	public List<ArticleDropdownDto> getArticleDropdownDto() {
+
+		return this.articleDropdownDto;
+	}
+
+	public void setArticleDropdownDto(
+			List<ArticleDropdownDto> articleDropdownDto) {
+		this.articleDropdownDto = articleDropdownDto;
 	}
 }

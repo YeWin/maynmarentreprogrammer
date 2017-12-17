@@ -56,8 +56,9 @@
 					
 					<div class="form-group">
 						<select class="form-control" th:field="*{contentType}">
-							<option value="0">Article</option>
-							<option value="1">Tutorial</option>
+							<option th:each="content : ${postDto.articleDropdownDto}"
+								th:value="${content.contentType}"
+								th:text="${content.contentTypeName}"></option>
 						</select>
 					</div>
 					

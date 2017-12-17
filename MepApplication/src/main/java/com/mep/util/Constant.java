@@ -6,6 +6,7 @@ public final class Constant {
 	
 	public static final String SESSION_KEY = "sessionLoginAdmin";
 	
-	public static final String []MENU = {"Articles", "Professional Programmer", "Programming Best Practices", "Java", "About Us"};
+	public static final String []MENU = {"Articles", "Professional Programmer", "Test Driven Development (TDD)", 
+										"Effective Java", "Java 7", "About Us", "Contact Us", "Write For Us"};
 	
 }

@@ -42,11 +42,8 @@ public class ArticleDashboardController {
 	public @ResponseBody ModelAndView getArticles() {
 
 		ModelAndView mav = new ModelAndView(ARTICLE_PATH);
-
-		List<ArticleDashboardDto> articleDashboardList = dashboradService
-				.getArticleDashboardList(Constant.MENU[0]);
-
-		mav.addObject("articleDashboardList", articleDashboardList);
+		
+		mav.addObject("articleDashboardList", getDashboardData(Constant.MENU[0]));
 
 		return mav;
 	}
@@ -56,13 +53,84 @@ public class ArticleDashboardController {
 			throws Exception {
 
 		ModelAndView mav = new ModelAndView(ARTICLE_PATH);
-
-		List<ArticleDashboardDto> articleDashboardList = dashboradService
-				.getArticleDashboardList(Constant.MENU[1]);
-
-		mav.addObject("articleDashboardList", articleDashboardList);
+		
+		mav.addObject("articleDashboardList", getDashboardData(Constant.MENU[1]));
 
 		return mav;
+	}
+	
+	@GetMapping(value = { "/test-driven-development" })
+	public @ResponseBody ModelAndView getTestDrivenDevelopment()
+			throws Exception {
+
+		ModelAndView mav = new ModelAndView(ARTICLE_PATH);
+		
+		mav.addObject("articleDashboardList", getDashboardData(Constant.MENU[2]));
+
+		return mav;
+	}
+	
+	@GetMapping(value = { "/effective-java" })
+	public @ResponseBody ModelAndView getEffectiveJava()
+			throws Exception {
+
+		ModelAndView mav = new ModelAndView(ARTICLE_PATH);
+		
+		mav.addObject("articleDashboardList", getDashboardData(Constant.MENU[3]));
+
+		return mav;
+	}
+	
+	@GetMapping(value = { "/java7" })
+	public @ResponseBody ModelAndView getJava7()
+			throws Exception {
+
+		ModelAndView mav = new ModelAndView(ARTICLE_PATH);
+		
+		mav.addObject("articleDashboardList", getDashboardData(Constant.MENU[4]));
+
+		return mav;
+	}
+	
+	@GetMapping(value = { "/about-us" })
+	public @ResponseBody ModelAndView getAboutUs()
+			throws Exception {
+
+		ModelAndView mav = new ModelAndView(ARTICLE_PATH);
+		
+		mav.addObject("articleDashboardList", getDashboardData(Constant.MENU[5]));
+
+		return mav;
+	}
+	
+	@GetMapping(value = { "/contact-us" })
+	public @ResponseBody ModelAndView getContactUs()
+			throws Exception {
+
+		ModelAndView mav = new ModelAndView(ARTICLE_PATH);
+		
+		mav.addObject("articleDashboardList", getDashboardData(Constant.MENU[6]));
+
+		return mav;
+	}
+	
+	@GetMapping(value = { "/write-for-us" })
+	public @ResponseBody ModelAndView getWriteForUs()
+			throws Exception {
+
+		ModelAndView mav = new ModelAndView(ARTICLE_PATH);
+		
+		mav.addObject("articleDashboardList", getDashboardData(Constant.MENU[7]));
+
+		return mav;
+	}
+	
+	private List<ArticleDashboardDto> getDashboardData(String category) {
+		
+		List<ArticleDashboardDto> articleDashboardList = dashboradService
+				.getArticleDashboardList(category);
+
+		return articleDashboardList;
 	}
 
 	public String getSearchValue() {

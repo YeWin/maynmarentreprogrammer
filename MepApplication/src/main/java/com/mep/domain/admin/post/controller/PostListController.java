@@ -45,7 +45,7 @@ public class PostListController extends PostControllerHelper {
 	}
 
 	@PostMapping(value = "/post/search")
-	public @ResponseBody ModelAndView categoryList(
+	public @ResponseBody ModelAndView postSearch(
 			@ModelAttribute("postDto") PostDto postDto) {
 
 		ModelAndView mav = new ModelAndView(INIT_PATH);

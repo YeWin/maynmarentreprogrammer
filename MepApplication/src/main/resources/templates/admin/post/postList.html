@@ -37,6 +37,13 @@
 						<input type="text" th:field="*{postTitleEng}" class="form-control"
 							placeholder="Title Name English" />
 					</div>
+					
+					<div class="form-group">
+						<select class="form-control" th:field="*{contentType}">
+							<option value="0">Article</option>
+							<option value="1">Tutorial</option>
+						</select>
+					</div>
 
 					<input type="submit"
 						class="glyphicon glyphicon-search btn btn-danger pull-right"

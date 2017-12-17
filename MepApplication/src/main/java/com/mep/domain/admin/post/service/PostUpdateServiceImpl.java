@@ -34,6 +34,7 @@ public class PostUpdateServiceImpl implements PostUpdateService {
 		postDto.setPostTitleMmr(post.getPostTitleMmr());
 		postDto.setPostTitleImgUrl(post.getPostTitleImgUrl());
 		postDto.setPostContent(post.getPostContent());
+		postDto.setContentType(post.getContentType());
 
 		return postDto;
 	}

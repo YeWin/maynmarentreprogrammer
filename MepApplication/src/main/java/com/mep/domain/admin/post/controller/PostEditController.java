@@ -116,6 +116,8 @@ public class PostEditController extends PostControllerHelper {
 		PostDto postDto = postUpdateService.getPostById(postId);
 
 		postDto = setCategoryDropdownToPostDtoObject(postInitService, postDto);
+		
+		postDto = setArticleDropdownToPostDtoObject(postInitService, postDto);
 
 		mav.addObject(POST_DTO, postDto);
 
