@@ -30,7 +30,7 @@
 	            <div class="form-group">
 	              <div th:each="year,iter : ${archiveList}">
 	              <div class="panel-group" id="accordion1">			
-			            <div class="panel panel-warning">
+			            <div class="panel panel-success">
 			                <div class="panel-heading">
 			                    <h4 class="panel-title">
 			                        <a data-toggle="collapse" data-parent="#accordion1" th:href="${'#collapseTwo' + iter.index}"><span th:text="${year.year}"></span>
