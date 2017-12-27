@@ -20,7 +20,7 @@ public class LoginController {
 	
 	private static final String TOP_REDIRECT_PATH = "redirect:/admin/";
 	
-	private static final String LOGIN_PATH = "/login/login";
+	private static final String LOGIN_PATH = "login/login";
 	
 	@Autowired
 	private LoginService loginService;
