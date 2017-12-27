@@ -18,7 +18,7 @@ import com.mep.domain.admin.category.service.CategoryListService;
 @RequestMapping("/admin/*")
 public class CategoryListController {
 
-	private static final String INIT_PATH = "/admin/category/categoryList";
+	private static final String INIT_PATH = "admin/category/categoryList";
 
 	@Autowired
 	private CategoryListService categoryListService;

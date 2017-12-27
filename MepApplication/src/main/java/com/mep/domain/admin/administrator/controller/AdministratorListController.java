@@ -18,7 +18,7 @@ import com.mep.domain.admin.administrator.service.AdministratorListService;
 @RequestMapping("/admin/*")
 public class AdministratorListController {
 
-	private static final String INIT_PATH = "/admin/administrator/administratorList";
+	private static final String INIT_PATH = "admin/administrator/administratorList";
 
 	@Autowired
 	private AdministratorListService administratorListService;

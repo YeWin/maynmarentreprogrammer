@@ -26,13 +26,13 @@ import com.mep.message.MessageHelper;
 @RequestMapping("/admin/*")
 public class CategoryEditController extends CategoryEditControllerHelper {
 
-	private static final String INPUT_PATH = "/admin/category/categoryInput";
+	private static final String INPUT_PATH = "admin/category/categoryInput";
 
-	private static final String INPUT_COMPLETE_PATH = "/admin/category/categoryInputComplete";
+	private static final String INPUT_COMPLETE_PATH = "admin/category/categoryInputComplete";
 
-	private static final String UPDATE_PATH = "/admin/category/categoryUpdate";
+	private static final String UPDATE_PATH = "admin/category/categoryUpdate";
 
-	private static final String UPDATE_COMPLETE_PATH = "/admin/category/categoryUpdateComplete";
+	private static final String UPDATE_COMPLETE_PATH = "admin/category/categoryUpdateComplete";
 
 	@Autowired
 	private CategoryInsertService categoryInsertService;

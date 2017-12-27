@@ -28,13 +28,13 @@ import com.mep.message.MessageHelper;
 public class AdministratorEditController extends
 		AdministratorUpdateControllerHelper {
 
-	private static final String INPUT_PATH = "/admin/administrator/administratorInput";
+	private static final String INPUT_PATH = "admin/administrator/administratorInput";
 
-	private static final String INPUT_COMPLETE_PATH = "/admin/administrator/administratorInputComplete";
+	private static final String INPUT_COMPLETE_PATH = "admin/administrator/administratorInputComplete";
 
-	private static final String UPDATE_PATH = "/admin/administrator/administratorUpdate";
+	private static final String UPDATE_PATH = "admin/administrator/administratorUpdate";
 
-	private static final String UPDATE_COMPLETE_PATH = "/admin/administrator/administratorUpdateComplete";
+	private static final String UPDATE_COMPLETE_PATH = "admin/administrator/administratorUpdateComplete";
 
 	private static final String ADMIN_DTO = "adminDto";
 

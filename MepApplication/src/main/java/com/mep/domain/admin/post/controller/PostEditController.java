@@ -29,13 +29,13 @@ import com.mep.message.MessageHelper;
 @RequestMapping("/admin/*")
 public class PostEditController extends PostControllerHelper {
 
-	private static final String INPUT_PATH = "/admin/post/postInput";
+	private static final String INPUT_PATH = "admin/post/postInput";
 
-	private static final String INPUT_COMPLETE_PATH = "/admin/post/postInputComplete";
+	private static final String INPUT_COMPLETE_PATH = "admin/post/postInputComplete";
 
-	private static final String UPDATE_PATH = "/admin/post/postUpdate";
+	private static final String UPDATE_PATH = "admin/post/postUpdate";
 
-	private static final String UPDATE_COMPLETE_PATH = "/admin/post/postUpdateComplete";
+	private static final String UPDATE_COMPLETE_PATH = "admin/post/postUpdateComplete";
 
 	private static final String POST_DTO = "postDto";
 

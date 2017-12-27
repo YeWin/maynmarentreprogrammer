@@ -20,7 +20,7 @@ import com.mep.domain.admin.post.service.PostListService;
 @RequestMapping("/admin/*")
 public class PostListController extends PostControllerHelper {
 
-	private static final String INIT_PATH = "/admin/post/postList";
+	private static final String INIT_PATH = "admin/post/postList";
 
 	private static final String POST_DTO = "postDto";
 
