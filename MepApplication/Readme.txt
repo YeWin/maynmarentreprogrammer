@@ -38,3 +38,6 @@ th:href="@{/admin/administrator/update/{adminId}{adminName}(adminId=${admin.admi
 <a th:href="@{/{createdDate}/{postTitleEng}(createdDate=${article.createdDate}, postTitleEng=${article.postTitleEng})}">
 @GetMapping(value = { "/{createdDate}/{postTitleEng}" })
 http://www.thymeleaf.org/doc/articles/standardurlsyntax.html
+
+
+web: java $JAVA_OPTS -Dserver.port=$PORT -jar target/*.jar
