@@ -126,14 +126,14 @@ public class ArticleDashboardController {
 		return mav;
 	}
 	
-	private List<ArticleDashboardDto> getDashboardData(String category) {
+	private List<List<ArticleDashboardDto>> getDashboardData(String category) {
 		
-		List<ArticleDashboardDto> articleDashboardList = dashboradService
-				.getArticleDashboardList(category);
+		/*List<ArticleDashboardDto> articleDashboardList = dashboradService
+				.getArticleDashboardList(category);*/
 		
 		
 		// Trick for iterate 3 time per one row.
-		/*List<ArticleDashboardDto> excursions = dashboradService
+		List<ArticleDashboardDto> excursions = dashboradService
 				.getArticleDashboardList(category);
 	    List<List<ArticleDashboardDto>> articleDashboardList = new LinkedList<List<ArticleDashboardDto>>();
 	    List<ArticleDashboardDto> tempList = new LinkedList<ArticleDashboardDto>();
@@ -147,7 +147,7 @@ public class ArticleDashboardController {
 	        	articleDashboardList.add( tempList );
 	            tempList = new LinkedList<ArticleDashboardDto>();
 	        }
-	    }*/	   
+	    }	   
 
 		return articleDashboardList;
 	}
